@@ -1,0 +1,157 @@
+<div
+  class="fixed max-w-96 z-50 bg-main border-slate-700 dark:bg-slate-100 dark:border-slate-200 rounded-lg shadow-sm border px-5 py-3 -right-96 opacity-0 bottom-5 transition-all duration-500"
+  id="cookieBox">
+  <div class="space-y-5">
+    <h3 class="text-white dark:text-black font-poppins text-xl font-semibold">We use cookies</h3>
+    <p class="text-slate-300 dark:text-slate-700 font-poppins text-sm">Hi this website uses essential cookies to ensure its
+      proper operation and tracking cookies to understand how you interact with it. The latter will be set only upon
+      approval. Learn more about <a class="underline underline-offset-4" href='{{ "policies/" | relURL }}'>our
+        policies.</a></p>
+    <div class="flex gap-2 flex-wrap">
+      <button
+        class="acceptCookies px-5 py-1 bg-style rounded-full hover:scale-105 transition-transform text-black font-poppins">Accept</button>
+      <button
+        class="px-5 py-1 border-gradient-primary font-poppins after:rounded-full rounded-full hover:after:p-0 hover:bg-style hover:text-black hover:scale-105 transition-transform text-white dark:text-black"
+        data-dialog-target="dialog-lg">
+        Settings
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  class="fixed bottom-5 right-5 p-3 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer group z-50"
+  data-dialog-target="dialog-lg" id="cookies">
+  <span class="text-slate-500 group-hover:text-slate-600 dark:text-slate-900 dark:group-hover:text-slate-950 transition-colors">
+    <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M257.5 27.6c-.8-5.4-4.9-9.8-10.3-10.6c-22.1-3.1-44.6 .9-64.4 11.4l-74 39.5C89.1 78.4 73.2 94.9 63.4 115L26.7 190.6c-9.8 20.1-13 42.9-9.1 64.9l14.5 82.8c3.9 22.1 14.6 42.3 30.7 57.9l60.3 58.4c16.1 15.6 36.6 25.6 58.7 28.7l83 11.7c22.1 3.1 44.6-.9 64.4-11.4l74-39.5c19.7-10.5 35.6-27 45.4-47.2l36.7-75.5c9.8-20.1 13-42.9 9.1-64.9c-.9-5.3-5.3-9.3-10.6-10.1c-51.5-8.2-92.8-47.1-104.5-97.4c-1.8-7.6-8-13.4-15.7-14.6c-54.6-8.7-97.7-52-106.2-106.8zM208 144a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM144 336a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm224-64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+  </span>
+</div>
+<div id="errorMessage"
+  class="fixed hidden px-3 py-4 rounded-lg bg-red-600 z-50 font-poppins font-semibold text-lg text-white text-center bottom-5 left-1/2 -translate-x-1/2">
+  An error occurred. Please try again.</div>
+<div data-dialog-backdrop="dialog-lg" data-dialog-backdrop-close="false"
+  class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+  <div data-dialog="dialog-lg" class="relative m-4 px-5 py-3 w-11/12 sm:w-3/5 rounded-lg bg-slate-100 dark:bg-main shadow-sm">
+    <div class="flex shrink-0 justify-between items-center pb-4 text-black dark:text-white">
+      <h3 class="font-poppins text-xl font-semibold">We use cookies</h3>
+      <svg fill="currentColor" data-dialog-close="true" class="size-7 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512">
+        <path
+          d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+      </svg>
+    </div>
+    <div class="relative border-t border-slate-200 py-4 leading-normal text-slate-600">
+      <p class="text-slate-700 dark:text-slate-300 font-poppins text-sm">Hi this website uses essential cookies to ensure its
+        proper operation and tracking cookies to understand how you interact with it. The latter will be set only upon
+        approval. Learn more about <a class="underline underline-offset-4" href='{{ "policies/" | relURL }}'>our
+          policies.</a></p>
+    </div>
+    <div class="space-y-3">
+      <div class="p-4 bg-slate-200 dark:bg-slate-900 rounded-lg flex flex-wrap justify-between items-center shrink-0">
+        <p class="text-slate-800 dark:text-slate-200 font-poppins">Google Analytics</p>
+        <label class="inline-flex relative items-center cursor-not-allowed">
+          <input type="checkbox" value="" checked id="analytics-toggle" class="sr-only peer" disabled>
+          <div
+            class="w-11 h-6 bg-slate-800 dark:bg-slate-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:after:bg-black peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-lightBlue-600">
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="flex gap-3 shrink-0 flex-wrap items-center pt-4 justify-between">
+      <button
+        class="acceptCookies px-5 py-1 bg-style rounded-full hover:scale-105 transition-transform text-black font-poppins"
+        data-dialog-close="true">
+        Accept All
+      </button>
+
+      <button
+        class="px-5 py-1 border-gradient-primary font-poppins after:rounded-full rounded-full hover:after:p-0 hover:bg-style hover:text-black hover:scale-105 transition-transform text-black dark:text-white"
+        data-dialog-close="true">
+        Save Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cookieBox = document.getElementById('cookieBox');
+  const errorMessage = document.getElementById('errorMessage');
+  const cookieSettings = document.querySelector('[data-dialog-target="dialog-lg"]');
+  const acceptButtons = document.querySelectorAll('.acceptCookies');
+  const cookies = document.getElementById('cookies');
+
+  // Function to check if the consent cookie exists
+  function checkCookieConsent() {
+      return document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
+  }
+
+  // Show the cookie box only if consent hasn't been given
+  if (cookieBox) {
+    if (!checkCookieConsent()) {
+      window.onload = function () {
+        setTimeout(showElement, 5000);
+      };
+    } else {
+      hideElement(); // Immediately hide the banner if consent exists
+    }
+
+    function showElement() {
+      cookieBox.classList.remove('opacity-0', '-right-96');
+      cookieBox.classList.add('opacity-100', 'right-5');
+      cookies.classList.add('hidden');
+    }
+
+    function hideElement() {
+      cookieBox.classList.remove('opacity-100', 'right-5');
+      cookieBox.classList.add('opacity-0', '-right-96');
+      cookies.classList.remove('hidden');
+    }
+
+    cookieSettings.addEventListener('click', () => {
+      hideElement();
+    });
+
+    acceptButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        try {
+          loadOtherCookies();
+
+          // Set a cookie to remember consent
+          document.cookie = "cookies_accepted=true; path=/; max-age=" + (60 * 60 * 24 * 365);
+
+          // Hide the cookie box after acceptance
+          hideElement();
+        } catch (error) {
+          console.error("An error occurred:", error);
+          errorMessage.classList.remove('hidden');
+        }
+      });
+    });
+
+    function loadGoogleAnalytics() {
+      console.log("Loading Google Analytics script...");
+
+      // Replace 'YOUR_TRACKING_ID' with your actual tracking ID
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      console.log("Creating Google Analytics tracker...");
+      ga('create', '{{.Site.Params.ga_script}}', 'auto'); // Replace with actual tracking ID
+      ga('send', 'pageview');
+      console.log("Pageview sent to Google Analytics.");
+    }
+    loadGoogleAnalytics();
+
+    function loadOtherCookies() {
+      // Add any other scripts you want to load here
+    }
+  }
+</script>

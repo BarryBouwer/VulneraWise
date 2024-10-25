@@ -1,0 +1,15 @@
+title: "New Hugo Website" # Website name
+baseURL: "https://mudassir-nawaz.github.io/berrybower/" # Website URL
+
+############################
+## ADVANCED
+############################
+
+build:
+  writeStats: true
+
+markup:
+  highlight:
+    style: rrt
+    noClasses: false
+    lineNos: true

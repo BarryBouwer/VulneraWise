@@ -1,0 +1,158 @@
+{{- $context := .context -}}
+
+{{- $disableSidebar := .disableSidebar | default false -}}
+{{- $displayPlaceholder := .displayPlaceholder | default false -}}
+
+{{- $sidebarClass := cond $disableSidebar (cond $displayPlaceholder "md:hidden xl:block" "md:hidden") "md:sticky" -}}
+
+{{- $navRoot := cond (eq site.Home.Type "docs") site.Home $context.FirstSection -}}
+{{- $pageURL := $context.RelPermalink -}}
+
+{{/* EXPERIMENTAL */}}
+{{- if .context.Params.sidebar.hide -}}
+  {{- $disableSidebar = true -}}
+  {{- $displayPlaceholder = true -}}
+{{- end -}}
+
+
+<div class="mobile-menu-overlay [transition:background-color_1.5s_ease] fixed inset-0 z-10 hidden opacity-50"></div>
+<aside class="sidebar-container sm:max-w-64 flex flex-col print:hidden md:shrink-0 md:w-64 md:self-start max-md:[transform:translate3d(-100%,0,0)] {{ $sidebarClass }}">
+  <div class="hextra-scrollbar overflow-y-auto pt-28 md:pt-0 overflow-x-hidden p-4 grow md:h-[calc(100vh-var(--navbar-height)-var(--menu-height))]">
+    <ul class="flex flex-col gap-1 md:hidden">
+      <!-- Nav -->
+      {{ template "sidebar-main" (dict "context" $navRoot "page" $context  "pageURL" $pageURL) }}
+      {{ template "sidebar-footer" }}
+    </ul>
+
+    <!-- Sidebar on large screen -->
+    {{- if $disableSidebar -}}
+      {{- if $displayPlaceholder }}<div class="max-xl:hidden h-0 w-64 shrink-0"></div>{{ end -}}
+      {{ .context.Scratch.Set "enableFooterSwitches" true }}
+    {{- else -}}
+      <ul class="flex flex-col gap-1 max-md:hidden">
+        {{ template "sidebar-main" (dict "context" $navRoot "page" $context  "pageURL" $pageURL) }}
+        {{ template "sidebar-footer" }}
+      </ul>
+    {{ end -}}
+  </div>
+</aside>
+
+{{- define "sidebar-main" -}}
+  {{ template "sidebar-tree" (dict "context" .context "level" 0 "page" .page "pageURL" .pageURL "toc" (.toc | default false)) }}
+{{- end -}}
+
+{{- define "sidebar-tree" -}}
+  {{- if ge .level 4 -}}
+    {{- return -}}
+  {{- end -}}
+
+  {{- $context := .context -}}
+  {{- $page := .page }}
+  {{- $pageURL := .page.RelPermalink -}}
+  {{- $level := .level -}}
+  {{- $toc := .toc | default false -}}
+
+  {{- with $items := union .context.RegularPages .context.Sections -}}
+    {{- $items = where $items "Params.sidebar.exclude" "!=" true -}}
+    {{- if eq $level 0 -}}
+      {{- range $items.ByWeight }}
+        {{- if .Params.sidebar.separator -}}
+          <li class="[word-break:break-word] mt-5 mb-2 px-2 py-1.5 text-sm font-semibold text-slate-900 first:mt-0 dark:text-slate-100">
+            <span class="cursor-default">{{ partial "title.html" . }}</span>
+          </li>
+        {{- else -}}
+          {{- $active := eq $pageURL .RelPermalink -}}
+          {{- $shouldOpen := or (.Params.sidebar.open) (.IsAncestor $page) $active | default true }}
+          <li class="{{ if $shouldOpen }}open{{ end }}">
+            {{- $linkTitle := partial "title.html" . -}}
+            {{- template "sidebar-item-link" dict "context" . "active" $active "title" $linkTitle "link" .RelPermalink -}}
+            {{- if and $toc $active -}}
+              {{- template "sidebar-toc" dict "page" . -}}
+            {{- end -}}
+            {{- template "sidebar-tree" dict "context" . "page" $page "pageURL" $pageURL "level" (add $level 1) "toc" $toc -}}
+          </li>
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      <div class="pr-0 overflow-hidden">
+        <ul class='relative flex flex-col gap-1 before:absolute before:inset-y-1 before:w-px before:bg-slate-200 before:content-[""] ml-3 pl-3 before:left-0 mr-3 pr-3 before:right-0 dark:before:bg-neutral-800'>
+          {{- range $items.ByWeight }}
+            {{- $active := eq $pageURL .RelPermalink -}}
+            {{- $shouldOpen := or (.Params.sidebar.open) (.IsAncestor $page) $active | default true }}
+            {{- $linkTitle := partial "title.html" . -}}
+            <li class="flex flex-col {{ if $shouldOpen }}open{{ end }}">
+              {{- template "sidebar-item-link" dict "context" . "active" $active "title" $linkTitle "link" .RelPermalink -}}
+              {{- if and $toc $active -}}
+                {{ template "sidebar-toc" dict "page" . }}
+              {{- end }}
+              {{ template "sidebar-tree" dict "context" . "page" $page "pageURL" $pageURL "level" (add $level 1) "toc" $toc }}
+            </li>
+          {{- end -}}
+        </ul>
+      </div>
+    {{- end -}}
+  {{- end }}
+{{- end -}}
+
+{{- define "sidebar-toc" -}}
+  {{ $page := .page }}
+  {{ with $page.Fragments.Headings }}
+    <ul class='flex flex-col gap-1 relative before:absolute before:inset-y-1 before:w-px before:bg-slate-200 before:content-[""] dark:before:bg-neutral-800 ltr:pl-3 ltr:before:left-0 pr-3 before:right-0 ltr:ml-3 mr-3'>
+      {{- range . }}
+        {{- with .Headings }}
+          {{- range . -}}
+            <li>
+              <a
+                href="#{{ anchorize .ID }}"
+                class="flex rounded px-2 py-1.5 text-sm transition-colors [word-break:break-word] cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:border gap-2 before:opacity-25 before:content-['#'] text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-neutral-400 dark:hover:bg-primary-100/5 dark:hover:text-slate-50 contrast-more:text-slate-900 contrast-more:dark:text-slate-50 contrast-more:border-transparent contrast-more:hover:border-slate-900 contrast-more:dark:hover:border-slate-50"
+              >
+                {{- .Title -}}
+              </a>
+            </li>
+          {{ end -}}
+        {{ end -}}
+      {{ end -}}
+    </ul>
+  {{ end }}
+{{- end -}}
+
+{{- define "sidebar-footer" -}}
+  {{- range site.Menus.sidebar -}}
+    {{- $name := or (T .Identifier) .Name -}}
+    {{ if eq .Params.type "separator" }}
+      <li class="[word-break:break-word] mt-5 mb-2 px-2 py-1.5 text-sm font-semibold text-slate-900 first:mt-0 dark:text-slate-100">
+        <span class="cursor-default">{{ $name }}</span>
+      </li>
+    {{ else }}
+      <li>{{ template "sidebar-item-link" dict "active" false "title" $name "link" (.URL | relLangURL) }}</li>
+    {{ end }}
+  {{- end -}}
+{{- end -}}
+
+{{- define "sidebar-item-link" -}}
+  {{- $external := strings.HasPrefix .link "http" -}}
+  {{- $open := .open | default true -}}
+  <a
+    class="flex items-center justify-between gap-2 cursor-pointer rounded px-2 py-1.5 text-sm font-poppins transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+    {{- if .active }}
+        sidebar-active-item text-black dark:text-white bg-slate-100 dark:bg-slate-900 font-semibold
+    {{- else }}
+      text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-white dark:hover:bg-slate-900 dark:hover:text-white
+    {{- end -}}"
+    href="{{ .link }}"
+    {{ if $external }}target="_blank" rel="noreferer"{{ end }}
+  >
+    {{- .title -}}
+    {{- with .context }}
+      {{- if or .RegularPages .Sections }}
+        <span class="hextra-sidebar-collapsible-button">
+          {{- template "sidebar-collapsible-button" -}}
+        </span>
+      {{- end }}
+    {{ end -}}
+  </a>
+{{- end -}}
+
+{{- define "sidebar-collapsible-button" -}}
+  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-slate-200 dark:hover:bg-slate-700"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center"></path></svg>
+{{- end -}}

@@ -1,0 +1,4 @@
+en:
+  title: "My Site"
+  contentDir: content/en
+  weight: 0

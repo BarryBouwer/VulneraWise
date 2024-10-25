@@ -1,0 +1,170 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+{{ $aos := resources.Get "plugins/aos/aos.js" }} {{ $aos := $aos | minify }}
+<script src="{{ $aos.RelPermalink }}"></script>
+
+<title>
+  {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Page.Title }} - {{ .Site.Title
+  }}{{ end }}
+</title>
+
+{{/*  favicon  */}}
+<link rel="shortcut icon" href='{{ "images/favicon.png" | relURL }}' type="image/x-icon">
+
+{{/*  external services  */}}
+{{ template "_internal/google_analytics.html" . }} <!--google analytics--> 
+{{ template "_internal/opengraph.html" . }} <!--open graph-->
+{{ template "_internal/schema.html" . }} <!--schema markup-->
+{{ template "_internal/twitter_cards.html" . }} <!--twitter cards-->
+
+{{/* theme toggle function
+*/}}
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  function applyTheme() {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  // Apply the theme on load
+  applyTheme();
+
+  // Toggle theme based on current state
+  function changeTheme() {
+    if (localStorage.theme === "dark") {
+      setLightMode();
+    } else {
+      setDarkMode();
+    }
+  }
+
+  // Set light mode
+  function setLightMode() {
+    localStorage.theme = "light";
+    document.documentElement.classList.remove("dark");
+  }
+
+  // Set dark mode
+  function setDarkMode() {
+    localStorage.theme = "dark";
+    document.documentElement.classList.add("dark");
+  }
+
+  // Whenever the user explicitly chooses to respect the OS preference
+  function setSystemMode() {
+    localStorage.removeItem("theme");
+    applyTheme();
+  }
+
+  // Add an event listener for changes in the user's OS preference
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', applyTheme);
+</script>
+{{ $current := .RelPermalink }}
+{{ $pricing := "pricing/" | relURL }}
+{{ if eq $pricing $current }}
+<script>
+  // Tabs function
+  function showTab(tabId) {
+    const tabs = document.querySelectorAll(".tab");
+    const links = document.querySelectorAll(".tab-link");
+
+    // Hide all tabs
+    tabs.forEach((tab) => {
+      tab.classList.add("hidden");
+    });
+
+    // Reset all links
+    links.forEach((link) => {
+      link.classList.remove("bg-style");
+      link.classList.add("text-black", "dark:text-white", "bg-transparent");
+    });
+
+    // Show the selected tab
+    document.getElementById(tabId).classList.remove("hidden");
+    const activeLink = document.querySelector(`[data-tab="${tabId}"]`);
+    activeLink.classList.add("text-black", "bg-style");
+    activeLink.classList.remove("bg-transparent", "text-white", "dark:text-white");
+  }
+
+  // Initialize the first tab on page load
+  window.onload = function () {
+    showTab("monthlyBilling");
+  };
+</script>
+{{ end }}
+
+{{/* top styles */}}
+<style>
+  .after-right-arrow::after {
+    content: url('{{ "images/dev/dark_right_arrow.png" | relURL }}');
+  }
+
+  .after-right-arrow-transparent::after {
+    content: url('{{ "images/dev/dark_right_arrow.png" | relURL }}');
+  }
+  
+  .after-right-arrow-transparent-dark:where(.dark, .dark *)::after {
+    content: url('{{ "images/dev/light_right_arrow.png" | relURL }}');
+  }
+
+  .cards:hover > .card::after {
+    opacity: 1;
+  }
+  
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  .card::before,
+  .card::after {
+    border-radius: inherit;
+    content: "";
+    min-height: inherit;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: inherit;
+  }
+  
+  .card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.06),
+      transparent 20%
+    );
+    z-index: 3;
+  }
+  
+  .card::after {
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(35, 118, 221, 0.4),
+      rgba(255, 207, 113, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  
+  .card > .card-content {
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    padding: 10px;
+    position: absolute;
+    z-index: 2;
+  }  
+</style>
+
+{{/* styles */}} {{ partialCached "css.html" . }}

@@ -1,0 +1,75 @@
+main:
+  - name: "Home"
+    url: "/"
+    weight: 1
+  - name: "Solutions"
+    url: "solutions/"
+    weight: 2
+  - name: "Exploit and Vulnerability Intelligence"
+    url: "solutions/#exploit_&_vulnerability_intelligence"
+    parent: "Solutions"
+    weight: 1
+  - name: "Critical Vulnerability Prioritization"
+    url: "solutions/#critical_vulnerability_prioritization"
+    parent: "Solutions"
+    weight: 2
+  - name: "Resources"
+    url: "docs/"
+    weight: 3
+  - name: "Documentation"
+    url: "docs/"
+    parent: "Resources"
+    weight: 1
+  - name: "API"
+    url: "docs/api/"
+    parent: "Resources"
+    weight: 2
+  - name: "Blog"
+    url: "docs/"
+    parent: "Resources"
+    weight: 3
+  - name: "Pricing"
+    url: "pricing/"
+    weight: 4
+  - name: "About Us"
+    url: "about-us/"
+    weight: 5
+
+footer:
+  - name: "Home"
+    url: /
+    weight: 1
+  - name: "Pricing/Packages"
+    url: "pricing/"
+    weight: 2
+  - name: "About Us"
+    url: "about-us/"
+    weight: 3
+  - name: "Contact"
+    url: "about-us/#form"
+    weight: 4
+  - name: "Privacy Policy"
+    url: "policies/"
+    weight: 5
+  - name: "Terms & Conditions"
+    url: "terms/"
+    weight: 6
+
+solutions:
+  - name: "Exploit and Vulnerability Intelligence"
+    url: "solutions/#exploit_&_vulnerability_intelligence"
+    weight: 1
+  - name: "Critical Vulnerability Prioritization"
+    url: "solutions/#critical_vulnerability_prioritization"
+    weight: 2
+
+resources:
+  - name: "Documentation"
+    url: "docs/"
+    weight: 1
+  - name: "API"
+    url: "docs/api/"
+    weight: 2
+  - name: "Blog"
+    url: "docs/"
+    weight: 3

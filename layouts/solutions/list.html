@@ -1,0 +1,382 @@
+{{ define "main" }}
+{{/* hero section */}}
+{{ with .Params.hero_section }}
+{{ if .enable }}
+<section
+    class="h-full w-full bg-slate-100 dark:bg-main">
+    <div class="relative flex justify-center items-center">
+        <div class="absolute w-full h-full">
+            <div style="mask-image: url('{{ "images/dev/dark_shadow.png" | relURL }}')"
+              class="w-full h-full bg-no-repeat bg-top-center absolute bg-slate-100 dark:bg-main"></div>
+            {{ $dark_doted := "images/dev/dark_doted_layer.png" | relURL }}
+            <div style="background-image: radial-gradient(at top, transparent 0%, #05101a 80%, #05101a 100%), url('{{ $dark_doted }}');"
+              class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center absolute hidden dark:block">
+            </div>
+            {{ $light_doted := "images/dev/light_doted_layer.png" | relURL }}
+            <div style="background-image: radial-gradient(at top, transparent 0%, #f1f5f9 80%, #f1f5f9 100%), url('{{ $light_doted }}');"
+              class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center absolute dark:hidden">
+            </div>
+            <div class="relative z-10 container mx-auto">
+                {{ partial "header_smoke.html" . }}
+            </div>
+        </div>
+
+        <div class="container z-40 mx-auto mt-20 lg:mt-32">
+            <div
+                class="flex flex-col justify-center items-center gap-7 lg:flex-row px-5 sm:px-10 lg:px-16 xl:px-0 xl:max-w-6xl 2xl:max-w-[90rem] xl:mx-auto">
+                <div class="lg:w-1/2 xl:max-w-[35rem]">
+                    <div
+                        class="hidden lg:block rotate-45 size-60 bg-white dark:bg-main opacity-50 absolute top-40 left-36 -z-10">
+                    </div>
+                    <div class="space-y-5 z-50" data-aos="zoom-in">
+                        <h1
+                            class="font-poppins font-bold text-4xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
+                            {{ .title | safeHTML }}
+                        </h1>
+                        <p class="text-slate-700 dark:text-slate-300 font-poppins text-xl">
+                            {{ .details | markdownify }}
+                        </p>
+                        {{ with .button }}
+                        <div
+                            class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
+                            <a href="{{ .url | relURL }}"
+                                class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
+                                <span class="flex justify-center items-center gap-2">
+                                    {{ .label }}
+                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                        class="dark:hidden group-hover:block">
+                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                        class="hidden dark:block group-hover:hidden">
+                                </span>
+                            </a>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+                {{ end }}
+                <div class="w-full lg:w-1/2 mx-auto relative" data-aos="zoom-in">
+                    <div class="flex justify-center items-center relative rounded-xl animated">
+                        <div class="bg-blue rounded-xl overflow-hidden border-gradient-primary after:rounded-xl p-[2px]">
+                            <img src='{{ "images/dev/light_editor_header.png" | relURL }}' alt=""
+                            class="dark:hidden w-full">
+                            <img src='{{ "images/dev/dark_editor_header.png" | relURL }}' alt=""
+                            class="hidden dark:block w-full">
+                            <div id="codeSection" class="h-96 relative min-w-full overflow-y-scroll overflow-x-hidden rounded-b-xl prose prose-code:my-0 prose-pre:my-0 font-roboto-mono prose-pre:bg-transparent prose-pre:w-full prose-pre:relative prose-pre:z-10">
+                                {{ .Content }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ with .Params.hero_section.ev_intelligence }}
+            <div
+                id='{{ .title | plainify | replaceRE " " "_" | lower }}'
+                class="pt-20 lg:pt-44 hidden dark:block bg-main px-5 sm:px-10 lg:px-16"
+                style="background: linear-gradient(to bottom, transparent, #05101a 100%)"
+                data-aos="zoom-in">
+                <h2
+                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                    {{
+                    .title | safeHTML }}</h2>
+                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0">
+                    <div class="lg:w-1/3">
+                        <h3 class="font-poppins font-medium text-2xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
+                            {{ .subtitle | markdownify }}
+                        </h3>
+                        {{ with .button }}
+                        <div
+                            class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
+                            <a href="{{ .url | relURL }}"
+                                class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
+                                <span class="flex justify-center items-center gap-2">
+                                    {{ .label }}
+                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                        class="dark:hidden group-hover:block">
+                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                        class="hidden dark:block group-hover:hidden">
+                                </span>
+                            </a>
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ with .details }}
+                    <div class="hidden lg:block px-[1px] rotate-12 bg-slate-800 dark:bg-style h-[111.4px] m-auto">
+                    </div>
+                    {{ end }}
+                    <p class="text-slate-700 dark:text-slate-300 font-poppins text-lg leading-[34px] lg:w-1/2">
+                        {{ .details | markdownify }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                id='{{ .title | plainify | replaceRE " " "_" | lower }}'
+                class="pt-20 lg:pt-40 dark:hidden bg-main px-5 sm:px-10 lg:px-16"
+                style="background: linear-gradient(to bottom, transparent, #f1f5f9 100%)"
+                data-aos="zoom-in">
+                <h2
+                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                    {{
+                    .title | safeHTML }}</h2>
+                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0">
+                    <div class="lg:w-1/3">
+                        <h3 class="font-poppins font-medium text-2xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
+                            {{ .subtitle | markdownify }}
+                        </h3>
+                        {{ with .button }}
+                        <div
+                            class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
+                            <a href="{{ .url | relURL }}"
+                                class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
+                                <span class="flex justify-center items-center gap-2">
+                                    {{ .label }}
+                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                        class="dark:hidden group-hover:block">
+                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                        class="hidden dark:block group-hover:hidden">
+                                </span>
+                            </a>
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ with .details }}
+                    <div class="hidden lg:block px-[1px] rotate-12 bg-slate-800 dark:bg-style h-[111.4px] m-auto">
+                    </div>
+                    {{ end }}
+                    <p class="text-slate-700 dark:text-slate-300 font-poppins text-lg leading-[34px] lg:w-1/2">
+                        {{ .details | markdownify }}
+                    </p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{/* end hero */}}
+
+{{/* cards section */}}
+{{ with .Params.ev_intelligence_boxes }}
+<style>
+    #evCards:hover > .card::after {
+      opacity: 1;
+    }
+    
+    #evCards > .card:hover::before {
+      opacity: 1;
+    }
+    
+    #evCards > .card::before,
+    #evCards > .card::after {
+      border-radius: inherit;
+      content: "";
+      height: 100%;
+      left: 0px;
+      opacity: 0;
+      position: absolute;
+      top: 0px;
+      transition: opacity 500ms;
+      width: 100%;
+    }
+    
+    #evCards > .card::before {
+      background: radial-gradient(
+        800px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.06),
+        transparent 20%
+      );
+      z-index: 3;
+    }
+    
+    #evCards > .card::after {  
+      background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(35, 118, 221, 0.4),
+        rgba(255, 207, 113, 0.4),
+        transparent 40%
+      );
+      z-index: 1;
+    }
+    
+    #evCards > .card > .card-content {
+      border-radius: inherit;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      inset: 1px;
+      padding: 10px;
+      position: absolute;
+      z-index: 2;
+    }
+  </style>
+<section class="pt-20 bg-slate-100 dark:bg-main">
+    <div class="container mx-auto px-5 sm:px-10 lg:px-16">
+        <div id="evCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 place-content-between" data-aos="zoom-in">
+            {{ range . }}
+            <div class="rounded-3xl relative overflow-hidden animated card h-[414px]">
+                <div class="card-content bg-blue">
+                    <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
+                        class="w-full h-full absolute top-0 left-0 z-0"></div>
+                    <div class="space-y-7 z-30 relative px-5 pt-10">
+                        <img src='{{ .icon | relURL }}' alt="">
+                        <div class="space-y-2">
+                            <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | markdownify }}</h3>
+                            <p class="text-slate-300 font-poppins text-lg">{{ .details | markdownify }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+<script>
+    // onmouse offect 
+    document.getElementById("evCards").onmousemove = e => {
+      for (const card of document.getElementsByClassName("card")) {
+        const rect = card.getBoundingClientRect(),
+          x = e.clientX - rect.left,
+          y = e.clientY - rect.top;
+
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      };
+    };
+  </script>
+{{ end }}
+{{/* end cards */}}
+
+{{/* cv_priority section */}}
+{{ with .Params.cv_priority }}
+{{ if .enable }}
+<section id='{{ .title | plainify | replaceRE " " "_" | lower }}' class="bg-slate-100 dark:bg-main pt-10 lg:pt-40">
+    <div class="container mx-auto px-5 sm:px-10 lg:px-16">
+        <div data-aos="zoom-in">
+            <h2
+                class="font-poppins font-bold text-4xl lg:text-5xl text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                {{
+                .title | safeHTML }}</h2>
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
+                <div class="lg:w-1/3">
+                    <h3 class="font-poppins font-bold text-3xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
+                        {{ .subtitle | markdownify }}
+                    </h3>
+                    {{ with .button }}
+                        <div
+                            class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
+                            <a href="{{ .url | relURL }}"
+                                class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
+                                <span class="flex justify-center items-center gap-2">
+                                    {{ .label }}
+                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                        class="dark:hidden group-hover:block">
+                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                        class="hidden dark:block group-hover:hidden">
+                                </span>
+                            </a>
+                        </div>
+                        {{ end }}
+                </div>
+                {{ with .details }}
+                <div
+                    class="hidden lg:block px-[1px] rotate-12 bg-slate-800 dark:bg-style h-[111.4px] m-auto">
+                </div>
+                {{ end }}
+                <p class="text-slate-700 dark:text-slate-300 font-poppins text-lg leading-[32px] lg:w-1/2">
+                    {{ .details | markdownify }}
+                </p>
+            </div>
+        </div>
+        {{ with .boxes }}
+        <style>
+            #cvCards:hover > .card::after {
+              opacity: 1;
+            }
+            
+            #cvCards > .card:hover::before {
+              opacity: 1;
+            }
+            
+            #cvCards > .card::before,
+            #cvCards > .card::after {
+              border-radius: inherit;
+              content: "";
+              height: 100%;
+              left: 0px;
+              opacity: 0;
+              position: absolute;
+              top: 0px;
+              transition: opacity 500ms;
+              width: 100%;
+            }
+            
+            #cvCards > .card::before {
+              background: radial-gradient(
+                800px circle at var(--mouse-x) var(--mouse-y), 
+                rgba(255, 255, 255, 0.06),
+                transparent 20%
+              );
+              z-index: 3;
+            }
+            
+            #cvCards > .card::after {  
+              background: radial-gradient(
+                600px circle at var(--mouse-x) var(--mouse-y), 
+                rgba(35, 118, 221, 0.4),
+                rgba(255, 207, 113, 0.4),
+                transparent 40%
+              );
+              z-index: 1;
+            }
+            
+            #cvCards > .card > .card-content {
+              border-radius: inherit;
+              display: flex;
+              flex-direction: column;
+              flex-grow: 1;
+              inset: 1px;
+              padding: 10px;
+              position: absolute;
+              z-index: 2;
+            }
+        </style>
+        <div id="cvCards" class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 lg:mt-20" data-aos="zoom-in">
+            {{ range . }}
+            <div class="rounded-3xl relative overflow-hidden animated card h-[414px] lg:h-[355px]">
+                <div class="card-content bg-blue">
+                    <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
+                        class="w-full h-full absolute top-0 left-0 z-0"></div>
+                    <div class="space-y-7 z-30 relative px-5 pt-7">
+                        <img src='{{ .icon | relURL }}' alt="">
+                        <div class="space-y-2">
+                            <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | markdownify }}</h3>
+                            <p class="text-slate-300 font-poppins text-lg">{{ .details | markdownify }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        <script>
+            // onmouse offect 
+            document.getElementById("cvCards").onmousemove = e => {
+              for (const card of document.getElementsByClassName("card")) {
+                const rect = card.getBoundingClientRect(),
+                  x = e.clientX - rect.left,
+                  y = e.clientY - rect.top;
+    
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+              };
+            };
+          </script>
+        {{ end }}
+    </div>
+</section>
+{{ end }}
+{{ end }}
+{{/* end sv_priority */}}
+<div class="sm:-mt-40 bg-slate-100 dark:bg-main">
+    <img src='{{ "images/dev/bottom_layer.png" | relURL }}' alt="" class="container mx-auto w-full">
+</div>
+{{ end }}

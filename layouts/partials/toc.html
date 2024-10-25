@@ -1,0 +1,70 @@
+{{/* Table of Contents */}}
+{{/* TODO: toc bottom part should be able to hide */}}
+{{- $toc := .Params.toc | default true -}}
+{{- $onThisPage := (T "onThisPage") | default "On this page"}}
+{{- $backToTop := (T "backToTop") | default "Scroll to top" -}}
+
+<nav class="hextra-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  {{- if $toc }}
+    <div class="hextra-scrollbar sticky top-16 overflow-y-auto pr-4 pt-6 text-sm [hyphens:auto] max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:-mr-4 rtl:-ml-4">
+      {{- with .Fragments.Headings -}}
+        <p class="mb-4 font-semibold text-lg tracking-tight text-black dark:text-white">{{ $onThisPage }}</p>
+        {{- range . -}}
+          <ul>
+            {{- with .Headings -}}{{ template "toc-subheading" (dict "headings" . "level" 0) }}{{- end -}}
+          </ul>
+        {{- end -}}
+      {{- end -}}
+
+      {{- $borderClass := "mt-8 border-t bg-slate-100 pt-8 dark:bg-dark" -}}
+      {{- if not .Fragments.Headings -}}
+        {{- $borderClass = "" -}}
+      {{- end -}}
+
+      {{/* TOC bottom part */}}
+      <div class="{{ $borderClass }} sticky bottom-0 flex flex-col items-start gap-2 pb-8 dark:bg-main">
+        {{- if site.Params.editURL.enable -}}
+          {{- $editURL := site.Params.editURL.base | default "" -}}
+          {{- with .Params.editURL -}}
+            {{/* if `editURL` is set in the front matter */}}
+            {{- $editURL = . -}}
+          {{- else -}}
+            {{- with .File -}}
+              {{/* `.FileInfo.Meta.SourceRoot` is a Hugo internal field, e.g. `/path/to/repo/content/en/` */}}
+              {{- $sourceDir := replace (strings.TrimPrefix .FileInfo.Meta.BaseDir .FileInfo.Meta.SourceRoot) "\\" "/" -}}
+              {{- $sourceDir = strings.TrimPrefix "/content" $sourceDir -}}
+              {{- $path := replace .Path "\\" "/" -}}
+              {{- $editURL = urls.JoinPath $editURL $sourceDir $path -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      </div>
+    </div>
+  {{ end -}}
+</nav>
+
+{{/* TOC subheadings component. This is a recursive component that renders a list of headings. */}}
+{{- define "toc-subheading" -}}
+  {{- $headings := .headings -}}
+  {{- $level := .level -}}
+  {{- if ge $level 6 -}}
+    {{ return }}
+  {{- end -}}
+
+  {{- $padding := (mul $level 4) -}}
+  {{- $class := cond (eq $level 0) "font-semibold" (printf "ltr:pl-%d rtl:pr-%d" $padding $padding) -}}
+
+  {{- range $headings }}
+    {{- if .Title }}
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="{{ $class }} inline-block text-slate-700 dark:text-slate-300 w-full break-words" href="#{{ anchorize .ID }}">
+          {{- .Title | safeHTML | plainify | htmlUnescape }}
+        </a>
+      </li>
+    {{- end -}}
+    {{- with .Headings -}}
+      {{ template "toc-subheading" (dict "headings" . "level" (add $level 1)) }}
+    {{- end -}}
+
+  {{- end -}}
+{{- end -}}

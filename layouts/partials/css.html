@@ -1,0 +1,15 @@
+{{ $styles := resources.Get "css/main.css" }} {{ $styles = $styles | css.PostCSS
+(dict "config" "postcss.config.js") }} {{ if hugo.IsProduction }} {{ $styles =
+$styles | minify | fingerprint | resources.PostProcess }} {{ else }} {{ $styles
+= $styles | resources.ExecuteAsTemplate (printf "css/index.dev.%v.css"
+now.UnixMilli) .}} {{ end }}
+<link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+
+{{ $custom := resources.Get "css/custom.css" }}
+{{ $swiper := resources.Get "plugins/swiper/swiper.css" }} {{ $aos :=
+resources.Get "plugins/aos/aos.css" }} {{ $plugins := slice $custom $swiper $aos |
+resources.Concat "css/plugins.css" }} {{ if hugo.IsProduction }} {{ $plugins =
+$plugins | minify | fingerprint | resources.PostProcess }} {{ else }} {{
+$plugins = $plugins | minify }} {{ end }}
+
+<link rel="stylesheet" href="{{ $plugins.RelPermalink}}" />
