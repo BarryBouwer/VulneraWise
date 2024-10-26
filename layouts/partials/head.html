@@ -75,29 +75,33 @@
   function showTab(tabId) {
     const tabs = document.querySelectorAll(".tab");
     const links = document.querySelectorAll(".tab-link");
-
-    // Hide all tabs
+  
+    // Reset all links and hide all tabs
     tabs.forEach((tab) => {
+      tab.classList.remove("grid");
       tab.classList.add("hidden");
     });
-
-    // Reset all links
+  
     links.forEach((link) => {
       link.classList.remove("bg-style");
-      link.classList.add("text-black", "dark:text-white", "bg-transparent");
+      link.classList.add("dark:text-white", "text-black", "bg-transparent");
     });
-
+  
     // Show the selected tab
-    document.getElementById(tabId).classList.remove("hidden");
+    const activeTab = document.getElementById(tabId);
+    activeTab.classList.remove("hidden");
+    activeTab.classList.add("grid");
+  
+    // Highlight the active link
     const activeLink = document.querySelector(`[data-tab="${tabId}"]`);
     activeLink.classList.add("text-black", "bg-style");
     activeLink.classList.remove("bg-transparent", "text-white", "dark:text-white");
   }
-
+  
   // Initialize the first tab on page load
   window.onload = function () {
     showTab("monthlyBilling");
-  };
+  };  
 </script>
 {{ end }}
 
