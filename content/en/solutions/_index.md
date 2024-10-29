@@ -57,65 +57,62 @@ cv_priority:
 ---
 
 {{< highlight javascript >}}
-    // Imports
-import mongoose, { Schema } from 'untitled'
-
-// Collection name
-export const collection = 'Design'|
-
-// Schema
-const schema = new Schema({
-  name: {
-    type: String,
-    required: true
+    {
+  "metadata": {
+    "timestamp": "2024-06-14T12:02:22.341011+00:00"
   },
-
-  description: {
-    type: String
-  }
-}, {timestamps: true})
-
-// Model
-export default untitled.model(collection, schema, collection)
-// Imports
-import mongoose, { Schema } from 'untitled'
-
-// Collection name
-export const collection = 'Design'|
-
-// Schema
-const schema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-
-  description: {
-    type: String
-  }
-}, {timestamps: true})
-
-// Model
-export default untitled.model(collection, schema, collection)
-// Imports
-import mongoose, { Schema } from 'untitled'
-
-// Collection name
-export const collection = 'Design'|
-
-// Schema
-const schema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-
-  description: {
-    type: String
-  }
-}, {timestamps: true})
-
-// Model
-export default untitled.model(collection, schema, collection)
-
+  "data": [
+    {
+      "id": "CVE-2021-44228",
+      "severity": "critical",
+      "automatable": "yes",
+      "cisaKEV": true,
+      "reported_exploited": true,
+      "exploit_maturity": "active",
+      "counts": {
+        "public_exploit_count": 410
+      },
+      "timeline": {
+        "nvd_published": "2021-12-10",
+        "cisaKEV_published": "2021-12-10"
+      },
+      "epss": {
+        "epss_score": "0.97547",
+        "epss_percentile": "0.99996"
+      },
+      "ssvc": {
+        "automatable": "yes",
+        "exposure": "open",
+        "impact": "high",
+        "decision": "immediate"
+      },
+      "exploits": [
+        {
+          "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+          "name": "Apache Log4j2 Remote Code Execution Vulnerability",
+          "source": "cisa_kev",
+          "date_added": "2021-12-10",
+          "exploit_maturity": "in_wild"
+        },
+        {
+          "url": "https://gitlab.com/exploit-database/exploitdb/-/blob/main/exploits/java/remote/51183.txt",
+          "name": "AD Manager Plus 7122 - Remote Code Execution (RCE)",
+          "source": "exploitdb",
+          "date_added": "2023-04-01",
+          "exploit_maturity": "poc"
+        },
+        {
+          "url": "https://gitlab.com/exploit-database/exploitdb/-/blob/main/exploits/java/remote/50592.py",
+          "name": "Apache Log4j 2 - Remote Code Execution (RCE)",
+          "source": "exploitdb",
+          "date_added": "2021-12-14",
+          "exploit_maturity": "poc"
+        },
+        ...
+        ...
+        ...
+      ]
+    }
+  ]
+}
 {{< / highlight >}}
