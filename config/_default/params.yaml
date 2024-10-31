@@ -1,9 +1,9 @@
 light_logo: "images/black_logo.png" ##### Header and Footer logo for light theme
 dark_logo: "images/white_logo.png" ##### Header and Footer logo for dark theme
 
-header_login_btn: ##### Header login button
-  label: "Login"
-  url: "/"
+#header_login_btn: ##### Header login button
+#  label: "Login"
+ # url: "/"
 cta_btn: ##### Header & Footer call-to-action button
   label: "Schedule Demo"
   url: "about-us/#form"
