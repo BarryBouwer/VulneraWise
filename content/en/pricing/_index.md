@@ -1,5 +1,5 @@
 ---
-title: "Pricing"
+title: "Plans"
 
 ########### Hero Section ###########
 hero_section:
