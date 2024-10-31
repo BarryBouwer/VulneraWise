@@ -96,7 +96,7 @@ services_section:
 
 ########### News Section ###########
 blog_section:
-  enable: true
+  enable: false
   button:  
     label: View all Blog posts
     url: "docs/"
