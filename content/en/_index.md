@@ -19,7 +19,7 @@ hero_section:
       button:
         label: "Schedule Demo"
         url: "about-us/#form"
-    - title: "<span>Integrated seamlessly</span> into your tools—zero lock-in, just <span>insights</span> where and how you need them." 
+    - title: "<span>Integrated seamlessly</span> into your tools — 0 lock-in, <span>insights</span> where you need them." 
       details: "Stay informed on real-time global exploits targeting vulnerabilities right now."
       image: "images/globe_n.png"
       button:
