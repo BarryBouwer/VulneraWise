@@ -43,10 +43,13 @@
                 </div>
                 <div class="mt-20">
                     {{ with .monthly_billing }}
-                    <div id="monthlyBilling" class="tab grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+                    <div id="monthlyBilling" class="tab flex flex-wrap justify-center gap-y-10">
                         {{ range . }}
-                        <div class="h-full flex flex-col justify-between">
-                            <div>
+                        <div class="min-h-full w-full sm:w-1/2 lg:w-1/4 flex flex-col justify-between relative">
+                            <div class="absolute z-20 w-full h-full inset-0 bg-black bg-opacity-10 backdrop-blur-[1px] {{ if .coming_soon }}flex{{ else }}hidden{{ end }} justify-center items-center">
+                                <p class="font-poppins font-semibold text-3xl text-black dark:text-white text-center">Comming Soon!</p>
+                            </div>
+                            <div class="sm:mx-4">
                                 <div class="flex items-center gap-x-3 border-b border-slate-300 dark:border-slate-800 pb-3">
                                     <h4 class="font-poppins font-semibold text-[20px] text-black dark:text-white">{{ .plan_name }}</h4>
                                     {{ if .popular }}
@@ -55,10 +58,9 @@
                                     </div>
                                     {{ end }}
                                 </div>
-                                <div class="mt-10">
+                                <div class="mt-5">
                                     <div class="flex gap-x-2 items-end">
-                                        <h3 class="font-poppins font-semibold text-5xl text-black {{ if .popular }}dark-main-text{{ else }}dark:text-white{{ end }}">${{ .price }}</h3>
-                                        <span class="font-poppins text-slate-700 dark:font-semibold pb-2">per month</span>
+                                        <h3 class="font-poppins font-semibold text-[20px] text-black dark:text-white {{ if .popular }}dark-main-text{{ else }}dark:text-white{{ end }}">{{ .price }}</h3>
                                     </div>
                                 </div>
                                 <div class="mt-5 space-y-5">
@@ -94,9 +96,13 @@
                                     {{ end }}
                                 </div>
                             </div>
-                            <div class="w-full border-gradient-primary after:rounded-full text-center py-3 mt-10 hover:scale-105 transition-transform">
-                                <a href='{{ "about-us/#form" | relURL }}' class="text-black dark:text-white relative z-10 block">Contact Us</a>
+                            {{ with .button }}
+                            <div class="sm:mx-4">
+                                <div class="w-full border-gradient-primary after:rounded-full text-center py-3 mt-10 hover:scale-105 transition-transform">
+                                    <a href='{{ .url | relURL }}' class="text-black dark:text-white relative z-10 block">{{ .label }}</a>
+                                </div>
                             </div>
+                            {{ end }}
                         </div>
                         {{ end }}
                     </div>
@@ -105,10 +111,13 @@
                     {{ with .annual_billing }}
                     <div
                         id="annualBilling"
-                        class="tab hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+                        class="tab flex flex-wrap justify-center gap-y-10">
                         {{ range . }}
-                        <div class="h-full flex flex-col justify-between">
-                            <div>
+                        <div class="min-h-full w-full sm:w-1/2 lg:w-1/4 flex flex-col justify-between relative">
+                            <div class="absolute z-20 w-full h-full inset-0 bg-black bg-opacity-10 backdrop-blur-[1px] {{ if .coming_soon }}flex{{ else }}hidden{{ end }} justify-center items-center">
+                                <p class="font-poppins font-semibold text-3xl text-black dark:text-white text-center">Comming Soon!</p>
+                            </div>
+                            <div class="sm:mx-4">
                                 <div class="flex items-center gap-x-3 border-b border-slate-300 dark:border-slate-800 pb-3">
                                     <h4 class="font-poppins font-semibold text-[20px] text-black dark:text-white">{{ .plan_name }}</h4>
                                     {{ if .popular }}
@@ -117,10 +126,9 @@
                                     </div>
                                     {{ end }}
                                 </div>
-                                <div class="mt-10">
+                                <div class="mt-5">
                                     <div class="flex gap-x-2 items-end">
-                                        <h3 class="font-poppins font-semibold text-5xl text-black {{ if .popular }}dark-main-text{{ else }}dark:text-white{{ end }}">${{ .price }}</h3>
-                                        <span class="font-poppins text-slate-700 dark:font-semibold pb-2">per month</span>
+                                        <h3 class="font-poppins font-semibold text-[20px] text-black {{ if .popular }}dark-main-text{{ else }}dark:text-white{{ end }}">{{ .price }}</h3>
                                     </div>
                                 </div>
                                 <div class="mt-5 space-y-5">
@@ -156,9 +164,13 @@
                                     {{ end }}
                                 </div>
                             </div>
-                            <div class="w-full border-gradient-primary after:rounded-full text-center py-3 mt-10 hover:scale-105 transition-transform">
-                                <a href='{{ "about-us/#form" | relURL }}' class="text-black dark:text-white relative z-10 block">Contact Us</a>
+                            {{ with .button }}
+                            <div class="sm:mx-4">
+                                <div class="w-full border-gradient-primary after:rounded-full text-center py-3 mt-10 hover:scale-105 transition-transform">
+                                    <a href='{{ .url | relURL }}' class="text-black dark:text-white relative z-10 block">{{ .label }}</a>
+                                </div>
                             </div>
+                            {{ end }}
                         </div>
                         {{ end }}
                     </div>

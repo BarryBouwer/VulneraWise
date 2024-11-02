@@ -78,7 +78,7 @@
   
     // Reset all links and hide all tabs
     tabs.forEach((tab) => {
-      tab.classList.remove("grid");
+      tab.classList.remove("flex");
       tab.classList.add("hidden");
     });
   
@@ -90,7 +90,7 @@
     // Show the selected tab
     const activeTab = document.getElementById(tabId);
     activeTab.classList.remove("hidden");
-    activeTab.classList.add("grid");
+    activeTab.classList.add("flex");
   
     // Highlight the active link
     const activeLink = document.querySelector(`[data-tab="${tabId}"]`);
