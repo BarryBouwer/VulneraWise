@@ -113,4 +113,33 @@ blog_section:
       label: "Article"
       title: "How AI is Revolutionizing Vulnerability Management"
       details: "The Hidden Dangers of Unprioritized Vulnerabilities” highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities."
+
+########### FAQ Section ###########
+faq_section:
+  enable: true
+  faqs:
+    - question: "What makes VulneraWise different from other vulnerability management tools?"
+      answer: "VulneraWise combines a comprehensive catalog of CVEs with data from lesser-known sources, continually updated through dedicated scanners. This ensures our users have the most relevant, real-time exploit intelligence at their fingertips."
+    - question: "How does VulneraWise cut through the noise to prioritize vulnerabilities?"
+      answer: "Our customizable decision trees and extensive data points mean you can tailor vulnerability alerts to what truly matters, unlike black-box solutions that often lead to noise or missed risks. Furthermore, we provide full transparency in our prioritization."
+    - question: "Can I integrate VulneraWise with my existing tools?"
+      answer: "Absolutely! VulneraWise is designed to work within your existing workflow. From Slack and Teams to PowerBI, Grafana, and more, our solution delivers prioritized data directly into your preferred tools without adding extra dashboards or vendor/platform lock-in."
+    - question: "How frequently is the vulnerability catalog updated?"
+      answer: "Our catalog is updated in real-time. We pull from hundreds of sources, including advisories, forums, and unique feeds to enrich the data, and ensure that you’re always protected against the latest, relevant threats."
+    - question: "Is VulneraWise suitable for small teams or individuals?"
+      answer: "Yes! Our free plan offers access to our entire catalog and use of the prioritization engine, however with a limited number of api calls. This makes it perfect for individuals and small teams looking to explore comprehensive vulnerability insights without upfront costs."
+    - question: "What’s included in VulneraWise’s Professional Plan?"
+      answer: "The Professional Plan provides expanded API access and advanced decision tree features for tailored prioritization, making it ideal for teams seeking deeper integration and more control over vulnerability management. And yes, this plan is free to use now as well!"
+    - question: "How customizable are VulneraWise’s decision trees?"
+      answer: "Our decision trees are highly customizable, allowing you to set filters and prioritization criteria specific to your organization’s risk profile, industry and compliance standards, or unique security needs."
+    - question: "Does VulneraWise support specific compliance requirements?"
+      answer: "Yes, VulneraWise is aligned with major compliance frameworks like PCI DSS 4.0, HIPAA, NESA. Our solution is adaptable to help you meet industry-specific standards by prioritizing vulnerabilities that directly impact compliance. "
+    - question: "What if I need full control over data and integration?"
+      answer: "Our Enterprise Plan allows you to host VulneraWise within your own IT environment, providing unlimited API calls and fully customizable decision trees for ultimate control and flexibility."
+    - question: "Why should I choose VulneraWise over traditional vulnerability platforms?"
+      answer: "Unlike platforms that push you into rigid workflows and a number of additional dashboards, VulneraWise integrates directly into your existing environment, adding value without platform lock-in. Due to our client specific algorithms that you can customize according to your needs, we focus on precise, noise-free intelligence that meets your unique security needs while integrating seamlessly into your day to day operations."
+    - question: "How quickly can VulneraWise start delivering results?"
+      answer: "Our solutions are designed for quick implementation. With immediate access to our comprehensive vulnerability catalog and easy integration into your existing tools processes, you’ll see the benefits from day one."
+    - question: "Is there a trial available for the Professional and Enterprise Plans?"
+      answer: "Yes, even our Professional Plan is free for the time being, so you can experience the full feature set, including advanced decision trees and expanded API calls, at no cost. Contact us if you want to make the switch to an Enterprise plan."
 ---
