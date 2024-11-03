@@ -13,6 +13,7 @@ tabs:
     enable: true
     monthly_billing:
         - plan_name: "Free Plan"
+          popular: true
           price: Free
           access: "Full access to our vulnerability catalogues, insights, and usage of the API with a limited number of API calls."
           perfect_for: "Small teams or individual users exploring comprehensive vulnerability insights and basic API functionality."
@@ -21,7 +22,6 @@ tabs:
             url: "pricing/"
         - plan_name: "Professional plan"
           coming_soon: true
-          popular: true
           price: Free during Beta
           access: "Everything of the Free tier, including an expanded # of API calls and the use of our decision tree for prioritized threat intelligence."
           includes: "Access to real-time exploit intelligence and vulnerability prioritization with up to 200.000 API calls per month"
