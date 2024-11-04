@@ -353,11 +353,11 @@
     <h3 class="font-poppins font-semibold text-3xl lg:text-5xl text-black dark:text-slate-200 mb-4">
       Frequently Asked Questions
     </h3>
-    <ul class="basis-1/2 grid md:grid-cols-2 gap-x-14">
+    <ul class="basis-1/2 grid md:grid-cols-2 gap-y-2 gap-x-14">
       {{ range .faqs }}
-      <li>
+      <li class="p-5 bg-gray-200 dark:bg-blue rounded-lg">
         <button
-          class="relative flex gap-2 items-start w-full py-5 text-base font-semibold font-poppins text-left md:text-lg text-black dark:text-white"
+          class="relative flex gap-2 items-start w-full text-base font-semibold font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400"
           aria-expanded="false" onclick="toggleFAQ(this)">
           <span class="flex-1">{{ .question | markdownify }}</span>
           <svg class="flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300" viewBox="0 0 16 16"
@@ -370,8 +370,8 @@
         </button>
         <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden"
           style="transition: max-height 0.3s ease-in-out 0s;">
-          <div class="pb-5 leading-relaxed">
-            <div class="space-y-2 leading-relaxed font-poppins text-black dark:text-white">
+          <div class="pt-5 leading-relaxed">
+            <div class="space-y-2 leading-relaxed font-poppins text-slate-700 dark:text-slate-400">
               {{ .answer | markdownify }}
             </div>
           </div>
