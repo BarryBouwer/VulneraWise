@@ -19,8 +19,8 @@ hero_section:
       button:
         label: "Schedule Demo"
         url: "about-us/#form"
-    - title: "Integrated <span>seamlessly</span> into your workflow—without any <span>lock-in</span>” 
-      details: "Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs”
+    - title: "Integrated <span>seamlessly</span> into your workflow—without any <span>lock-in</span>" 
+      details: "Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs"
       image: "images/globe_n.png"
       button:
         label: "Schedule Demo"
@@ -104,15 +104,15 @@ blog_section:
     - image: "images/why_intellegence_is_must.png"
       label: "Article"
       title: "Why Real-Time Exploit Intelligence is a Must in Today’s Cybersecurity Landscape"
-      details: "The Hidden Dangers of Unprioritized Vulnerabilities” highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities."
+      details: "The Hidden Dangers of Unprioritized Vulnerabilities" highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities."
     - image: "images/the_hidden_dangers.png"
       label: "Article"
       title: "The Hidden Dangers of Unprioritized Vulnerabilities"
-      details: "The Hidden Dangers of Unprioritized Vulnerabilities” highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities. "
+      details: "The Hidden Dangers of Unprioritized Vulnerabilities" highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities. "
     - image: "images/ai_is_ravolution.png"
       label: "Article"
       title: "How AI is Revolutionizing Vulnerability Management"
-      details: "The Hidden Dangers of Unprioritized Vulnerabilities” highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities."
+      details: "The Hidden Dangers of Unprioritized Vulnerabilities" highlights the critical risks businesses face when they fail to properly prioritize security vulnerabilities."
 
 ########### FAQ Section ###########
 faq_section:
