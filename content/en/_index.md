@@ -12,7 +12,7 @@ hero_section:
       button:
         label: "Schedule Demo"
         url: "about-us/#form"
-    - title: “<span>Cut through the noise</span> with clear, prioritized vulnerability insights."
+    - title: "<span>Cut through the noise</span> with clear, prioritized vulnerability insights."
       details: "Focus on the most urgent risks with real-time, actionable insights tailored to your needs."
       image: "images/meter_n.png"
       top_space: true
@@ -20,7 +20,7 @@ hero_section:
         label: "Schedule Demo"
         url: "about-us/#form"
     - title: "Integrated <span>seamlessly</span> into your workflow—without any <span>lock-in</span>” 
-      details: “Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs”
+      details: "Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs”
       image: "images/globe_n.png"
       button:
         label: "Schedule Demo"
