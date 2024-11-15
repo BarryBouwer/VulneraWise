@@ -5,22 +5,22 @@ title: Home
 hero_section:
   enable: true
   slides:
-    - title: "Stay Ahead of Exploited <span>Vulnerabilities</span> with Intelligent Prioritization"
+    - title: "Comprehensive, real-time threat intelligence <span>tailored to your environment.</span>"
       details: "At VulneraWise, we believe that smart vulnerability management is the key to a secure future."
       image: "images/monitor.png"
       big_image: true
       button:
         label: "Schedule Demo"
         url: "about-us/#form"
-    - title: "Prioritize what's critical for you with relevant <span>real-time</span> insights."
+    - title: “<span>Cut through the noise</span> with clear, prioritized vulnerability insights."
       details: "Focus on the most urgent risks with real-time, actionable insights tailored to your needs."
       image: "images/meter_n.png"
       top_space: true
       button:
         label: "Schedule Demo"
         url: "about-us/#form"
-    - title: "<span>Integrated seamlessly</span> into your tools, just <span>insights</span> where & how you need them." 
-      details: "Stay informed on real-time global exploits targeting vulnerabilities right now."
+    - title: "Integrated <span>seamlessly</span> into your workflow—without any <span>lock-in</span>” 
+      details: “Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs”
       image: "images/globe_n.png"
       button:
         label: "Schedule Demo"
@@ -28,7 +28,7 @@ hero_section:
 
   mission:
     title: "Next-gen exploit intelligence<span class='text-style'>.</span>"
-    details: "Our mission is to empower security teams with the data, tools, and insights they need to stay ahead of emerging exploits and protect their organization’s digital assets."
+    details: "At VulneraWise, our mission is to empower security teams with actionable, real-time vulnerability intelligence that’s tailored, transparent, and seamlessly integrates into your workflows. We aim to redefine vulnerability management by delivering solutions that cut through the noise, are flexible, fully-customizable, and designed to protect your systems efficiently, with confidence and clarity."
 
 ########### News Section ###########
 news_section:
