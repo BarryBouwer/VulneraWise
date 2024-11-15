@@ -161,10 +161,17 @@
       <div class="bg-slate-100 dark:bg-main absolute right-0 top-0 bottom-0 px-5 blur-sm -mr-8 hidden lg:block z-10">
       </div>
       <div id="vulnerabilitiesCards" class="cards my-5 swiper-wrapper lg:gap-3">
-        {{ with .cards }}
+        {{ $data := dict }}
+        {{ $p := "data/test.json" }}
+        {{ with resources.Get $p }}
+        {{ $data = . | transform.Unmarshal }}
+        {{ else }}
+        {{ errorf "Unable to get resource %q" $p }}
+        {{ end }}
+        {{ with $data }}
         {{ range $i, $p := . }}
         <div
-          class="rounded-3xl swiper-slide min-h-[24rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[27rem] xl:min-h-[25rem] 2xl:min-h-[23rem] lg:max-w-[30%] relative overflow-hidden animated card">
+          class="rounded-3xl swiper-slide min-h-[48rem] sm:min-h-[35rem] md:min-h-[50rem] lg:min-h-[65rem] xl:min-h-[48rem] 2xl:min-h-[45rem] lg:max-w-[30%] relative overflow-hidden animated card">
           <div class="space-y-5 bg-white dark:bg-blue card-content">
             <div style="background-image: url('{{ " images/dev/dark_box_lines.png" | relURL }}');"
               class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
@@ -172,24 +179,25 @@
               class="w-full h-full absolute -top-5 left-0 dark:block"></div>
             <div class="spacy-y-2 px-5 relative z-10">
               <h4 class="text-black dark:text-off-white font-poppins font-semibold text-2xl">
-                {{ $p.title | markdownify }}
+                {{ $p.cve_id | markdownify }}
               </h4>
               <p class="text-slate-600 dark:text-slate-500 font-poppins text-lg">
                 {{ $p.subtitle | markdownify }}
               </p>
             </div>
-            {{ with $p.affecting }}
+            {{ with $p.cve_description }}
             <div class="space-y-2 px-5 relative z-10">
               <p class="font-poppins text-slate-900 dark:text-style uppercase">AFFECTING</p>
               <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
-                {{ range . }}
+                {{ $descriptionParts := split $p.cve_description "," }}
+                {{ range $descriptionParts }}
                 <li>{{ . | markdownify }}</li>
                 {{ end }}
               </ul>
             </div>
             {{ end }}
             <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-              <p class="text-slate-700 dark:text-white font-poppins">{{ $p.date }}</p>
+              <p class="text-slate-700 dark:text-white font-poppins">{{ $p.cve_published }}</p>
               {{ if eq $p.type "high" }}
               <div class="border border-warning px-2 text-warning rounded-full font-poppins">
                 High
