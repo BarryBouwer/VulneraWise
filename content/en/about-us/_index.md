@@ -4,22 +4,22 @@ title: Our Vision
 ########### Hero Section ###########
 hero_section:
     enable: true
-    title: "<span>Our Vision</span>"
-    details: "In an ever-changing threat landscape, timing is everything. VulneraWise delivers real-time updates on the vulnerabilities actively targeted by malicious actors. By integrating data from sources like Exploit Prediction Scoring System (EPSS) and Common Vulnerability Scoring System (CVSS) amongst others and applying our intelligence, our tool provides you with critical insights, allowing your security teams to identify and mitigate threats faster than ever before."
+    title: "<span>Our Mission</span>"
+    details: "At VulneraWise, our mission is to empower security teams with actionable, real-time vulnerability intelligence that’s tailored, transparent, and seamlessly integrates into your workflows. We aim to redefine vulnerability management by delivering solutions that cut through the noise, are flexible, fully-customizable, and designed to protect your systems efficiently, with confidence and clarity."
 
 ########### Our Values ###########
 our_values:
     enable: true
     boxes:
         - icon: "images/led.png"
-          title: "Innovation"
-          details: "Constantly improving by utilizing the latest technologies and stay ahead of the game."
+          title: "Transperency"
+          details: "We believe in providing clear, actionable intelligence without the noise. Our commitment to transparency ensures that every decision point is visible and every prioritization is justified, empowering users to trust and understand their vulnerability management process."
         - icon: "images/shield.png"
-          title: "Security"
-          details: "Protecting what matters most—your data, your assets, and your business."
+          title: "Simplicity"
+          details: "We are dedicated to making cybersecurity solutions that are both easy to use and fully adaptable. VulneraWise integrates seamlessly into existing workflows, offering flexibility without complexity, so security teams can act with efficiency and clarity."
         - icon: "images/deal.png"
-          title: "Collaboration"
-          details: "Working closely with our partners and clients to deliver actionable, real-time intelligence."
+          title: "Resilience"
+          details: "At VulneraWise, we strive to stay ahead of emerging threats by continuously innovating our solutions. We deliver real-time intelligence and advanced tools designed to enhance security resilience, enabling organizations to protect their systems with confidence and precision."
 
 ########### Form ###########
 form:
