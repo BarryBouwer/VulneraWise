@@ -16,7 +16,7 @@ our_values:
           details: "We believe in providing clear, actionable intelligence without the noise. Our commitment to transparency ensures that every decision point is visible and every prioritization is justified, empowering users to trust and understand their vulnerability management process."
         - icon: "images/shield.png"
           title: "Simplicity"
-          details: "We are dedicated to making cybersecurity solutions that are both easy to use and fully adaptable. VulneraWise integrates seamlessly into existing workflows, offering flexibility without complexity, so security teams can act with efficiency and clarity."
+          details: "We are dedicated to making cybersecurity solutions both easy to use and fully adaptable. VulneraWise integrates seamlessly into existing workflows, allowing your security teams to identify and mitigate threats faster than ever before."
         - icon: "images/deal.png"
           title: "Resilience"
           details: "At VulneraWise, we strive to stay ahead of emerging threats by continuously innovating our solutions. We deliver real-time intelligence and advanced tools designed to enhance security resilience, enabling organizations to protect their systems with confidence and precision."
