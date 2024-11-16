@@ -138,8 +138,5 @@ faq_section:
       answer: Our Enterprise Plan allows you to host VulneraWise within your own IT environment, providing unlimited API calls and fully customizable decision trees for ultimate control and flexibility.
     - question: Why should I choose VulneraWise over traditional vulnerability platforms?
       answer: Unlike platforms that push you into rigid workflows and a number of additional dashboards, VulneraWise integrates directly into your existing environment, adding value without platform lock-in. Due to our client specific algorithms that you can customize according to your needs, we focus on precise, noise-free intelligence that meets your unique security needs while integrating seamlessly into your day to day operations.
-    - question: How quickly can VulneraWise start delivering results?
-      answer: Our solutions are designed for quick implementation. With immediate access to our comprehensive vulnerability catalog and easy integration into your existing tools processes, you’ll see the benefits from day one.
-    - question: Is there a trial available for the Professional and Enterprise Plans?
-      answer: Yes, even our Professional Plan is free for the time being, so you can experience the full feature set, including advanced decision trees and expanded API calls, at no cost. Contact us if you want to make the switch to an Enterprise plan.
+
 ---
