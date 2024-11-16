@@ -28,7 +28,7 @@ hero_section:
 
   mission:
     title: Next-gen exploit intelligence<span class='text-style'>.</span>
-    details: At VulneraWise, our mission is to empower security teams with actionable, real-time vulnerability intelligence that’s tailored, transparent, and seamlessly integrates into your workflows. We aim to redefine vulnerability management by delivering solutions that cut through the noise, are flexible, fully-customizable, and designed to protect your systems efficiently, with confidence and clarity.
+    details: VulneraWise makes vulnerability management both flexible and precise, customizable yet simple—all while empowering you with the most actionable intelligence available to secure your systems.
 
 ########### News Section ###########
 news_section:
