@@ -4,9 +4,11 @@ title: "Plans"
 ########### Hero Section ###########
 hero_section:
     enable: true
-    title: "<span>Pricing</span>"
+    title: "<span>Plans</span>"
     subtitle: "Choose the Plan that Fits Your Needs"
-    details: "At VulneraWise, we offer flexible subscriptions to fit organizations of all sizes and security requirements. Whether you're just starting out or need a fully customizable solution, we’ve got you covered."
+    details: "In today’s landscape of rapidly evolving cyber threats, managing vulnerabilities is more challenging than ever. Traditional methods often overwhelm security teams with noise, lacking the precision and transparency needed to take decisive action. VulneraWise changes that by combining real-time exploit intelligence with tailored vulnerability prioritization, empowering security teams to focus on what matters most—actively exploited vulnerabilities that pose the greatest risk to their unique environment. <br>
+    
+    At VulneraWise, we offer flexible plans designed to meet the needs of organizations of all sizes. Whether you’re exploring comprehensive vulnerability insights for the first time or require a fully customizable, enterprise-level solution, our subscriptions ensure you stay secure with efficiency, confidence, and clarity."
 
 ########### Tabs Section ###########
 tabs:
