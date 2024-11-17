@@ -171,8 +171,8 @@
         {{ with $data }}
         {{ range $i, $p := . }}
         <div
-          class="rounded-3xl swiper-slide min-h-[48rem] sm:min-h-[35rem] md:min-h-[50rem] lg:min-h-[65rem] xl:min-h-[48rem] 2xl:min-h-[45rem] lg:max-w-[30%] relative overflow-hidden animated card">
-          <div class="space-y-5 bg-white dark:bg-blue card-content">
+          class="rounded-3xl swiper-slide min-h-[25rem] lg:max-w-[30%] relative overflow-hidden animated card">
+          <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
             <div style="background-image: url('{{ " images/dev/dark_box_lines.png" | relURL }}');"
               class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
             <div style="background-image: url('{{ " images/dev/light_box_lines.png" | relURL }}');"
@@ -182,8 +182,24 @@
                 {{ $p.cve_id | markdownify }}
               </h4>
               <p class="text-slate-600 dark:text-slate-500 font-poppins text-lg">
-                {{ $p.subtitle | markdownify }}
+                {{ $p.cve_name | markdownify }}
               </p>
+            </div>
+            <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+              <p class="text-slate-700 dark:text-white font-poppins">{{ $p.cve_published }}</p>
+              {{ if lt $p.epss_score 0.6 }}
+              <div class="border border-style px-2 text-style rounded-full font-poppins">
+              Medium
+              </div>
+              {{ else if and (ge $p.epss_score 0.6) (lt $p.epss_score 0.8) }}
+              <div class="border border-warning px-2 text-warning rounded-full font-poppins">
+              High
+              </div>
+              {{ else if ge $p.epss_score 0.8 }}
+              <div class="border border-danger px-2 text-danger rounded-full font-poppins">
+              Critical
+              </div>
+              {{ end }}
             </div>
             {{ with $p.cve_description }}
             <div class="space-y-2 px-5 relative z-10">
@@ -196,19 +212,6 @@
               </ul>
             </div>
             {{ end }}
-            <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-              <p class="text-slate-700 dark:text-white font-poppins">{{ $p.cve_published }}</p>
-              {{ if eq $p.type "high" }}
-              <div class="border border-warning px-2 text-warning rounded-full font-poppins">
-                High
-              </div>
-              {{ end }}
-              {{ if eq $p.type "critical" }}
-              <div class="border border-danger px-2 text-danger rounded-full font-poppins">
-                Critical
-              </div>
-              {{ end }}
-            </div>
           </div>
         </div>
         {{ end }}
