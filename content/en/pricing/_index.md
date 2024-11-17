@@ -21,7 +21,7 @@ tabs:
           perfect_for: "Small teams or individual users exploring comprehensive vulnerability insights and basic API functionality."
           button: 
             label: "Get started"
-            url: "resources/"
+            url: "docs/"
         - plan_name: "Professional plan"
           coming_soon: true
           price: Free during Beta
@@ -49,7 +49,7 @@ tabs:
           perfect_for: "Small teams or individual users exploring comprehensive vulnerability insights and basic API functionality."
           button: 
             label: "Get started"
-            url: "resources/"
+            url: "docs/"
         - plan_name: "Professional plan"
           coming_soon: true
           popular: true
