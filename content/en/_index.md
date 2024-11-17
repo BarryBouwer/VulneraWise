@@ -88,10 +88,10 @@ services_section:
   enable: true
   cards:
     - title: Exploit & <span>Vulnerability</span> Intelligence
-      details: Identify, respond, and act on real-time exploit intelligence. VulneraWise continuously monitors and updates you on vulnerabilities actively targeted by malicious actors, providing critical insights to keep your organization ahead of potential breaches.
+      details: Identify, respond, and act on real-time exploit intelligence. VulneraWise continuously monitors and updates you on relevant vulnerabilities actively targeted by malicious actors, providing critical insights to empower organisations to stay ahead of potential breaches and achieve uncompromising security resilience.
       image: images/intellegence.png
     - title: Critical <span>Vulnerability</span> Prioritization
-      details: Focus remediation where it matters most with VulneraWise. By leveraging advanced exploit and vulnerability data mapped to your business context, VulneraWise helps prioritize high-risk vulnerabilities for timely protection. It integrates seamlessly with your SecOps tools to streamline detection, response, and vulnerability management.
+      details: Focus remediation where it matters most with VulneraWise. By leveraging advanced exploit and vulnerability data mapped to your business context, VulneraWise prioritizes the most relevant high-risk vulnerabilities for timely protection. It's fully transparent and integrates seamlessly with your current SecOps workflow to streamline detection, response and and mitigate threats faster than ever before.
       image: images/critical.png
 
 ########### News Section ###########
