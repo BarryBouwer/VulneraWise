@@ -133,7 +133,7 @@ faq_section:
     - question: How customizable are VulneraWise’s decision trees?
       answer: Our decision trees are highly customizable, allowing you to set filters and prioritization criteria specific to your organization’s risk profile, industry and compliance standards, or unique security needs.
     - question: Does VulneraWise support specific compliance requirements?
-      answer: Yes, VulneraWise is aligned with major compliance frameworks like PCI DSS 4.0, HIPAA, NESA. Our solution is adaptable to help you meet industry-specific standards by prioritizing vulnerabilities that directly impact compliance. 
+      answer: Yes, VulneraWise is aligned with major compliance frameworks like PCI DSS 4.0, HIPAA, FedRAMP, NESA. Our solution is adaptable to help you meet industry-specific standards by prioritizing vulnerabilities that directly impact compliance. 
     - question: What if I need full control over data and integration?
       answer: Our Enterprise Plan allows you to host VulneraWise within your own IT environment, providing unlimited API calls and fully customizable decision trees for ultimate control and flexibility.
     - question: Why should I choose VulneraWise over traditional vulnerability platforms?
