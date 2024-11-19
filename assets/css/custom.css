@@ -551,3 +551,22 @@
   background: #1e293b; /* Color of the scrollbar thumb */
   border-radius: 10px; /* Rounded corners for thumb */
 }
+
+.animated-img {
+    animation: moved 12s linear infinite;
+}
+
+@keyframes moved {
+    0% {
+        transform: translateY(-5%);
+        transform: translateX(-5%);
+    }
+    50% {
+        transform: translateY(15%);
+        transform: translateX(5%);
+    }
+    100% {
+        transform: translateY(-5%);
+        transform: translateX(-5%);
+    }
+}
