@@ -23,8 +23,8 @@
                 {{ with .Params.hero_section }}
                 {{ if .enable }}
                 <h1 class="font-poppins font-bold text-5xl sm:text-[56px] main-heading h-16">{{ .title | safeHTML }}</h1>
-                <h5 class="font-poppins text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .subtitle | markdownify }}</h5>
-                <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ .details | markdownify }}</p>
+                <h5 class="font-poppins text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .subtitle | safeHTML }}</h5>
+                <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ .details | safeHTML }}</p>
                 {{ end }}
                 {{ end }}
             </div>
@@ -71,7 +71,7 @@
                                             <img src="{{ $access }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Access</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .access | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .access | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                     {{ if .includes }}
@@ -81,7 +81,7 @@
                                             <img src="{{ $file }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Includes</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .includes | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .includes | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                     {{ if .perfect_for }}
@@ -91,7 +91,7 @@
                                             <img src="{{ $clipboard }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Perfect For</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .perfect_for | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .perfect_for | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                 </div>
@@ -139,7 +139,7 @@
                                             <img src="{{ $access }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Access</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .access | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .access | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                     {{ if .includes }}
@@ -149,7 +149,7 @@
                                             <img src="{{ $file }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Includes</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .includes | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .includes | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                     {{ if .perfect_for }}
@@ -159,7 +159,7 @@
                                             <img src="{{ $clipboard }}" alt="{{ site.Title }}">
                                             <p class="text-black dark:text-white font-poppins font-medium">Perfect For</p>
                                         </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .perfect_for | markdownify }}</p>
+                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .perfect_for | safeHTML }}</p>
                                     </div>
                                     {{ end }}
                                 </div>

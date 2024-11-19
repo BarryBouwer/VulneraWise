@@ -23,7 +23,7 @@
                 {{ if .enable }}
                 <h1 class="font-poppins font-bold text-5xl sm:text-[56px] main-heading h-16">{{ .title | safeHTML }}
                 </h1>
-                <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ .details | markdownify }}</p>
+                <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ .details | safeHTML }}</p>
                 {{ end }}
                 {{ end }}
             </div>
@@ -93,9 +93,9 @@
                             <div class="space-y-7 z-30 relative pt-10">
                                 <img src='{{ .icon | relURL }}' alt="" class="h-28">
                                 <div class="space-y-2 px-5">
-                                    <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | markdownify }}
+                                    <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | safeHTML }}
                                     </h3>
-                                    <p class="text-slate-300 font-poppins text-lg">{{ .details | markdownify }}</p>
+                                    <p class="text-slate-300 font-poppins text-lg">{{ .details | safeHTML }}</p>
                                 </div>
                             </div>
                         </div>
@@ -130,9 +130,9 @@
             {{ with .content }}
             <div class="space-y-7" data-aos="zoom-in">
                 <div class="space-y-3">
-                    <h3 class="text-black dark:text-white font-poppins font-semibold text-3xl">{{ .title | markdownify
+                    <h3 class="text-black dark:text-white font-poppins font-semibold text-3xl">{{ .title | safeHTML
                         }}</h3>
-                    <p class="text-slate-700 dark:text-slate-300 font-poppins text-lg">{{ .details | markdownify }}</p>
+                    <p class="text-slate-700 dark:text-slate-300 font-poppins text-lg">{{ .details | safeHTML }}</p>
                 </div>
                 <div class="space-y-4">
                     {{ with .location }}

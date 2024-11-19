@@ -23,7 +23,7 @@
                     class="font-poppins font-bold text-center text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
                     {{ .Title | safeHTML }}
                 </h3>
-                <h5 class="font-poppins text-center text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .Params.subtitle | markdownify }}</h5>
+                <h5 class="font-poppins text-center text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .Params.subtitle | safeHTML }}</h5>
             </div>
             <div class="pb-20 prose font-poppins prose-slate dark:prose-invert min-w-full bg-gradient-to-b from-transparent to-slate-100 dark:to-main">
                 {{ .Content }}
