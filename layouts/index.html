@@ -132,6 +132,15 @@
           width: 100%;
         }
 
+        #valueCards > .card::before {
+          background: radial-gradient(
+            800px circle at var(--mouse-x) var(--mouse-y), 
+            rgba(255, 255, 255, 0.06),
+            transparent 20%
+          );
+          z-index: 3;
+        }
+
         #vulnerabilitiesCards>.card::after {
           background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
               rgba(35, 118, 221, 0.4),
@@ -148,7 +157,7 @@
           inset: 1px;
           padding: 10px;
           position: absolute;
-          z-index: 3;
+          z-index: 2;
         }
       </style>
       <div class="bg-slate-100 dark:bg-main absolute right-0 top-0 bottom-0 px-5 blur-sm -mr-8 hidden lg:block z-10">
@@ -165,7 +174,7 @@
         {{ with $data.data }} <!-- Access the "data" array in your JSON -->
             {{ range $i, $p := . }}
             <div
-                class="rounded-3xl swiper-slide min-h-[25rem] lg:max-w-[30%] relative overflow-hidden animated card">
+                class="rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card">
                 <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
                     <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                         class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
@@ -179,34 +188,48 @@
                           {{ $p.name | safeHTML }} <!-- Updated to match your JSON structure -->
                         </p>
                     </div>
-                    <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                    <div class="space-y-2 px-5 relative z-10">
+                    <p class="font-poppins text-slate-900 dark:text-style uppercase">DETAILS</p>
+                    <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
+                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
                       <p class="text-slate-700 dark:text-white font-poppins">Exploit Maturity</p>
-                      <div class="border border-black dark:border-white px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
                         {{ $p.exploit_maturity }}
                       </div>
-                    </div>
-                    <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                    </li>
+                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
                       <p class="text-slate-700 dark:text-white font-poppins">Confidence</p>
-                      <div class="border border-black dark:border-white px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
                         {{ $p.confidence_level }}
                       </div>
-                    </div>
-                    <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                    </li>
+                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
                       <p class="text-slate-700 dark:text-white font-poppins">Trending</p>
-                      <div class="border border-black dark:border-white px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
                         {{ $p.trending_score }}
                       </div>
+                    </li>
+                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                      <p class="text-slate-700 dark:text-white font-poppins">EPSS score</p>
+                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                        {{ $p.epss.epss_score }}
+                      </div>
+                    </li>
+                    </ul>
                     </div>
                     <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">EPSS score</p>
-                      <div class="border border-black dark:border-white px-2 text-black dark:text-white rounded-full font-poppins capitalize">
-                        {{ $p.epss.epss_score }}
+                      <p class="text-slate-700 dark:text-white font-poppins">Published Date</p>
+                      <div class="px-2 text-black dark:text-white rounded-full font-poppins">
+                        {{ range $i, $p := $p.timeline.references }}
+                        {{ if eq $i 0 }}
+                        {{ $date := time.AsTime $p.published }}
+                        {{ time.Format "January 2, 2006" $date}}
+                        {{ end }}
+                        {{ end }}
                       </div>
                     </div>
                     <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                        {{ range $i, $p := $p.timeline.references }}
-                        <p class="text-slate-700 dark:text-white font-poppins">{{ if eq $i 0 }}{{ $p.published }}{{ end }}</p>
-                        {{ end }}
+                      <p class="text-slate-700 dark:text-white font-poppins">Severity</p>
                         {{ if eq $p.severity "Medium" }}
                         <div class="border border-style px-2 text-style rounded-full font-poppins">
                             Medium
@@ -221,7 +244,7 @@
                         </div>
                         {{ end }}
                     </div>
-                    {{ with $p.description }}
+                    {{/*  {{ with $p.description }}
                     <div class="space-y-2 px-5 relative z-10">
                         <p class="font-poppins text-slate-900 dark:text-style uppercase">AFFECTING</p>
                         <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
@@ -231,7 +254,7 @@
                             {{ end }}
                         </ul>
                     </div>
-                    {{ end }}
+                    {{ end }}  */}}
                 </div>
             </div>
             {{ end }}
