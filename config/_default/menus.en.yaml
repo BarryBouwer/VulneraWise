@@ -28,6 +28,10 @@ main:
     url: "docs/"
     parent: "Resources"
     weight: 3
+  - name: "CVEs"
+    url: "docs/cve/"
+    parent: "Resources"
+    weight: 4
   - name: "Pricing"
     url: "pricing/"
     weight: 4
@@ -73,3 +77,6 @@ resources:
   - name: "Blog"
     url: "docs/"
     weight: 3
+  - name: "CVEs"
+    url: "docs/cve/"
+    weight: 4
