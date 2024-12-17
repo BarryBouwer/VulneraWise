@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
     "prettier": "^3.3.3",
     "swiper": "^11.1.14"
   },
