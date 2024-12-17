@@ -1,19 +1,4 @@
 {
-  "comments": {
-    "dependencies": {
-      "@fullhuman/postcss-purgecss": "project",
-      "postcss-cli": "project",
-      "prettier": "project",
-      "swiper": "project"
-    },
-    "devDependencies": {
-      "@tailwindcss/typography": "project",
-      "autoprefixer": "project",
-      "postcss": "project",
-      "postcss-import": "project",
-      "tailwindcss": "project"
-    }
-  },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "postcss-cli": "^11.0.0",

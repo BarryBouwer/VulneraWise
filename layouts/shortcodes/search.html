@@ -1,4 +1,131 @@
-<form action="">
-    <input type="text" placeholder="Search..."
-        class="w-full px-5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-black dark:text-white bg-white dark:bg-blue outline-none">
-</form>
+<div class="container">
+    <div id="search-bar" class="flex flex-row rounded-lg border border-slate-300 dark:border-slate-700">
+        <input type="text" id="search-input" placeholder="Enter CVE ID here..." class="basis-3/4 py-1 px-5 focus:outline-none rounded-s-lg text-black">
+        <button id="search-button" class="basis-1/4 bg-style text-black py-1 rounded-e-lg">Search</button>
+    </div>
+    <div id="content">
+        <div id="vulnerabilities" class="mt-4 gap-4 grid not-prose"></div>
+    </div>
+</div>
+
+<script>
+    const apiUrl = "https://trend.vulnerawise.ai/top10.json";
+  
+    document.getElementById("search-button").addEventListener("click", handleSearch);
+
+    document.getElementById("search-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    });
+
+    async function fetchVulnerabilities() {
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            displayVulnerabilities(data.data);
+        } catch (error) {
+            document.getElementById("vulnerabilities").innerHTML = `<p>Error fetching vulnerabilities: ${error.message}</p>`;
+        }
+    }
+
+    function displayVulnerabilities(vulnerabilities) {
+        const container = document.getElementById("vulnerabilities");
+        if (!vulnerabilities || vulnerabilities.length === 0) {
+            container.innerHTML = `<p>No vulnerabilities found.</p>`;
+            return;
+        }
+
+        const html = vulnerabilities.slice(0, 10).map(vul => `
+            <div class="vulnerability group rounded-3xl p-5 bg-white dark:bg-blue border border-slate-300 dark:border-slate-700 relative overflow-hidden animated cursor-pointer">
+                <p class="cve-id text-black dark:text-white font-poppins font-semibold text-[26px]" onclick="fetchCveDetails('${vul.cve.id}')">${vul.cve.id}</p>
+            </div>
+        `).join("");
+
+        container.innerHTML = html;
+    }
+
+    async function fetchCveDetails(cveId) {
+        const year = cveId.split('-')[1];
+        const apiUrl = `https://trend.vulnerawise.ai/api/v1/${year}/${cveId}.json`;
+
+        const contentContainer = document.getElementById("content");
+        contentContainer.innerHTML = `<p>Loading details for ${cveId}...</p>`;
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            renderCveDetails(data.data[0].cve);
+        } catch (error) {
+            contentContainer.innerHTML = `<p>System unable to find details for ${cveId}. Try something else.</p>`;
+        }
+    }
+
+    function renderCveDetails(cve) {
+        const contentContainer = document.getElementById("content");
+        
+        // Initialize HTML content
+        let content = `
+            <div class="cve-details mt-5 prose prose-slate dark:prose-invert capitalize">
+                <h2>${cve.id}</h2>
+                <p class="normal-case"><strong>Description:</strong> ${cve.description}</p>
+                <p><strong>Published Date:</strong> ${cve.metadata.published_date || 'Unknown'}</p>
+                <p><strong>Confidence Level:</strong> ${cve.metadata.confidence_level || 'Unknown'}</p>
+                <p><strong>Severity:</strong> ${cve.metadata.severity || 'Unknown'}</p>
+                <p><strong>Exploit count:</strong> ${cve.counts.public_exploit_count || 'Unknown'}</p>
+                <p><strong>EPSS Score:</strong> ${cve.epss.score || 'N/A'}</p>
+                <p><strong>EPSS Percentile:</strong> ${cve.epss.percentile || 'N/A'}</p>
+                <h2>Impact</h2>
+                <p><strong>CISA Kev:</strong> ${cve.impact.cisa_kev || 'Unknown'}</p>
+                <p><strong>Reported Exploited:</strong> ${cve.impact.reported_exploited || 'Unknown'}</p>
+                <p><strong>Exploit Maturity:</strong> ${cve.impact.exploit_maturity || 'Unknown'}</p>
+                <p><strong>Automatable:</strong> ${cve.impact.automatable || 'Unknown'}</p>
+                <h2>Metrics</h2>
+        `;
+        
+        // Loop through metrics and append them to the content
+        if (cve.metrics && cve.metrics.length > 0) {
+            cve.metrics.forEach(metric => {
+                content += `
+                    <div class="metric-entry">
+                        <p class="lowercase"><strong>Source:</strong> ${metric.source}</p>
+                        <p><strong>Type:</strong> ${metric.type}</p>
+                        <p><strong>CVSS Version:</strong> ${metric.cvss_version}</p>
+                        <p><strong>Vector String:</strong> ${metric.vector_string}</p>
+                        <p><strong>Attack Vector:</strong> ${metric.attack_vector}</p>
+                        <p><strong>Base Score:</strong> ${metric.base_score}</p>
+                    </div>
+                    <hr class="my-3">
+                `;
+            });
+        } else {
+            content += "<p>No metrics available</p>";
+        }
+    
+        content += `</div>`; // Close the main container div
+    
+        // Set the content to the container
+        contentContainer.innerHTML = content;
+    }    
+
+    async function handleSearch() {
+        const searchInput = document.getElementById("search-input");
+        const cveId = searchInput.value.trim();
+        const contentContainer = document.getElementById("content");
+
+        if (!cveId) {
+            contentContainer.innerHTML = `<p class='px-5 rounded-lg text-black bg-red-200 border border-red-300 text-red-500'>Please enter a CVE ID.</p>`;
+            return;
+        }
+
+        await fetchCveDetails(cveId);
+    }
+
+    fetchVulnerabilities();
+</script>
