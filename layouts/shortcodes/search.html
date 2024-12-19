@@ -1,6 +1,6 @@
 <div class="container">
     <div id="search-bar" class="flex flex-row rounded-lg border border-slate-300 dark:border-slate-700">
-        <input type="text" id="search-input" placeholder="Enter CVE ID here..." class="basis-3/4 py-1 px-5 focus:outline-none rounded-s-lg text-black">
+        <input type="text" id="search-input" placeholder="Enter CVE ID here..." class="basis-3/4 py-1 px-3 focus:outline-none rounded-s-lg text-black">
         <button id="search-button" class="basis-1/4 bg-style text-black py-1 rounded-e-lg">Search</button>
     </div>
     <div id="content">
@@ -40,8 +40,8 @@
         }
 
         const html = vulnerabilities.slice(0, 10).map(vul => `
-            <div class="vulnerability group rounded-3xl p-5 bg-white dark:bg-blue border border-slate-300 dark:border-slate-700 relative overflow-hidden animated cursor-pointer">
-                <p class="cve-id text-black dark:text-white font-poppins font-semibold text-[26px]" onclick="fetchCveDetails('${vul.cve.id}')">${vul.cve.id}</p>
+            <div class="vulnerability cursor-pointer">
+                <p class="cve-id text-black dark:text-white font-poppins font-semibold text-[20px]" onclick="fetchCveDetails('${vul.cve.id}')">${vul.cve.id}</p>
             </div>
         `).join("");
 
