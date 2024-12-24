@@ -75,17 +75,17 @@
             <div class="cve-details mt-5 prose prose-slate dark:prose-invert capitalize">
                 <h2>${cve.id}</h2>
                 <p class="normal-case"><strong>Description:</strong> ${cve.description}</p>
-                <p><strong>Published Date:</strong> ${cve.metadata.published_date || 'Unknown'}</p>
-                <p><strong>Confidence Level:</strong> ${cve.metadata.confidence_level || 'Unknown'}</p>
-                <p><strong>Severity:</strong> ${cve.metadata.severity || 'Unknown'}</p>
-                <p><strong>Exploit count:</strong> ${cve.counts.public_exploit_count || 'Unknown'}</p>
+                <p><strong>Published Date:</strong> ${cve.metadata.published_date}</p>
+                <p><strong>Confidence Level:</strong> ${cve.metadata.confidence_level}</p>
+                <p><strong>Severity:</strong> ${cve.metadata.severity}</p>
+                <p><strong>Exploit count:</strong> ${cve.counts.public_exploit_count}</p>
                 <p><strong>EPSS Score:</strong> ${cve.epss.score || 'N/A'}</p>
                 <p><strong>EPSS Percentile:</strong> ${cve.epss.percentile || 'N/A'}</p>
                 <h2>Impact</h2>
-                <p><strong>CISA Kev:</strong> ${cve.impact.cisa_kev || 'Unknown'}</p>
-                <p><strong>Reported Exploited:</strong> ${cve.impact.reported_exploited || 'Unknown'}</p>
-                <p><strong>Exploit Maturity:</strong> ${cve.impact.exploit_maturity || 'Unknown'}</p>
-                <p><strong>Automatable:</strong> ${cve.impact.automatable || 'Unknown'}</p>
+                <p><strong>CISA Kev:</strong> ${cve.impact.cisa_kev}</p>
+                <p><strong>Reported Exploited:</strong> ${cve.impact.reported_exploited}</p>
+                <p><strong>Exploit Maturity:</strong> ${cve.impact.exploit_maturity}</p>
+                <p><strong>Automatable:</strong> ${cve.impact.automatable}</p>
                 <h2>Metrics</h2>
         `;
         
@@ -94,8 +94,6 @@
             cve.metrics.forEach(metric => {
                 content += `
                     <div class="metric-entry">
-                        <p class="lowercase"><strong>Source:</strong> ${metric.source}</p>
-                        <p><strong>Type:</strong> ${metric.type}</p>
                         <p><strong>CVSS Version:</strong> ${metric.cvss_version}</p>
                         <p><strong>Vector String:</strong> ${metric.vector_string}</p>
                         <p><strong>Attack Vector:</strong> ${metric.attack_vector}</p>
