@@ -19,7 +19,7 @@ hero_section:
       button:
         label: Schedule Demo
         url: about-us/#form
-    - title: Integrated <span>seamlessly</span> into your workflow—<span>Without lock-in</span> 
+    - title: Integrated <span>seamlessly</span> into your workflow — <span>without lock-in</span> 
       details: Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just value in your current security stack.
       image: images/globe_n.png
       button:
