@@ -5,14 +5,14 @@ title: Home
 hero_section:
   enable: true
   slides:
-    - title: <span>Cut through the noise</span> with vulnerability prioritization for free. 
+    - title: <span>Cut through the noise</span> with vulnerability prioritization for free
       details: Manage threats with real-time, actionable insights tailored to your current security posture’s most pressing vulnerabilities.
       image: images/monitor.png
       big_image: true
       button:
         label: Schedule Demo
         url: about-us/#form
-    - title: Clear threat intelligence with relevant actionable insights
+    - title: Clear threat intelligence with <span>relevant actionable insights</span>
       details: Smart vulnerability management based on transparent analysis enables teams to act upon insights quickly.
       image: images/meter_n.png
       top_space: true
