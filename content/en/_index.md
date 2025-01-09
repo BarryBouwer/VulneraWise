@@ -5,22 +5,22 @@ title: Home
 hero_section:
   enable: true
   slides:
-    - title: Comprehensive, real-time threat intelligence <span>tailored to your environment.</span>
-      details: At VulneraWise, we believe that smart vulnerability management is the key to a secure future.
+    - title: <span>Cut through the noise</span> with vulnerability prioritization for free. 
+      details: Manage threats with real-time, actionable insights tailored to your current security posture’s most pressing vulnerabilities.
       image: images/monitor.png
       big_image: true
       button:
         label: Schedule Demo
         url: about-us/#form
-    - title: <span>Cut through the noise</span> with clear, prioritized vulnerability insights.
-      details: Focus on the most urgent risks with real-time, actionable insights tailored to your needs.
+    - title: Clear threat intelligence with relevant actionable insights
+      details: Smart vulnerability management based on transparent analysis enables teams to act upon insights quickly.
       image: images/meter_n.png
       top_space: true
       button:
         label: Schedule Demo
         url: about-us/#form
-    - title: Integrated <span>seamlessly</span> into your workflow—<span>No lock-in</span> 
-      details: Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just pure value, tailored to your security needs
+    - title: Integrated <span>seamlessly</span> into your workflow—<span>Without lock-in</span> 
+      details: Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just value in your current security stack.
       image: images/globe_n.png
       button:
         label: Schedule Demo
