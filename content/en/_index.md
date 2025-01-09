@@ -28,7 +28,7 @@ hero_section:
 
   mission:
     title: Next-gen exploit intelligence<span class='text-style'>.</span>
-    details: VulneraWise makes vulnerability management both flexible and precise, customizable yet simple—all while empowering you with the most actionable intelligence available to secure your systems.
+    details: VulneraWise offers a free vulnerability management solution that’s both flexible and precise, customizable yet simple. It empowers you with actionable intelligence to secure your systems directly within your existing tools.
 
 ########### News Section ###########
 news_section:
