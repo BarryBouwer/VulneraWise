@@ -125,7 +125,7 @@ faq_section:
     - question: Can I integrate VulneraWise with my existing tools?
       answer: Absolutely! VulneraWise is designed to work within your existing workflow. From Slack and Teams to PowerBI, Grafana, and more, our solution delivers prioritized data directly into your preferred tools without adding extra dashboards or vendor/platform lock-in.
     - question: How frequently is the vulnerability catalog updated?
-      answer: Our catalog is updated in real-time to ensure you’re always protected against the latest, relevant threats. We pull from hundreds of sources, including advisories, forums, and unique feeds for a comprehensive dataset of system vulnerabilities and potential attack points
+      answer: Our catalog is updated in real-time using our AI-powered scanning solution to ensure you’re always protected against the latest, relevant threats. We pull from hundreds of sources, including advisories, forums, and unique feeds for a comprehensive dataset of system vulnerabilities and potential attack points.
     - question: Is VulneraWise suitable for small teams or individuals?
       answer: Yes! Our free plan offers access to our entire catalog and use of the prioritization engine, however with a limited number of api calls. This makes it perfect for individuals and small teams looking to explore comprehensive vulnerability insights without upfront costs.
     - question: What’s included in VulneraWise’s Professional Plan?
