@@ -28,7 +28,7 @@ hero_section:
 
   mission:
     title: Next-gen exploit intelligence<span class='text-style'>.</span>
-    details: VulneraWise offers a free vulnerability management solution that’s both flexible and precise, customizable yet simple. It empowers you with actionable intelligence to secure your systems directly within your existing tools.
+    details: VulneraWise offers a free vulnerability management solution that’s both flexible and precise, customizable yet simple. It empowers you with actionable intelligence to secure your systems within your existing tools.
 
 ########### News Section ###########
 news_section:
@@ -91,7 +91,7 @@ services_section:
       details: Identify, respond, and act on real-time exploit intelligence. VulneraWise continuously monitors and updates you on relevant vulnerabilities actively targeted by malicious actors. These critical insights empower you to secure weakpoints before potential breaches occur and for uncompromising security resilience.
       image: images/intellegence.png
     - title: Critical <span>Vulnerability</span> Prioritization
-      details: Focus remediation where it matters most with VulneraWise. By aligning advanced exploit and vulnerability data to your business context, VulneraWise prioritizes vulnerabilities based on their risk level for you. This prioritization is fully transparent allowing you to understand your current risk profile and manage tasks efficiently. 
+      details: Focus remediation where it matters most. By aligning advanced exploit and vulnerability data to your business context, VulneraWise prioritizes vulnerabilities based on their risk level for you. This prioritization is fully transparent allowing you to understand your current risk profile and manage tasks efficiently. 
       image: images/critical.png
 
 ########### News Section ###########
