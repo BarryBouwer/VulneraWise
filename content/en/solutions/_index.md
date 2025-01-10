@@ -13,7 +13,7 @@ hero_section:
     ev_intelligence:
         title: "<span>Exploit & Vulnerability Intelligence</span>"
         subtitle: "Stay Ahead of Cyber Threats with Real-Time Intelligence"
-        details: "In today's threat landscape, timing is everything. VulneraWise delivers real-time updates on the vulnerabilities actively targeted by malicious actors. Our AI powered scanning solution gathers data from all leading sources and hundreds of others. Then, we generate relevant insights using our proprietary prioritization engine. This approach paired with industry-leading data allows your security teams to identify and mitigate threats faster."
+        details: "In today's threat landscape, timing is everything. VulneraWise delivers real-time updates on vulnerabilities actively targeted by malicious actors. Our AI-powered scanning solution gathers data from all leading sources and hundreds of others. Then, we generate relevant insights using our proprietary prioritization engine. This approach paired with industry-leading data allows your security teams to identify and mitigate threats faster."
         button:
             label: "Schedule Demo"
             url: "about-us/#form"
