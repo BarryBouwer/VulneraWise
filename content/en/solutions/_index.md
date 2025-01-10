@@ -26,7 +26,7 @@ ev_intelligence_boxes:
       details: "Get instant insights into actively exploited and relevant vulnerabilities."
     - icon: "images/decision.png"
       title: "Data-Driven Decisions"
-      details: "Identify the most pressing exploits from key data sources including EPSS and CVSS exploits."
+      details: "Identify the most pressing exploits with our prioritization engine."
     - icon: "images/risk.png"
       title: "Neutralize Risks"
       details: "Prioritize the vulnerabilities most likely to be targeted by attackers."
