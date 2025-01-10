@@ -13,7 +13,7 @@ hero_section:
     ev_intelligence:
         title: "<span>Exploit & Vulnerability Intelligence</span>"
         subtitle: "Stay Ahead of Cyber Threats with Real-Time Intelligence"
-        details: "In today's threat landscape, timing is everything. VulneraWise delivers real-time updates on the vulnerabilities actively targeted by malicious actors. We start by gathering data from leading sources like the Exploit Prediction Scoring System (EPSS) and Common Vulnerability Scoring System (CVSS) amongst others. Then, our tool generates relevant insights using our proprietary AI. This automated approach paired with industry-leading data allows your security teams to identify and mitigate threats faster."
+        details: "In today's threat landscape, timing is everything. VulneraWise delivers real-time updates on the vulnerabilities actively targeted by malicious actors. Our AI powered scanning solution gathers data from all leading sources and hundreds of others. Then, our tool generates relevant insights using our proprietary AI. This automated approach paired with industry-leading data allows your security teams to identify and mitigate threats faster."
         button:
             label: "Schedule Demo"
             url: "about-us/#form"
@@ -28,8 +28,8 @@ ev_intelligence_boxes:
       title: "Data-Driven Decisions"
       details: "Identify the most pressing exploits from key data sources including EPSS and CVSS exploits."
     - icon: "images/risk.png"
-      title: "Neutralize Potential Risks"
-      details: "Prioritize vulnerabilities with the highest likelihood of being targeted by attackers."
+      title: "Neutralize Risks"
+      details: "Prioritize the vulnerabilities most likely to be targeted by attackers."
 
 
 ########### CV Priority ###########
@@ -47,7 +47,7 @@ cv_priority:
           details: "Make smarter decisions with severity analysis of real-world exploits in your context."
         - icon: "images/stopwatch.png"
           title: "Faster Remediation"
-          details: "Respond faster by Respond faster by focusing efforts on critical vulnerabilities for your organization"
+          details: "Respond faster by focusing efforts on critical vulnerabilities for your organization."
         - icon: "images/id.png"
           title: "Optimized Resource Allocation"
           details: "Prioritize your team’s efforts on impactful exploits, not low-risk issues."
