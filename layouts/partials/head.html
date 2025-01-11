@@ -23,19 +23,31 @@
 <script>
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   function applyTheme() {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
+    // Check if the theme preference should be saved (checkbox checked)
+    if (localStorage.getItem('saveThemePreference') === 'true') {
+      // Apply the saved theme (dark or light) from localStorage
+      if (localStorage.theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     } else {
-      document.documentElement.classList.remove("dark");
+      // No theme preference saved, use system preference
+      if (
+        !("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }
 
   // Apply the theme on load
-  applyTheme();
+  window.addEventListener('load', () => {
+    applyTheme();  // Apply theme when page loads
+  });
 
   // Toggle theme based on current state
   function changeTheme() {
@@ -48,25 +60,40 @@
 
   // Set light mode
   function setLightMode() {
-    localStorage.theme = "light";
+    localStorage.theme = "light";  // Save light theme to localStorage
     document.documentElement.classList.remove("dark");
   }
 
   // Set dark mode
   function setDarkMode() {
-    localStorage.theme = "dark";
+    localStorage.theme = "dark";  // Save dark theme to localStorage
     document.documentElement.classList.add("dark");
   }
 
   // Whenever the user explicitly chooses to respect the OS preference
   function setSystemMode() {
-    localStorage.removeItem("theme");
-    applyTheme();
+    localStorage.removeItem("theme");  // Remove the theme from localStorage
+    applyTheme();  // Apply the system's default theme
   }
 
   // Add an event listener for changes in the user's OS preference
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', applyTheme);
+
+  // Listen for changes to the checkbox (check/uncheck)
+  // If the checkbox is checked, we store the theme preference in localStorage
+  document.getElementById('preferences').addEventListener('change', () => {
+    if (document.getElementById('preferences').checked) {
+      // Save the preference to localStorage
+      localStorage.setItem('saveThemePreference', 'true');
+      applyTheme();  // Reapply the theme when the checkbox is checked
+    } else {
+      // Remove the preference from localStorage
+      localStorage.removeItem('saveThemePreference');
+      applyTheme();  // Reapply the system preference or default theme
+    }
+  });
 </script>
+
 {{ $current := .RelPermalink }}
 {{ $pricing := "pricing/" | relURL }}
 {{ if eq $pricing $current }}

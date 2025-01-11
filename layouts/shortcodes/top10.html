@@ -1,0 +1,24 @@
+{{ $data := dict }}
+{{ $p := "https://api.vulnerawise.ai/top10.json" }}
+{{ with resources.GetRemote $p }}
+{{ $data = . | transform.Unmarshal }}
+{{ else }}
+{{ errorf "Unable to get resource %q" $p }}
+{{ end }}
+
+{{ with $data.data }}
+{{ range $i, $p := . }}
+{{ $id := $p.cve.id }}
+{{ $url := replaceRE " " "-" $id | lower }}
+<a class="group rounded-3xl p-5 bg-white dark:bg-blue border border-slate-300 dark:border-slate-700 relative overflow-hidden animated"
+    href="{{ $url }}">
+    <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
+        class="w-full h-full absolute top-0 left-0 z-0 hidden dark:block"></div>
+    <div style="background-image: url('{{ "images/dev/light_box_lines.png" | relURL }}');"
+        class="w-full h-full absolute top-0 left-0 z-0 dark:hidden"></div>
+    <div class="relative z-10">
+        <h3 class="text-black dark:text-white font-poppins font-semibold text-[26px]">{{ $p.cve.id | safeHTML }}</h3>
+    </div>
+</a>
+{{ end }}
+{{ end }}

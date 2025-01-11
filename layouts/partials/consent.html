@@ -18,13 +18,13 @@
     </div>
   </div>
 </div>
-<div
-  class="fixed bottom-5 right-5 p-3 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer group z-50"
-  data-dialog-target="dialog-lg" id="cookies">
+<button
+  class="fixed bottom-5 right-5 p-3 bg-slate-300 dark:bg-slate-700 rounded-lg cursor-pointer group z-50 ring-0 border-none outline-none"
+  data-dialog-target="dialog-lg" id="cookies" title="Manage Cookies" aria-label="Manage Cookies">
   <span class="text-slate-500 group-hover:text-slate-600 dark:text-slate-900 dark:group-hover:text-slate-950 transition-colors">
     <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M257.5 27.6c-.8-5.4-4.9-9.8-10.3-10.6c-22.1-3.1-44.6 .9-64.4 11.4l-74 39.5C89.1 78.4 73.2 94.9 63.4 115L26.7 190.6c-9.8 20.1-13 42.9-9.1 64.9l14.5 82.8c3.9 22.1 14.6 42.3 30.7 57.9l60.3 58.4c16.1 15.6 36.6 25.6 58.7 28.7l83 11.7c22.1 3.1 44.6-.9 64.4-11.4l74-39.5c19.7-10.5 35.6-27 45.4-47.2l36.7-75.5c9.8-20.1 13-42.9 9.1-64.9c-.9-5.3-5.3-9.3-10.6-10.1c-51.5-8.2-92.8-47.1-104.5-97.4c-1.8-7.6-8-13.4-15.7-14.6c-54.6-8.7-97.7-52-106.2-106.8zM208 144a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM144 336a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm224-64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
   </span>
-</div>
+</button>
 <div id="errorMessage"
   class="fixed hidden px-3 py-4 rounded-lg bg-red-600 z-50 font-poppins font-semibold text-lg text-white text-center bottom-5 left-1/2 -translate-x-1/2">
   An error occurred. Please try again.</div>
@@ -33,11 +33,13 @@
   <div data-dialog="dialog-lg" class="relative m-4 px-5 py-3 w-11/12 sm:w-3/5 rounded-lg bg-slate-100 dark:bg-main shadow-sm">
     <div class="flex shrink-0 justify-between items-center pb-4 text-black dark:text-white">
       <h3 class="font-poppins text-xl font-semibold">We use cookies</h3>
-      <svg fill="currentColor" data-dialog-close="true" class="size-7 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 512 512">
-        <path
-          d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
-      </svg>
+      <button title="Close(Esc)" aria-label="close" class="ring-0 outline-none border-none">
+        <svg fill="currentColor" data-dialog-close="true" class="size-7 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512">
+          <path
+            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+        </svg>
+      </button>
     </div>
     <div class="relative border-t border-slate-200 py-4 leading-normal text-slate-600">
       <p class="text-slate-700 dark:text-slate-300 font-poppins text-sm">Hi this website uses essential cookies to ensure its
@@ -46,10 +48,37 @@
           policies.</a></p>
     </div>
     <div class="space-y-3">
-      <div class="p-4 bg-slate-200 dark:bg-slate-900 rounded-lg flex flex-wrap justify-between items-center shrink-0">
-        <p class="text-slate-800 dark:text-slate-200 font-poppins">Google Analytics</p>
+      <div class="p-4 bg-slate-200 dark:bg-slate-900 rounded-lg flex gap-5 justify-between items-center shrink-0">
+        <div>
+          <h3 class="text-slate-800 dark:text-slate-200 font-poppins text-xl">Statistics</h3>
+          <p class="text-slate-700 dark:text-slate-300 font-poppins">Statistic cookies help website owners to understand how visitors interact with websites by collecting and reporting information anonymously.</p>
+        </div>
         <label class="inline-flex relative items-center cursor-not-allowed">
-          <input type="checkbox" value="" checked id="analytics-toggle" class="sr-only peer" disabled>
+          <input type="checkbox" value="" checked id="statistics" class="sr-only peer" disabled>
+          <div
+            class="w-11 h-6 bg-slate-800 dark:bg-slate-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:after:bg-black peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-lightBlue-600">
+          </div>
+        </label>
+      </div>
+      <div class="p-4 bg-slate-200 dark:bg-slate-900 rounded-lg flex gap-5 justify-between items-center shrink-0">
+        <div>
+          <h3 class="text-slate-800 dark:text-slate-200 font-poppins text-xl">Necessary</h3>
+          <p class="text-slate-700 dark:text-slate-300 font-poppins">Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.</p>
+        </div>
+        <label class="inline-flex relative items-center cursor-not-allowed">
+          <input type="checkbox" value="" checked id="necessary" class="sr-only peer" disabled>
+          <div
+            class="w-11 h-6 bg-slate-800 dark:bg-slate-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:after:bg-black peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-lightBlue-600">
+          </div>
+        </label>
+      </div>
+      <div class="p-4 bg-slate-200 dark:bg-slate-900 rounded-lg flex gap-5 justify-between items-center shrink-0">
+        <div>
+          <h3 class="text-slate-800 dark:text-slate-200 font-poppins text-xl">Preferences</h3>
+          <p class="text-slate-700 dark:text-slate-300 font-poppins">Preference cookies enable a website to remember information that changes the way the website behaves or looks.</p>
+        </div>
+        <label class="inline-flex relative items-center cursor-pointer">
+          <input type="checkbox" value="" id="preferences" class="sr-only peer">
           <div
             class="w-11 h-6 bg-slate-800 dark:bg-slate-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:after:bg-black peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-lightBlue-600">
           </div>
@@ -78,6 +107,47 @@
   const cookieSettings = document.querySelector('[data-dialog-target="dialog-lg"]');
   const acceptButtons = document.querySelectorAll('.acceptCookies');
   const cookies = document.getElementById('cookies');
+  const preference = document.getElementById('preferences');
+
+// Function to save data to localStorage
+function saveData() {
+    // Replace this with the data you want to save
+    const data = {
+        theme: 'dark',   // Example data
+        language: 'en'   // Example data
+    };
+    
+    // Save the data in localStorage
+    localStorage.setItem('userPreferences', JSON.stringify(data));
+}
+
+// Function to remove data from localStorage
+function removeData() {
+    // Remove data from localStorage
+    localStorage.removeItem('userPreferences');
+}
+
+// Check the state of the checkbox when the page loads
+window.addEventListener('load', () => {
+    // If the checkbox was previously checked (i.e., data is saved)
+    if (localStorage.getItem('userPreferences')) {
+        preference.checked = true;  // Make sure the checkbox is checked
+    } else {
+        preference.checked = false;  // Unchecked if no data is saved
+    }
+});
+
+// Listen for changes to the checkbox (check/uncheck)
+preference.addEventListener('change', () => {
+    if (preference.checked) {
+        // Save data if checked
+        saveData();
+    } else {
+        // Remove data if unchecked
+        removeData();
+    }
+});
+
 
   // Function to check if the consent cookie exists
   function checkCookieConsent() {
