@@ -29,10 +29,10 @@
           class="flex flex-col h-full justify-center items-center gap-7 container mx-auto lg:max-w-full lg:gap-16 lg:flex-row px-5 sm:px-10 lg:px-16 xl:px-0 xl:max-w-6xl 2xl:max-w-[90rem] xl:mx-auto">
           <div class="lg:w-1/2">
             <div class="space-y-3" data-aos="zoom-in">
-              <h3
+              <h1
                 class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
                 {{ .title | safeHTML }}
-              </h3>
+              </h1>
               <p class="text-slate-700 dark:text-slate-300 font-poppins text-xl">
                 {{ .details | safeHTML }}
               </p>
@@ -173,8 +173,10 @@
     
         {{ with $data.data }} <!-- Access the "data" array in your JSON -->
             {{ range $i, $p := . }}
-            <div
-                class="rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card">
+            {{ $cve := "docs/cve/" | relURL }}
+            {{ $id := add "#" $p.cve.id }}
+            <div id="{{ $p.cve.id }}" data-url='{{ add $cve $id }}'
+                class="divAnchor rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card cursor-pointer">
                 <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
                     <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                         class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
@@ -236,17 +238,6 @@
                         </div>
                         {{ end }}
                     </div>
-                    {{/*  {{ with $p.description }}
-                    <div class="space-y-2 px-5 relative z-10">
-                        <p class="font-poppins text-slate-900 dark:text-style uppercase">AFFECTING</p>
-                        <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
-                            {{ $descriptionParts := split $p.description "," }}
-                            {{ range $descriptionParts }}
-                            <li>{{ . | safeHTML }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                    {{ end }}  */}}
                 </div>
             </div>
             {{ end }}
@@ -275,7 +266,7 @@
 {{ end }}
 {{/* end news */}}
 
-{{/* cards section */}}
+{{/* services section */}}
 {{ with .Params.services_section }}
 {{ if .enable }}
 <section class="w-full h-full bg-slate-100 dark:bg-main">
@@ -289,7 +280,7 @@
             <img src='{{ "images/dev/services-circles.png"  | relURL }}' alt=""
               class="w-full h-full absolute top-0 left-0 {{ if not (modBool $i 2) }}transform scale-x-[-1]{{ end }}" />
             <div class="space-y-5 relative z-20 pt-5 md:pt-14">
-              <h3 class="font-poppins font-bold text-3xl lg:text-[42px] text-black dark:text-slate-400 main-heading">
+              <h3 class="font-poppins font-bold text-3xl lg:text-[42px] text-black dark:text-white main-heading">
                 {{ $p.title | safeHTML }}
               </h3>
               <p class="font-poppins text-lg lg:text-xl text-slate-700 dark:text-slate-400">
@@ -320,7 +311,7 @@
 </section>
 {{ end }}
 {{ end }}
-{{/* end cards */}} {{/* blog section */}}
+{{/* end services */}} {{/* blog section */}}
 {{ with .Params.blog_section }}
 {{ if .enable }}
 <section class="hidden lg:block w-full h-full bg-slate-100 dark:bg-main">
@@ -403,7 +394,7 @@
       {{ range .faqs }}
       <li class="p-5 bg-gray-200 dark:bg-blue rounded-lg">
         <button
-          class="relative flex gap-2 items-start w-full text-base font-semibold font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400"
+          class="relative flex gap-2 items-start w-full text-base font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400 aria-expanded:text-black dark:aria-expanded:text-white"
           aria-expanded="false" onclick="toggleFAQ(this)">
           <span class="flex-1">{{ .question | safeHTML }}</span>
           <svg class="flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300" viewBox="0 0 16 16"

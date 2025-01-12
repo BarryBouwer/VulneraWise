@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const dialogueOpener = document.getElementById("openDialogue");
   const dialogueCloser = document.getElementById("closeDialogue");
   const scrollSection = document.getElementById("codeSection");
+  const messageBtn = document.getElementById('showMessage');
+  const messageBox = document.getElementById('message-window');
   let scrollInterval;
   
 
@@ -194,4 +196,13 @@ document.addEventListener("DOMContentLoaded", function () {
     scrollSection.addEventListener("mouseenter", stopAutoScroll);
     scrollSection.addEventListener("mouseleave", startAutoScroll);
   }
+
+  const links = document.querySelectorAll(".divAnchor");
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      clickedId = link.id;
+      const url = link.getAttribute("data-url");
+      window.location.href = url;
+    });
+  });
 });

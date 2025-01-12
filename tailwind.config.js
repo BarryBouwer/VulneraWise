@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
-const theme = require('tailwindcss/defaultTheme');
-const bgPositions = require('tailwindcss/defaultTheme')
 module.exports = {
   darkMode: 'selector',
   content: [
@@ -21,7 +19,7 @@ module.exports = {
       'off-white': '#F4F4F4',
       'warning': '#F59E0B',
       'danger': '#F43F5E',
-      main: '#05101A'
+      'main': '#05101A'
     },
     backgroundPosition: {
       'top-center': 'top center',

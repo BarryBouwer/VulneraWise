@@ -125,5 +125,13 @@
         await fetchCveDetails(cveId);
     }
 
+    const url = {{ .Page.Permalink }};
+    const fullURL = window.location.href;
+    const idWithHash = fullURL.replace(url, '');
+    const clickedId = idWithHash.replace('#', '');
+    if (clickedId) {
+        fetchCveDetails(clickedId);
+    };
+
     fetchVulnerabilities();
 </script>
