@@ -176,7 +176,7 @@
             {{ $cve := "docs/cve/" | relURL }}
             {{ $id := add "#" $p.cve.id }}
             <div id="{{ $p.cve.id }}" data-url='{{ add $cve $id }}'
-                class="divAnchor rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card cursor-pointer">
+                class="divAnchor rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card cursor-pointer {{ if eq $i 0 }}lg:ml-2{{ end }}">
                 <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
                     <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                         class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>

@@ -1,193 +1,230 @@
 {{ define "main" }}
-{{ $demoBg := "images/dev/demo-bg.png" | relURL }}
-<section class="min-h-screen relative">
-    <img class="w-full h-full absolute" src="{{ $demoBg }}" alt="">
-    <div class="w-full h-full absolute bg-black opacity-30 dark:opacity-50"></div>
-    <div class="absolute w-[43.666667%] bg-slate-100 dark:bg-main h-full right-0 top-0 hidden md:block"></div>
-    <div data-open="false" class="absolute min-w-full min-h-full bg-black data-[open=false]:bg-opacity-0 data-[open=true]:bg-opacity-60 data-[open=false]:z-0 data-[open=true]:z-50 transition-all duration-300 flex justify-center items-center">
-        <div data-open="false" class="w-full mx-5 md:w-1/2 p-10 rounded-lg bg-slate-100 dark:bg-main data-[open=false]:scale-0 data-[open=true]:scale-100 transition-all duration-200">
-            <h3 class="font-poppins text-2xl font-semibold text-style">Thank You for Requesting a Demo!</h3>
-            <p class="font-poppins text-lg text-slate-900 dark:text-white py-5">
-                Your request has been received, and a VulneraWise expert will be in touch shortly to schedule your personalized demo.
-                We’re excited to show you how VulneraWise can transform your vulnerability management process.
-                If you have any immediate questions, feel free to reach out to us via <a class="underline underline-offset-4" href='{{ "about-us/#form" | relURL }}'>contact form</a>.
-            </p>
-            <button id="close-message"
-                class="border-gradient-primary px-5 after:rounded-full hover:after:p-0 hover:bg-style text-black dark:text-white hover:text-black rounded-full font-poppins block text-lg py-2 text-center hover:scale-105 transition-transform duration-300">
-            Close
-            </button>
+<section class="bg-slate-100 dark:bg-main">
+    <div class="relative">
+        <div class="absolute w-full h-full">
+          <div style="mask-image: url('{{ "images/dev/dark_shadow.png" | relURL }}')"
+            class="w-full h-full bg-no-repeat bg-top-center absolute bg-slate-100 dark:bg-main"></div>
+          {{ $dark_doted := "images/dev/dark_doted_layer.png" | relURL }}
+          <div style="background-image: radial-gradient(at top, transparent 0%, #05101a 80%, #05101a 100%), url('{{ $dark_doted }}');"
+            class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center absolute hidden dark:block">
+          </div>
+          {{ $light_doted := "images/dev/light_doted_layer.png" | relURL }}
+          <div style="background-image: radial-gradient(at top, transparent 0%, #f1f5f9 80%, #f1f5f9 100%), url('{{ $light_doted }}');"
+            class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center absolute dark:hidden">
+          </div>
+          <div class="relative z-10 container mx-auto">
+            {{ partial "header_smoke.html" . }}
+          </div>
         </div>
-    </div>
-    <div class="container mx-auto relative z-10 pt-20">
-        <div class="flex flex-col md:flex-row justify-center items-center">
-            <div class="md:w-7/12 xl:pt-40 px-10 min-h-screen">
-                <h1 class="font-poppins font-bold text-3xl lg:text-5xl text-white main-heading break-words">{{ .Title | safeHTML }}</h1>
-                {{ with .Params.subtitle }}
-                <h5 class="font-poppins text-xl font-normal text-style pt-5">{{ . | safeHTML }}</h5>
-                {{ end }}
-                <div class="pb-20 prose font-poppins prose-slate prose-invert min-w-full pt-10">
-                    {{ .Content }}
+        <div class="container mx-auto px-5 sm:px-10 lg:px-16 relative z-10 lg:pt-20">
+            <div class="flex flex-col md:flex-row gap-10 bg-gradient-to-b from-transparent to-slate-100 dark:to-main">
+                <div class="w-full md:w-1/2 h-full" id="content" data-aos="zoom-in">
+                    <div class="pt-20 pb-10 {{ if .Params.subtitle }}space-y-5{{ end }}">
+                        <h1
+                            class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
+                            {{ .Title | safeHTML }}
+                        </h1>
+                        <h5 class="font-poppins text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .Params.subtitle | safeHTML }}</h5>
+                    </div>
+                    <div class="prose font-poppins prose-slate dark:prose-invert">
+                        {{ .Content }}
+                    </div>
                 </div>
-            </div>
-            <div class="w-full md:w-5/12 min-h-screen bg-slate-100 dark:bg-main flex justify-center items-center p-10 md:p-5 lg:p-10 xl:p-0 xl:pl-7">
-                <form action="" class="w-full space-y-5" data-aos="zoom-in">
-                    <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
-                        <div>
-                            <label
-                                for="firstName"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    First Name
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="First Name"
-                                required
-                                id="firstName"
-                                class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                <div class="w-full md:w-1/2 flex justify-center items-center h-full py-20">
+                    <form action="" id="demo-form" onsubmit="successMessage()" class="w-full space-y-5" data-aos="zoom-in">
+                        <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
+                            <div>
+                                <label
+                                    for="firstName"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        First Name
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="First Name"
+                                    required
+                                    id="firstName"
+                                    class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                            <div>
+                                <label
+                                    for="lastName"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        Last Name
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Last Name"
+                                    required
+                                    id="lastName"
+                                    class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                        </div>
+                        <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
+                            <div>
+                                <label
+                                    for="companyName"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        Company Name
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Company Name"
+                                    required
+                                    id="companyName"
+                                    class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                            <div>
+                                <label
+                                    for="email"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        Email
+                                </label>
+                                <input
+                                    type="email"
+                                    placeholder="your@company.com"
+                                    required
+                                    id="email"
+                                    class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                        </div>
+                        <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
+                            <div>
+                                <label
+                                    for="coutry"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        Country
+                                </label>
+                                <input
+                                    type="coutry"
+                                    placeholder="Country"
+                                    required
+                                    id="coutry"
+                                    class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                            <div>
+                                <label
+                                    for="elmpyeeCount"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                    Employe
+                                </label>
+                                <input
+                                    type="Number"
+                                    placeholder="Number Of Employee's"
+                                    required
+                                    id="elmpyeeCount"
+                                    class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                        </div>
+                        <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
+                            <div>
+                                <label
+                                    for="dary"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                        Preferred Day 
+                                </label>
+                                <input
+                                    type="date"
+                                    required
+                                    id="day"
+                                    class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
+                            <div>
+                                <label
+                                    for="time"
+                                    class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                    Preferred Time
+                                </label>
+                                <input
+                                    type="time"
+                                    required
+                                    id="time"
+                                    class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            </div>
                         </div>
                         <div>
                             <label
-                                for="lastName"
+                                for="message"
                                 class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    Last Name
+                                    Message
                             </label>
-                            <input
-                                type="text"
-                                placeholder="Last Name"
+                            <textarea
+                                name="your message"
+                                id="message"
                                 required
-                                id="lastName"
-                                class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
-                        </div>
-                    </div>
-                    <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
-                        <div>
-                            <label
-                                for="companyName"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    Company Name
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Company Name"
-                                required
-                                id="companyName"
-                                class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                                placeholder="Leave us a message..."
+                                rows="6"
+                                class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2"></textarea>
                         </div>
                         <div>
+                            <input type="checkbox" id="policies" class="bg-transparent" required>
                             <label
-                                for="email"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    Email
+                                for="policies" 
+                                class="font-poppins text-lg text-slate-700 dark:text-slate-300">
+                                You agree to our friendly <a href='{{ "policies/" | relURL }}' class="underline">privacy policy</a>.
                             </label>
-                            <input
-                                type="email"
-                                placeholder="your@company.com"
-                                required
-                                id="email"
-                                class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
-                        </div>
-                    </div>
-                    <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
-                        <div>
-                            <label
-                                for="coutry"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    Country
-                            </label>
-                            <input
-                                type="coutry"
-                                placeholder="Country"
-                                required
-                                id="coutry"
-                                class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
                         </div>
                         <div>
-                            <label
-                                for="elmpyeeCount"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                Employe
-                            </label>
-                            <input
-                                type="Number"
-                                placeholder="Number Of Employee's"
-                                required
-                                id="elmpyeeCount"
-                                class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
+                            <button
+                                type="submit"
+                                class="border-gradient-primary w-full after:rounded-full hover:after:p-0 hover:bg-style text-black dark:text-white hover:text-black rounded-full font-poppins block text-lg py-2 text-center hover:scale-105 transition-transform duration-300">
+                                Request Demo
+                            </button>
                         </div>
-                    </div>
-                    <div class="grid grid-col-1 lg:grid-cols-2 gap-5">
-                        <div>
-                            <label
-                                for="dary"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                    Preferred Day 
-                            </label>
-                            <input
-                                type="date"
-                                required
-                                id="day"
-                                class="py-2 pl-5 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
-                        </div>
-                        <div>
-                            <label
-                                for="time"
-                                class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                Preferred Time
-                            </label>
-                            <input
-                                type="time"
-                                required
-                                id="time"
-                                class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2">
-                        </div>
-                    </div>
-                    <div>
-                        <label
-                            for="message"
-                            class="after:content-['*'] after:ml-0.5 after:text-red-500 font-poppins text-lg text-slate-700 dark:text-slate-300">
-                                Message
-                        </label>
-                        <textarea
-                            name="your message"
-                            id="message"
-                            required
-                            placeholder="Leave us a message..."
-                            rows="6"
-                            class="py-2 pl-3 bg-gray-200 dark:bg-blue shadow-sm text-black dark:text-white font-poppins w-full focus:outline-none rounded-lg mt-2"></textarea>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="policies" class="bg-transparent" required>
-                        <label
-                            for="policies" 
-                            class="font-poppins text-lg text-slate-700 dark:text-slate-300">
-                            You agree to our friendly <a href='{{ "policies/" | relURL }}' class="underline">privacy policy</a>.
-                        </label>
-                    </div>
-                    <div>
-                        <button
-                            id="show-message"
-                            class="border-gradient-primary w-full after:rounded-full hover:after:p-0 hover:bg-style text-black dark:text-white hover:text-black rounded-full font-poppins block text-lg py-2 text-center hover:scale-105 transition-transform duration-300">
-                            Request Demo
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<div 
+    class="-mt-10 sm:-mt-20 relative z-20 bg-slate-100 dark:bg-main overflow-x-hidden">
+    <img src='{{ "images/dev/bottom_layer.png" | relURL }}' alt="" class="container mx-auto w-full animated-img">
+</div>
+
 <script>
-    const elements = document.querySelectorAll('[data-open]');
-    document.getElementById('close-message').addEventListener('click', () => {
-        elements.forEach((element) => {
-            element.setAttribute("data-open", "false");
-        });
-        document.querySelector('[data-scroll]').setAttribute("data-scroll", "true");
+    // let interval;
+    const form = document.getElementById("demo-form");
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
     });
-    document.getElementById('show-message').addEventListener('click', () => {
-        elements.forEach((element) => {
-            element.setAttribute("data-open", "true");
-        });
-        document.querySelector('[data-scroll]').setAttribute("data-scroll", "false");
-    });
+
+
+    function successMessage() {
+        form.reset();
+        document.getElementById('content').innerHTML = `
+        <div class="pt-20 pb-10" data-aos="zoom-in">
+            <h1
+                class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
+                Thank You for Requesting a Demo!
+            </h1>
+        </div>
+        <div class="prose font-poppins prose-slate dark:prose-invert" data-aos="zoom-in">
+            Your request has been received, and a VulneraWise expert will be in touch shortly
+            to schedule your personalized demo.
+            We’re excited to show you how VulneraWise can transform your vulnerability
+            management process.
+            If you have any immediate questions, feel free to reach out to us via <a href='{{ "about-us/#form" | relURL }}' class="underline">contact form</a>.
+        </div>`
+        // return interval = setInterval(defaultContent, 5000);
+    };
+
+    /* function defaultContent() {
+        document.getElementById('content').innerHTML = `
+        <div class="pt-20 pb-10 {{ if .Params.subtitle }}space-y-5{{ end }}" data-aos="zoom-in">
+            <h1
+                class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
+                {{ .Title | safeHTML }}
+            </h1>
+            <h5 class="font-poppins text-xl text-slate-900 font-semibold dark:font-normal dark:text-style">{{ .Params.subtitle | safeHTML }}</h5>
+        </div>
+        <div class="prose font-poppins prose-slate dark:prose-invert" data-aos="zoom-in">
+            {{ .Content }}
+        </div>`
+
+        if(interval) {
+            clearInterval(interval);
+        };
+    }; */
 </script>
 {{ end }}
