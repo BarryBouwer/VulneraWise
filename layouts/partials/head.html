@@ -10,7 +10,10 @@
 </title>
 
 {{/*  favicon  */}}
-<link rel="shortcut icon" href='{{ "images/favicon.png" | relURL }}' type="image/x-icon">
+{{ $favicon := resources.Get "favicon.png" }}
+{{ with $favicon }}
+<link rel="shortcut icon" href="{{ .RelPermalink }}" type="image/x-icon">
+{{ end }}
 
 {{/*  external services  */}}
 {{ template "_internal/google_analytics.html" . }} <!--google analytics--> 
