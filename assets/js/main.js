@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const scrollSection = document.getElementById("codeSection");
   const messageBtn = document.getElementById('showMessage');
   const messageBox = document.getElementById('message-window');
+  const openSearch = document.querySelector('.openSearch');
+  const searchContainer = document.querySelector('.searchContainer');
+  const closeSearch = document.querySelector('.searchClose');
   let scrollInterval;
   
 
@@ -204,5 +207,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const url = link.getAttribute("data-url");
       window.location.href = url;
     });
+  });
+
+  openSearch.addEventListener('click', () => {
+    searchContainer.classList.remove('hidden');
+  });
+
+  closeSearch.addEventListener('click', () => {
+    searchContainer.classList.add('hidden');
   });
 });

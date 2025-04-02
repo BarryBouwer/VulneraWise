@@ -3,9 +3,9 @@
 {{ with .Params.hero_section }}
 {{ if .enable }}
 <section class="h-full w-full bg-slate-100 dark:bg-main">
-  <div class="relative flex justify-center items-center swiper heroSwiper top-0">
+  <div class="relative top-0">
     <div class="absolute w-full h-full">
-      <div style="mask-image: url('{{ "images/dev/dark_shadow.png" | relURL }}')"
+      <div style="mask-image: url('{{ " images/dev/dark_shadow.png" | relURL }}')"
         class="w-full h-full bg-no-repeat bg-top-center absolute bg-slate-100 dark:bg-main"></div>
       {{ $dark_doted := "images/dev/dark_doted_layer.png" | relURL }}
       <div
@@ -22,44 +22,233 @@
       </div>
     </div>
 
-    <div class="swiper-wrapper relative z-10 lg:h-[610px] 2xl:h-[700px] ">
-      {{ range .slides }}
-      <div class="swiper-slide mt-20 {{ if .top_space }}sm:mt-40{{ else }}sm:mt-32{{ end }} h-full">
-        <div
-          class="flex flex-col h-full justify-center items-center gap-7 container mx-auto lg:max-w-full lg:gap-16 lg:flex-row px-5 sm:px-10 lg:px-16 xl:px-0 xl:max-w-6xl 2xl:max-w-[90rem] xl:mx-auto">
-          <div class="lg:w-1/2">
-            <div class="space-y-3" data-aos="zoom-in">
-              <h1
-                class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
-                {{ .title | safeHTML }}
-              </h1>
-              <p class="text-slate-700 dark:text-slate-300 font-poppins text-xl">
-                {{ .details | safeHTML }}
-              </p>
-              {{ with .button }}
-              <div
-                class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
-                <a href="{{ .url | relURL }}"
-                  class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
-                  <span class="flex justify-center items-center gap-2">
-                    {{ .label }}
-                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
-                      class="dark:hidden group-hover:block">
-                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
-                      class="hidden dark:block group-hover:hidden">
-                  </span>
-                </a>
-              </div>
+    <div class="relative z-10">
+      <div class="container mx-auto px-5 sm:px-10 lg:px-16 pt-20 lg:pt-0">
+        <div class="space-y-5 min-h-[600px] lg:grid grid-cols-2 place-items-center">
+          <div class="swiper heroSwiper lg:max-w-[450px] xl:max-w-[550px]">
+            <ul class="swiper-wrapper lg:items-center">
+              {{ range .slides }}
+              <li class="space-y-3 swiper-slide">
+                <h1
+                  class="font-poppins font-bold text-3xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
+                  {{ .title | safeHTML }}
+                </h1>
+                <p class="text-slate-700 dark:text-slate-300 font-poppins text-xl">
+                  {{ .details | safeHTML }}
+                </p>
+                {{ with .button }}
+                <div
+                  class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
+                  <a href="{{ .url | relURL }}"
+                    class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
+                    <span class="flex justify-center items-center gap-2">
+                      {{ .label }}
+                      <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                        class="dark:hidden group-hover:block">
+                      <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                        class="hidden dark:block group-hover:hidden">
+                    </span>
+                  </a>
+                </div>
+                {{ end }}
+              </li>
               {{ end }}
+            </ul>
+          </div>
+          <style>
+            #searchBox:hover>.card::after {
+              opacity: 1;
+            }
+
+            #searchBox>.card::after {
+              border-radius: inherit;
+              content: "";
+              min-height: 100%;
+              left: 0px;
+              opacity: 0;
+              position: absolute;
+              top: 0px;
+              transition: opacity 500ms;
+              width: 100%;
+            }
+
+            #searchBox>.card::after {
+              background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+                  rgba(35, 118, 221, 0.4),
+                  rgba(255, 207, 113, 0.4),
+                  transparent 40%);
+              z-index: 1;
+            }
+
+            #searchBox>.card>.card-content {
+              border-radius: inherit;
+              display: flex;
+              flex-direction: column;
+              flex-grow: 1;
+              inset: 1px;
+              padding: 10px;
+              position: absolute;
+              z-index: 5;
+            }
+          </style>
+          <div id="searchBox">
+            <div
+              class="rounded-3xl card relative min-h-[25rem] mx-auto w-[90vw] sm:w-[85vw] md:w-[75vw] lg:w-[25rem] xl:w-[35rem]">
+              <div class="card-content space-y-3 inset-0 bg-white dark:bg-blue p-5">
+                {{ $bg_pattern := "images/dev/search-bg-pattern.png" | relURL }}
+                <div class="size-full relative">
+                  <img src="{{ $bg_pattern }}" alt="" class="absolute inset-0 size-full">
+                  <div class="relative size-full z-10">
+
+
+                    <div
+                      class="flex flex-col gap-y-3 justify-center items-center h-full max-w-full sm:max-w-xl mx-auto">
+                      <div class="flex border-b border-slate-700 w-full justify-between">
+                        <button onclick="openTab(event, 'search')"
+                          class="text-slate-950 dark:text-white flex items-center gap-2 px-3 md:px-10 active-tab tablinks">
+                          <div>
+                            <svg class="size-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path
+                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                          </div>
+                          Search
+                        </button>
+                        <button onclick="openTab(event, 'fileUpload')"
+                          class="text-slate-950 dark:text-white flex items-center gap-2 px-3 md:px-10 tablinks">
+                          <div>
+                            <svg class="size-5 fill-current text-inherit" viewBox="0 0 25 24" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path class="fill-current"
+                                d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z"
+                                fill="#323544" />
+                              <path class="fill-current"
+                                d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z"
+                                fill="#323544" />
+                            </svg>
+                          </div>
+                          File Upload
+                        </button>
+                        <button onclick="openTab(event, 'automate')"
+                          class="text-slate-950 dark:text-white flex items-center gap-2 px-3 md:px-10 tablinks">
+                          <div>
+                            <svg class="size-5 fill-current text-inherit" viewBox="0 0 24 24" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path class="fill-current" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.373 10.471C9.43517 9.48416 8.72594 8.17465 9.19451 6.57159C9.60731 5.15903 10.9986 4.23447 12.4156 4.45187C13.1224 4.56017 13.744 4.85411 14.2284 5.41491C14.9616 6.2643 15.1272 7.25575 14.9034 8.35988L15.5728 8.54434C15.9165 8.63908 16.2474 8.73027 16.5768 8.82096C17.2896 6.83512 16.4534 4.51486 14.6278 3.32368C12.7268 2.0836 10.2638 2.34521 8.6493 3.96084C7.80641 4.80449 7.34519 5.83385 7.23791 7.02497C7.08622 8.71005 7.77185 10.0698 8.92375 11.2331L7.09224 14.3523C7.03239 14.3568 6.98082 14.36 6.93469 14.3628C6.85025 14.368 6.78409 14.372 6.71885 14.3815C5.5148 14.5548 4.66735 15.6421 4.86996 16.7512C5.09859 18.0043 6.22135 18.7734 7.37374 18.4668C8.59566 18.1417 9.24583 16.9441 8.78496 15.7134C8.61802 15.2679 8.72145 14.9824 8.93041 14.6319C9.51907 13.6443 10.0991 12.6512 10.6899 11.6397C10.9156 11.2531 11.1431 10.8637 11.373 10.471ZM15.52 11.9636C14.9302 10.9074 14.3351 9.84144 13.749 8.79131C13.7783 8.7167 13.8068 8.6465 13.8343 8.57906C13.8923 8.43623 13.9455 8.30563 13.9897 8.17226C14.2238 7.46806 14.0824 6.82541 13.6375 6.25442C13.0932 5.55555 12.1434 5.30173 11.334 5.61623C10.517 5.93356 9.99424 6.74816 10.0298 7.64931C10.0659 8.56049 10.6679 9.37379 11.6005 9.538C12.1589 9.6362 12.4324 9.90553 12.6802 10.3696C13.2069 11.3567 13.7527 12.3332 14.299 13.3105L14.2992 13.3109C14.515 13.6969 14.7308 14.0831 14.9457 14.4701C16.7748 13.2319 18.288 13.2713 19.4178 14.5612C20.3967 15.6789 20.4173 17.3813 19.466 18.523C18.3504 19.8613 16.8477 19.9145 15.1295 18.7844C14.6535 19.1888 14.208 19.5674 13.7647 19.9443C15.5042 21.7078 17.9872 21.9423 19.9506 20.5695C21.8634 19.2322 22.5292 16.665 21.5552 14.4973C20.7489 12.7029 18.5012 11.0269 15.52 11.9636ZM11.561 17.3759H15.1498C15.1999 17.4437 15.2466 17.5107 15.2923 17.5761C15.3876 17.7126 15.478 17.8421 15.5837 17.9571C16.3438 18.7826 17.6272 18.8235 18.4397 18.0574C19.2817 17.2635 19.3198 15.9298 18.5241 15.1009C17.7455 14.2898 16.4148 14.2123 15.6919 15.0711C15.2528 15.593 14.8028 15.6544 14.2199 15.6451C13.1545 15.6284 12.0886 15.6316 11.0229 15.6348C10.5954 15.6361 10.168 15.6373 9.74062 15.6373C9.83752 17.7701 9.04371 19.0991 7.46923 19.4146C5.92747 19.7236 4.50754 18.9246 4.00768 17.467C3.43984 15.8106 4.14208 14.4859 6.17102 13.4346C6.01835 12.8728 5.86401 12.3043 5.71137 11.7412C3.49998 12.2306 1.8409 14.4097 2.01215 16.8612C2.16348 19.0252 3.88223 20.947 5.98423 21.2913C7.12588 21.4785 8.19853 21.2841 9.19378 20.7107C10.474 19.973 11.217 18.8129 11.561 17.3759Z"
+                                fill="#323544" />
+                            </svg>
+                          </div>
+                          Automate
+                        </button>
+                      </div>
+
+                      <div id="search" class="tabcontent">
+                        <div
+                          class="rounded-md border border-slate-700 p-2 flex gap-2 items-center w-full text-slate-950 dark:text-white">
+                          <div class="text-inherit">
+                            <label for="floatingSearch"></label>
+                            <svg class="size-3 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path
+                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                          </div>
+                          <input type="text" id="floatingSearch"
+                            class="overflow-hidden border-0 bg-transparent grow text-inherit focus:outline-none"
+                            placeholder="Search CVE, keyword, or software...">
+                        </div>
+                        <div class="flex justify-center items-center flex-col mt-16 text-center">
+                          <div class="mb-3 flex justify-center items-center">
+                            <img src='{{ "images/dev/search-icon.png" | relURL }}' alt="" class="w-1/2">
+                          </div>
+                          <strong class="text-slate-950 dark:text-white">Instantly search our enriched vulnerability
+                            database.</strong>
+                          <p class="text-sm text-slate-800 dark:text-slate-200">Find any CVE or keyword in
+                            real-time—no noise, just
+                            results that matter.</p>
+                        </div>
+                      </div>
+
+                      <div id="fileUpload" class="tabcontent hidden mt-16">
+                        <div class="flex justify-center items-center flex-col text-center">
+                          <div class="mb-3 flex justify-center items-center">
+                            <img src='{{ "images/dev/upload-icon.png" | relURL }}' alt="" class="w-1/2">
+                          </div>
+                          <strong class="text-slate-950 dark:text-white">Got a list of CVEs or affected
+                            software?</strong>
+                          <p class="text-sm text-slate-800 dark:text-slate-200">Upload your file to instantly identify
+                            relevant,
+                            high-priority threats.</p>
+                          <p class="text-sm text-slate-800 dark:text-slate-200"><a class="text-style"
+                              href='{{ "sign-up" | relURL }}'>Sign up</a> for free to unlock this feature.</p>
+                          <button
+                            class="my-2 rounded-3xl font-medium text-slate-950 px-5 py-3 hover:scale-105 transition-all font-poppins bg-style flex justify-center items-center gap-2">
+                            <div class="text-inherit">
+                              <svg class="size-5 text-inherit" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="fill-current"
+                                  d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z"
+                                  fill="#323544" />
+                                <path class="fill-current"
+                                  d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z"
+                                  fill="#323544" />
+                              </svg>
+                            </div>
+                            <p class="text-inherit font-poppins text-sm">Upload File</p>
+                          </button>
+                          <p class="text-sm text-slate-800 dark:text-slate-200">You need to <a
+                              href='{{ "login" | relURL }}' class="text-style">login</a> to use this feature. if you
+                            haven't done so already, <a href='{{ "sign-up" | relURL }}' class="text-style">sign up</a>
+                            here.</p>
+                        </div>
+                      </div>
+
+                      <div id="automate" class="tabcontent hidden mt-16">
+                        <div class="flex justify-center items-center flex-col text-center">
+                          <div class="mb-3 flex justify-center items-center">
+                            <img src='{{ "images/dev/automate-icon.png" | relURL }}' alt="" class="w-1/2">
+                          </div>
+                          <strong class="text-slate-950 dark:text-white">Need to integrate prioritization into your
+                            workflows?</strong>
+                          <p class="text-sm text-slate-800 dark:text-slate-200">Use our powerful API or CLI to
+                            automate
+                            vulnerability triage at scale.</p>
+                          <p class="text-sm text-slate-800 dark:text-slate-200">Build your own decision tree logic
+                            into any security
+                            tool.</p>
+                          <a href='{{ "docs/api/" | relURL }}'
+                            class="my-2 rounded-3xl font-medium text-slate-950 px-5 py-3 hover:scale-105 transition-all font-poppins bg-style flex justify-center items-center gap-2">
+                            <p class="text-inherit font-poppins text-sm">View API & CLI Docs</p>
+                            <div class="size-3">
+                              <img src='{{ "images/dev/dark_right_arrow.png" | relURL }}' alt="" class="size-full">
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="lg:w-1/2 mx-auto flex justify-center items-center" data-aos="zoom-in">
-            <img src='{{ .image  | relURL }}' alt="{{ .Site.Title }} - {{ .title | safeHTML }}"
-              class="md:shrink-0 {{ if .big_image }}w-[120%]{{ else }}xl:w-5/6{{ end }} animated" />
-          </div>
+          <script>
+            // onmouse offect 
+            document.getElementById("searchBox").onmousemove = e => {
+              for (const card of document.getElementsByClassName("card")) {
+                const rect = card.getBoundingClientRect(),
+                  x = e.clientX - rect.left,
+                  y = e.clientY - rect.top;
+
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+              };
+            };
+          </script>
         </div>
       </div>
-      {{ end }}
     </div>
     {{ with .mission }}
     <div class="bg-gradient-to-b from-transparent to-slate-100 dark:to-main relative z-10">
@@ -132,12 +321,10 @@
           width: 100%;
         }
 
-        #valueCards > .card::before {
-          background: radial-gradient(
-            800px circle at var(--mouse-x) var(--mouse-y), 
-            rgba(255, 255, 255, 0.06),
-            transparent 20%
-          );
+        #valueCards>.card::before {
+          background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+              rgba(255, 255, 255, 0.06),
+              transparent 20%);
           z-index: 3;
         }
 
@@ -166,81 +353,81 @@
         {{ $data := dict }}
         {{ $p := "https://api.vulnerawise.ai/top10.json" }}
         {{ with resources.GetRemote $p }}
-            {{ $data = . | transform.Unmarshal }}
+        {{ $data = . | transform.Unmarshal }}
         {{ else }}
-            {{ errorf "Unable to get resource %q" $p }}
+        {{ errorf "Unable to get resource %q" $p }}
         {{ end }}
-    
+
         {{ with $data.data }} <!-- Access the "data" array in your JSON -->
-            {{ range $i, $p := . }}
-            {{ $cve := "docs/cve/" | relURL }}
-            {{ $id := add "#" $p.cve.id }}
-            <div id="{{ $p.cve.id }}" data-url='{{ add $cve $id }}'
-                class="divAnchor rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card cursor-pointer {{ if eq $i 0 }}lg:ml-2{{ end }}">
-                <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
-                    <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
-                        class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
-                    <div style="background-image: url('{{ "images/dev/light_box_lines.png" | relURL }}');"
-                        class="w-full h-full absolute -top-5 left-0 dark:block"></div>
-                    <div class="spacy-y-2 px-5 relative z-10">
-                        <h4 class="text-black dark:text-off-white font-poppins font-semibold text-2xl">
-                            {{ $p.cve.id | safeHTML }} <!-- Updated to match your JSON structure -->
-                        </h4>
-                        <p class="text-slate-600 dark:text-slate-500 font-poppins text-lg">
-                          {{ $p.cve.name | safeHTML }} <!-- Updated to match your JSON structure -->
-                        </p>
-                    </div>
-                    <div class="space-y-2 px-5 relative z-10">
-                    <p class="font-poppins text-slate-900 dark:text-style uppercase">DETAILS</p>
-                    <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
-                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">Exploit Maturity</p>
-                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
-                        {{ $p.cve.impact.exploit_maturity }}
-                      </div>
-                    </li>
-                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">Confidence</p>
-                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
-                        {{ $p.cve.metadata.confidence_level }}
-                      </div>
-                    </li>
-                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">Trending</p>
-                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
-                        {{ $p.cve.metadata.trending_score }}
-                      </div>
-                    </li>
-                    <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">EPSS score</p>
-                      <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
-                        {{ $p.cve.epss.score }}
-                      </div>
-                    </li>
-                    </ul>
-                    </div>
-                    <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
-                      <p class="text-slate-700 dark:text-white font-poppins">
-                        {{ $date := time.AsTime $p.cve.metadata.published_date }}
-                        {{ time.Format "January 2, 2006" $date}}
-                      </p>
-                        {{ if eq $p.cve.metadata.severity "Medium" }}
-                        <div class="border border-style px-2 text-style rounded-full font-poppins">
-                            Medium
-                        </div>
-                        {{ else if eq $p.cve.metadata.severity "High" }}
-                        <div class="border border-warning px-2 text-warning rounded-full font-poppins">
-                            High
-                        </div>
-                        {{ else if eq $p.cve.metadata.severity "Critical" }}
-                        <div class="border border-danger px-2 text-danger rounded-full font-poppins">
-                            Critical
-                        </div>
-                        {{ end }}
-                    </div>
-                </div>
+        {{ range $i, $p := . }}
+        {{ $cve := "docs/cve/" | relURL }}
+        {{ $id := add "#" $p.cve.id }}
+        <div id="{{ $p.cve.id }}" data-url='{{ add $cve $id }}'
+          class="divAnchor rounded-3xl swiper-slide min-h-[22rem] lg:max-w-[30%] relative overflow-hidden animated card cursor-pointer {{ if eq $i 0 }}lg:ml-2{{ end }}">
+          <div class="space-y-5 bg-white dark:bg-blue card-content overflow-auto z-20">
+            <div style="background-image: url('{{ " images/dev/dark_box_lines.png" | relURL }}');"
+              class="w-full h-full absolute top-0 left-0 hidden dark:block"></div>
+            <div style="background-image: url('{{ " images/dev/light_box_lines.png" | relURL }}');"
+              class="w-full h-full absolute -top-5 left-0 dark:block"></div>
+            <div class="spacy-y-2 px-5 relative z-10">
+              <h4 class="text-black dark:text-off-white font-poppins font-semibold text-2xl">
+                {{ $p.cve.id | safeHTML }} <!-- Updated to match your JSON structure -->
+              </h4>
+              <p class="text-slate-600 dark:text-slate-500 font-poppins text-lg">
+                {{ $p.cve.name | safeHTML }} <!-- Updated to match your JSON structure -->
+              </p>
             </div>
-            {{ end }}
+            <div class="space-y-2 px-5 relative z-10">
+              <p class="font-poppins text-slate-900 dark:text-style uppercase">DETAILS</p>
+              <ul class="space-y-2 text-slate-700 dark:text-off-white font-poppins text-[15px] list-disc list-inside">
+                <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                  <p class="text-slate-700 dark:text-white font-poppins">Exploit Maturity</p>
+                  <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                    {{ $p.cve.impact.exploit_maturity }}
+                  </div>
+                </li>
+                <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                  <p class="text-slate-700 dark:text-white font-poppins">Confidence</p>
+                  <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                    {{ $p.cve.metadata.confidence_level }}
+                  </div>
+                </li>
+                <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                  <p class="text-slate-700 dark:text-white font-poppins">Trending</p>
+                  <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                    {{ $p.cve.metadata.trending_score }}
+                  </div>
+                </li>
+                <li class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+                  <p class="text-slate-700 dark:text-white font-poppins">EPSS score</p>
+                  <div class="px-2 text-black dark:text-white rounded-full font-poppins capitalize">
+                    {{ $p.cve.epss.score }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="flex flex-wrap gap-y-2 justify-between px-5 relative z-10">
+              <p class="text-slate-700 dark:text-white font-poppins">
+                {{ $date := time.AsTime $p.cve.metadata.published_date }}
+                {{ time.Format "January 2, 2006" $date}}
+              </p>
+              {{ if eq $p.cve.metadata.severity "Medium" }}
+              <div class="border border-style px-2 text-style rounded-full font-poppins">
+                Medium
+              </div>
+              {{ else if eq $p.cve.metadata.severity "High" }}
+              <div class="border border-warning px-2 text-warning rounded-full font-poppins">
+                High
+              </div>
+              {{ else if eq $p.cve.metadata.severity "Critical" }}
+              <div class="border border-danger px-2 text-danger rounded-full font-poppins">
+                Critical
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
         {{ end }}
         <script>
           // onmouse offect 
@@ -255,7 +442,7 @@
             };
           };
         </script>
-    </div>    
+      </div>
       <div class="mt-10 md:hidden">
         <div class="swiper-pagination"></div>
       </div>
@@ -397,8 +584,8 @@
           class="relative flex gap-2 items-start w-full text-base font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400 aria-expanded:text-black dark:aria-expanded:text-white"
           aria-expanded="false" onclick="toggleFAQ(this)">
           <span class="flex-1">{{ .question | safeHTML }}</span>
-          <svg class="flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300" viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg">
+          <svg class="flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300"
+            viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <rect y="7" width="16" height="2" rx="1"
               class="transform origin-center transition duration-200 ease-out false"></rect>
             <rect y="7" width="16" height="2" rx="1"
@@ -421,12 +608,12 @@
     function toggleFAQ(button) {
       const content = button.nextElementSibling;
       const svg = button.querySelector('svg');
-      
+
       const isExpanded = button.getAttribute("aria-expanded") === "true";
-      
+
       button.setAttribute("aria-expanded", !isExpanded);
       content.style.maxHeight = !isExpanded ? content.scrollHeight + "px" : "0";
-  
+
       // Toggle Tailwind classes for rotation
       svg.classList.toggle('rotate-45', !isExpanded);
     }

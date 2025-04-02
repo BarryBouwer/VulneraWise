@@ -54,3 +54,11 @@
 *::selection {
   @apply bg-main text-slate-100 dark:bg-slate-100 dark:text-main;
 }
+
+.active-tab {
+  @apply border-b-2 border-slate-950;
+}
+
+.active-tab:where(.dark, .dark *) {
+  @apply text-style border-style;
+}
