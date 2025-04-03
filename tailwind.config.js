@@ -35,7 +35,8 @@ module.exports = {
     },
     fontFamily: {
       poppins: ['Poppins', 'sans-serif'],
-      'roboto-mono': ['Roboto Mono', 'monospace']
+      'roboto-mono': ['Roboto Mono', 'monospace'],
+      inter: ['Inter', 'sans-serif']
     },
     extend: {
       backgroundImage: {

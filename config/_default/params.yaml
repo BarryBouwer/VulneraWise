@@ -3,7 +3,7 @@ dark_logo: "images/white_logo.png" ##### Header and Footer logo for dark theme
 
 header_login_btn: ##### Header login button
   label: "Login"
-  url: "/"
+  url: "login/"
 signup_btn: ##### Header & Footer call-to-action button
   label: "Singup"
   url: "/"

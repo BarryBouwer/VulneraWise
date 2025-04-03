@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body data-scroll="true" class="data-[scroll=false]:overflow-hidden">
+    <main class="min-h-screen bg-slate-100 dark:bg-main px-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 min-h-screen py-5">
+            <div class="flex flex-col justify-between gap-5">
+                <div class="w-3/4 sm:w-64">
+                    <img src='{{ site.Params.light_logo | relURL }}' alt="" class="dark:hidden size-full">
+                    <img src='{{ site.Params.dark_logo | relURL }}' alt="" class="hidden dark:block size-full">
+                </div>
+                <div class="px-5 sm:max-w-lg mx-auto flex flex-col justify-center items-center gap-5">
+                    <div class="space-y-3">
+                        <h1 class="text-2xl font-semibold font-poppins text-slate-900 dark:text-slate-100">Welcome back to VulneraWise</h1>
+                        <p class="text-slate-800 dark:text-slate-300 text-base font-poppins">Sign in to manage your account, access your decision trees, and explore real-time threat intelligence.</p>
+                    </div>
+                    <form action="" class="space-y-3 w-full">
+                        <div>
+                            <label for="email" class="text-sm font-poppins text-slate-800 dark:text-slate-300 block mb-2">Email address</label>
+                            <input type="email" required name="Email" id="email" placeholder="Enter your email address" class="rounded-lg bg-blue text-slate-300 font-poppins p-2 focus:outline-none w-full">
+                        </div>
+                        <div>
+                            <label for="password" class="text-sm font-poppins text-slate-800 dark:text-slate-300 block mb-2">Email address</label>
+                            <div class="rounded-lg bg-blue text-slate-300 font-poppins p-2 flex gap-2 items-center">
+                                <input type="password" required name="Password" id="password" placeholder="Enter password" class="bg-transparent border-none focus:outline-none flex-grow password">
+                                <button type="button" class="show-pw">
+                                    <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="w-5 h-3.5 cursor-pointer">
+                                </button>
+                                <button type="button" class="hide-pw hidden">
+                                    <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="w-5 h-4 cursor-pointer">
+                                </button>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        document.querySelector('.show-pw')
+                                            .addEventListener('click', () => {
+                                                document.querySelector('.password').type = 'text';
+                                                document.querySelector('.hide-pw').classList.remove('hidden');
+                                                document.querySelector('.show-pw').classList.add('hidden');
+                                        });
+                                        document.querySelector('.hide-pw')
+                                            .addEventListener('click', () => {
+                                                document.querySelector('.password').type = 'password';
+                                                document.querySelector('.hide-pw').classList.add('hidden');
+                                                document.querySelector('.show-pw').classList.remove('hidden');
+                                            });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="flex justify-between flex-wrap gap-2">
+                            <div>
+                                <input type="checkbox" name="remember-pw" id="remember-pw" class="appearance-auto">
+                                <label for="remember-pw" class="text-sm text-slate-800 dark:text-slate-300 font-poppins">Remember for 30 days</label>
+                            </div>
+                            <button type="button" class="text-style text-sm font-poppins">Forgot password</button>
+                        </div>
+                        <button class="w-full rounded-full py-2 bg-style font-poppins font-medium text-sm flex gap-2 items-center justify-center scale-105 transition-all">
+                            Sign in
+                            <img src='{{ "images/dev/dark_next.png" | relURL }}' alt="" class="size-3">
+                        </button>
+                    </form>
+                </div>
+                <div class="flex flex-wrap justify-between items-center gap-3">
+                    {{ with .Site.Params.copyright }}
+                    <p class="text-sm font-poppins text-slate-950 dark:text-slate-400">
+                        {{ . }}
+                    </p>
+                    {{ end }}
+                    <div class="flex flex-wrap gap-2">
+                        {{ with .Site.Params.github }}
+                        <a
+                        href="{{ . | safeURL }}"
+                        class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
+                        >
+                        <img src='{{ "images/dev/github_icon.png" | relURL }}' alt="" />
+                        </a>
+                        {{ end }}
+                        {{ with .Site.Params.twitter }}
+                        <a
+                        href="{{ . | safeURL }}"
+                        class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
+                        >
+                        <img src='{{ "images/dev/twitter_icon.png" | relURL }}' alt="" />
+                        </a>
+                        {{ end }}
+                        {{ with .Site.Params.linkedin }}
+                        <a
+                        href="{{ . | safeURL }}"
+                        class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
+                        >
+                        <img src='{{ "images/dev/linkedin_icon.png" | relURL }}' alt="" />
+                        </a>
+                        {{ end }}
+                        {{ with .Site.Params.cta_btn }}
+                        <div
+                        class="hover:scale-105 transition-transform flex justify-center items-center"
+                        >
+                        <a
+                            href="{{ .url | relURL }}"
+                            class="rounded-3xl font-medium text-sm px-5 py-2 font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px]"
+                            >{{ .label }}</a
+                        >
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg bg-blue relative w-full overflow-hidden flex justify-center items-center px-10">
+                {{ $dark_doted := "images/dev/dark_doted_layer.png" | relURL }}
+                <div
+                    style="background-image: radial-gradient(at top, transparent 5%, #091826, #091826), url('{{ $dark_doted }}');"
+                    class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center bg-cover absolute hidden dark:block">
+                </div>
+                <div class="space-y-5 relative z-10">
+                    <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
+                    <div class="text-center sm:max-w-md mx-auto">
+                        <h3 class="font-inter font-semibold text-2xl text-white">Get direct Access to Our Exploit Intelligence</h3>
+                        <p class="font-poppins text-base text-slate-300">Unlock unlimited search across our enriched CVE catalog, including real-time context and risk data you won’t find anywhere else.</p>
+                    </div>
+                    <div class="flex justify-between sm:max-w-xs text-slate-300 mx-auto">
+                        <svg class="fill-current size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+                        </svg>
+                        <svg class="fill-current size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{ partial "js.html" . }}
+  </body>
+</html>
