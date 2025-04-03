@@ -62,3 +62,7 @@
 .active-tab:where(.dark, .dark *) {
   @apply text-style border-style;
 }
+
+.login-pagination > .swiper-pagination-bullet {
+  @apply size-2 rounded-full;
+}

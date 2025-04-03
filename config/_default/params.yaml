@@ -6,7 +6,7 @@ header_login_btn: ##### Header login button
   url: "login/"
 signup_btn: ##### Header & Footer call-to-action button
   label: "Singup"
-  url: "/"
+  url: "signup/"
 
 newsletter:  ##### Hide/Show newsletter box from the footer
   enable: true

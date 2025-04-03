@@ -58,6 +58,20 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
+  var loginSwiper = new Swiper(".login-swiper", {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    navigation: {
+      nextEl: ".next",
+      prevEl: ".prev"
+    },
+    pagination: {
+      el: ".login-pagination"
+    },
+  });
+
   // tilt.js init
   VanillaTilt.init(document.querySelectorAll(".animated"), {
     max: 5,
@@ -211,9 +225,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   openSearch.addEventListener('click', () => {
     searchContainer.classList.remove('hidden');
+    document.getElementsByTagName('body')[0].dataset.scroll = "false";
   });
 
   closeSearch.addEventListener('click', () => {
     searchContainer.classList.add('hidden');
+    document.getElementsByTagName('body')[0].dataset.scroll = "true";
   });
 });
