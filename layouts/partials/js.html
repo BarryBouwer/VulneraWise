@@ -1,8 +1,9 @@
-{{ $swiper := resources.Get "plugins/swiper/swiper.min.js" }} {{ $tilt :=
+{{ $swiper := resources.Get "plugins/swiper/swiper.min.js" }}
+{{ $fuse := resources.Get "plugins/fuse/fuse.min.js" }} {{ $tilt :=
 resources.Get "plugins/tilt/tilt.min.js"}} {{ $main := resources.Get
 "js/main.js" }}
 {{ $dialog := resources.Get "plugins/dialog/dialog.js" }}
-{{ $js := slice $swiper $tilt $main $dialog | resources.Concat
+{{ $js := slice $fuse $swiper $tilt $main $dialog | resources.Concat
 "js/bundle.js" }}
 {{ if hugo.IsDevelopment }} {{ with $js | js.Build }}
 <script src="{{ .RelPermalink }}"></script>

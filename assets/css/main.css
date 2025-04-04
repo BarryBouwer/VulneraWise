@@ -56,13 +56,13 @@
 }
 
 .active-tab {
-  @apply border-b-2 border-slate-950;
-}
-
-.active-tab:where(.dark, .dark *) {
-  @apply text-style border-style;
+  @apply border-b-2 text-style border-style;
 }
 
 .login-pagination > .swiper-pagination-bullet {
   @apply size-2 rounded-full;
+}
+
+.result-item {
+  @apply hover:bg-slate-950 transition-colors;
 }

@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const dialogueOpener = document.getElementById("openDialogue");
   const dialogueCloser = document.getElementById("closeDialogue");
   const scrollSection = document.getElementById("codeSection");
-  const messageBtn = document.getElementById('showMessage');
-  const messageBox = document.getElementById('message-window');
   const openSearch = document.querySelector('.openSearch');
   const searchContainer = document.querySelector('.searchContainer');
   const closeSearch = document.querySelector('.searchClose');
-  let scrollInterval;
+  const searchElm = document.querySelector(".flex-search");
+  let jsonData = [];
+  let scrollInterval, fuse;
   
 
   // swiper config
@@ -232,4 +232,76 @@ document.addEventListener("DOMContentLoaded", function () {
     searchContainer.classList.add('hidden');
     document.getElementsByTagName('body')[0].dataset.scroll = "true";
   });
+
+  async function fetchData() {
+    try {
+      const response = await fetch("https://api.vulnerawise.ai/v1/vuln?description=kubernetes");
+      jsonData = await response.json();
+      let data = [];
+      for (let i = 0; i < jsonData.data.length; i++) {
+        let cveId = jsonData.data[i].cve.id;
+        let cveDes = jsonData.data[i].cve.description;
+        let value = {
+          id: cveId,
+          description: cveDes
+        }
+        data.push(value)
+      };
+      // Initialize Fuse.js with options
+      fuse = new Fuse(data, {
+        keys: ["description", "id"],
+        includeScore: true
+      });
+    } catch (error) {
+      console.error("Error fetching JSON:", error);
+    }
+  }
+
+  // Perform fuzzy search
+  function searchFuzzy() {
+    const query = searchElm.value;
+    let content = [];
+
+    const results = fuse.search(query);
+    for (let i = 0; i < results.length; i++) {
+      const id = results[i].item.id;
+      const des = results[i].item.description;
+      content.push({id, des});
+    };
+
+    let html = [];
+    content.map((item) => {
+      const description = truncateString(item.des);
+      function truncateString(str) {
+        const num = 60;
+        if (str.length > num) {
+          return str.slice(0, num) + "...";
+        } else {
+          return str;
+        };
+      };
+      html.push(`
+        <div class="bg-transparent p-2 rounded-lg cursor-pointer space-y-0.5 font-poppins text-start result-item">
+          <h6 class="font-semibold text-white">${item.id}</h6>
+          <p class="text-sm text-slate-400">${description}</p>
+        </div>
+      `)
+    });
+    if (html.length === 0) {
+      document.querySelector(".results").innerHTML = "Nothing to show. Search something else...";
+    } else {
+      document.querySelector(".results").innerHTML = html.join('');
+    }
+  };
+  searchElm.addEventListener('input', () => {
+    if (searchElm.value === '') {
+      document.querySelector('.result-container').classList.add('hidden');
+    } else {
+      document.querySelector('.result-container').classList.remove('hidden');
+      searchFuzzy()
+    }
+  })
+
+  // Fetch JSON when page loads
+  fetchData();
 });

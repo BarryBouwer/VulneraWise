@@ -50,7 +50,7 @@
 
     async function fetchCveDetails(cveId) {
         const year = cveId.split('-')[1];
-        const apiUrl = `https://trend.vulnerawise.ai/api/v1/${year}/${cveId}.json`;
+        const apiUrl = `https://api.vulnerawise.ai/v1/vuln?cve=${cveId}`;
 
         const contentContainer = document.getElementById("content");
         contentContainer.innerHTML = `<p>Loading details for ${cveId}...</p>`;
