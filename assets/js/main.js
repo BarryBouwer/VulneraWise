@@ -281,10 +281,10 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       };
       html.push(`
-        <div class="bg-transparent p-2 rounded-lg cursor-pointer space-y-0.5 font-poppins text-start result-item">
+        <a href="cves/${item.id}" class="block bg-transparent p-2 rounded-lg cursor-pointer space-y-0.5 font-poppins text-start result-item">
           <h6 class="font-semibold text-white">${item.id}</h6>
           <p class="text-sm text-slate-400">${description}</p>
-        </div>
+        </a>
       `)
     });
     if (html.length === 0) {

@@ -9,14 +9,15 @@
   }}{{ end }}
 </title>
 
+{{ $fuse := resources.Get "plugins/fuse/fuse.min.js" }}
+{{ $fuse := $fuse | minify }}
+<script src="{{ $fuse.RelPermalink }}"></script>
+
 {{/*  favicon  */}}
 {{ $favicon := resources.Get "favicon.png" }}
 {{ with $favicon }}
 <link rel="shortcut icon" href="{{ .RelPermalink }}" type="image/x-icon">
 {{ end }}
-
-
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 
 {{/*  external services  */}}
 {{ template "_internal/google_analytics.html" . }} <!--google analytics--> 
