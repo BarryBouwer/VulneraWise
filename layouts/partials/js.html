@@ -4,9 +4,10 @@ resources.Get "plugins/tilt/tilt.min.js"}} {{ $main := resources.Get
 {{ $dialog := resources.Get "plugins/dialog/dialog.js" }}
 {{ $js := slice $swiper $tilt $main $dialog | resources.Concat
 "js/bundle.js" }}
+{{ $jsonDir := resources.Get "data/vulnerabilities.json" | relURL }}
 {{ if hugo.IsDevelopment }} {{ with $js | js.Build }}
 <script src="{{ .RelPermalink }}"></script>
-{{ end }} {{ else }} {{ $opts := dict "minify" true }} {{ with $js | js.Build
+{{ end }} {{ else }} {{ $opts := (dict "minify" true (dict "params" (dict "jsonFile" $jsonDir))) }} {{ with $js | js.Build
 $opts | fingerprint }}
 <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
 {{ end }} {{ end }}

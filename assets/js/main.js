@@ -1,3 +1,4 @@
+import * as jsonDir from 'data/vulnerabilities.json';
 document.addEventListener("DOMContentLoaded", function () {
   const sidebarContainer = document.querySelector(".sidebar-container");
   const sidebarToggle = document.querySelector(".open-sidebar");
@@ -9,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const openSearch = document.querySelector('.openSearch');
   const searchContainer = document.querySelector('.searchContainer');
   const closeSearch = document.querySelector('.searchClose');
-  const searchElm = document.querySelector(".flex-search");
+  const mainSearchElm = document.querySelector(".main-search");
+  const popupSearchElm = document.querySelector(".popup-search");
   let jsonData = [];
   let scrollInterval, fuse;
   
@@ -235,12 +237,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function fetchData() {
     try {
-      const response = await fetch("https://api.vulnerawise.ai/v1/vuln?description=kubernetes");
-      jsonData = await response.json();
+      const response = jsonDir.data;
+      jsonData = response;
       let data = [];
-      for (let i = 0; i < jsonData.data.length; i++) {
-        let cveId = jsonData.data[i].cve.id;
-        let cveDes = jsonData.data[i].cve.description;
+      for (let i = 0; i < jsonData.length; i++) {
+        let cveId = jsonData[i].cve.id;
+        let cveDes = jsonData[i].cve.description;
         let value = {
           id: cveId,
           description: cveDes
@@ -258,8 +260,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Perform fuzzy search
-  function searchFuzzy() {
-    const query = searchElm.value;
+  function searchFuzzy(elemId) {
+    const query = elemId.value;
     let content = [];
 
     const results = fuse.search(query);
@@ -287,20 +289,27 @@ document.addEventListener("DOMContentLoaded", function () {
         </a>
       `)
     });
+    const resultElm = elemId.parentElement.querySelector('.results');
     if (html.length === 0) {
-      document.querySelector(".results").innerHTML = "Nothing to show. Search something else...";
+      resultElm.innerHTML = "Nothing to show. Search something else...";
     } else {
-      document.querySelector(".results").innerHTML = html.join('');
+      resultElm.innerHTML = html.join('');
     }
   };
-  searchElm.addEventListener('input', () => {
-    if (searchElm.value === '') {
-      document.querySelector('.result-container').classList.add('hidden');
+
+  function showResult() {
+    const containerElem = this.parentElement.querySelector('.result-container');
+    if (this.value === '') {
+      containerElem.classList.add('hidden');
     } else {
-      document.querySelector('.result-container').classList.remove('hidden');
-      searchFuzzy()
+      containerElem.classList.remove('hidden');
+      searchFuzzy(this)
     }
-  })
+  }
+  if (mainSearchElm) {
+    mainSearchElm.addEventListener('input', showResult);
+  };
+  popupSearchElm.addEventListener('input', showResult);
 
   // Fetch JSON when page loads
   fetchData();

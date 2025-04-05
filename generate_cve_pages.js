@@ -4,6 +4,8 @@ const path = require("path");
 
 const API_URL = "https://api.vulnerawise.ai/v1/vuln?description=kubernetes";
 const outputDir = path.join(__dirname, "content", "en", "cves");
+const jsonOutputDir = path.join(__dirname, "assets", "data");
+const jsonOutputPath = path.join(jsonOutputDir, "vulnerabilities.json");
 
 // 🗑️ Function to delete existing files in the directory
 const clearDirectory = (dir) => {
@@ -18,14 +20,31 @@ const clearDirectory = (dir) => {
   }
 };
 
+// 💾 Function to save JSON data to a file
+const saveJSONToFile = (filePath, data) => {
+  if (!fs.existsSync(jsonOutputDir)) {
+    fs.mkdirSync(jsonOutputDir, { recursive: true });
+  }
+
+  // Step 1: Clear existing file content
+  fs.writeFileSync(filePath, "", "utf-8");
+
+  // Step 2: Write new JSON data
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+
+  console.log(`💾 JSON data cleared and saved to ${filePath}`);
+};
+
 // Fetch CVE data
 axios
   .get(API_URL)
   .then((response) => {
     console.log("Raw API Response:", response.data); // Debugging Line
 
-    // ✅ Fix: Access the correct array
     const cveData = response.data.data;
+
+    // 💾 Save the raw JSON response
+    saveJSONToFile(jsonOutputPath, response.data);
 
     if (!Array.isArray(cveData)) {
       console.error("Error: Expected an array but got:", typeof cveData);
@@ -45,7 +64,7 @@ axios
     }
 
     cveData.forEach((item) => {
-      const cve = item.cve; // Extract CVE object
+      const cve = item.cve;
 
       if (!cve || !cve.id) {
         console.warn("Skipping invalid CVE entry:", item);
@@ -58,8 +77,6 @@ title: "${cve.id}"
 date: "${cve.metadata?.published_date || ""}"
 last_modified: "${cve.metadata?.last_modified_date || ""}"
 ---
-
-
 
 Date: **${formatDate(cve.metadata?.published_date)}** Last Modified: **${formatDate(cve.metadata?.last_modified_date)}**
 
@@ -103,10 +120,7 @@ ${
 - **Public Exploit Count:** ${cve.counts?.public_exploit_count || 0}
 `;
 
-      // Define the markdown file path
       const filePath = path.join(outputDir, `${cve.id}.md`);
-
-      // Write the markdown file
       fs.writeFileSync(filePath, markdownContent);
       console.log(`✅ Created: ${filePath}`);
     });
