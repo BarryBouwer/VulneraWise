@@ -282,8 +282,9 @@ document.addEventListener("DOMContentLoaded", function () {
           return str;
         };
       };
+      const url = item.id.toLowerCase();
       html.push(`
-        <a href="cves/${item.id}" class="block bg-transparent p-2 rounded-lg cursor-pointer space-y-0.5 font-poppins text-start result-item">
+        <a href="cves/${url}" class="block bg-transparent p-2 rounded-lg cursor-pointer space-y-0.5 font-poppins text-start result-item">
           <h6 class="font-semibold text-white">${item.id}</h6>
           <p class="text-sm text-slate-400">${description}</p>
         </a>
