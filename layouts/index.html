@@ -92,13 +92,16 @@
               z-index: 20;
             }
           </style>
-          <div id="searchBox" class="shadow-xl">
+          <div id="searchBox" class="shadow-xl relative">
             <div
-              class="rounded-3xl card relative min-h-[30rem] md:min-h-[25rem] mx-auto w-[90vw] sm:w-[85vw] md:w-[75vw] lg:w-[25rem] xl:w-[35rem]">
-              <div class="card-content space-y-3 inset-0 bg-blue p-5">
-                {{ $bg_pattern := "images/dev/search-bg-pattern.png" | relURL }}
-                <div class="size-full relative">
+            class="rounded-3xl card relative h-[448px] mx-auto w-[96vw] sm:w-[576px] lg:w-[27rem] xl:w-[576px]">
+            <div class="card-content space-y-3 inset-0 bg-blue">
+              {{ $bg_pattern := "images/dev/search-bg-pattern.png" | relURL }}
+              {{ $gradient := "images/dev/gradient.png" | relURL }}
+              <img src="{{ $gradient }}" alt="" class="absolute inset-0 size-full rounded-br-3xl">
+                <div class="size-full relative z-10">
                   <img src="{{ $bg_pattern }}" alt="" class="absolute inset-0 size-full">
+
                   <div class="relative size-full z-10">
 
 

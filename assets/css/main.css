@@ -59,10 +59,14 @@
   @apply border-b-2 text-style border-style;
 }
 
-.login-pagination > .swiper-pagination-bullet {
+.auth-pagination > .swiper-pagination-bullet {
   @apply size-2 rounded-full;
 }
 
 .result-item {
   @apply hover:bg-slate-950 transition-colors;
+}
+
+.js-visible {
+  @apply block;
 }

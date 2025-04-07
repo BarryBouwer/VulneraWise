@@ -74,31 +74,31 @@
             </div>
             <div class="rounded-lg bg-blue relative w-full overflow-hidden flex justify-center items-center px-10">
                 {{ $dark_doted := "images/dev/dark_doted_layer.png" | relURL }}
+                {{ $gradient := "images/dev/gradient.png" | relURL }}
+                <img src="{{ $gradient }}" class="size-full inset-0 absolute">
                 <div
                     style="background-image: radial-gradient(at top, transparent 30%, #091826, #091826), url('{{ $dark_doted }}');"
                     class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center bg-cover absolute hidden dark:block">
                 </div>
-                <div class="space-y-5 relative z-10 swiper forget-pw-swiper">
+                <div class="space-y-5 relative z-10 swiper auth-swiper">
+                    <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
                     <div class="swiper-wrapper">
-                        <div class="space-y-5 swiper-slide">
-                            <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
-                            <div class="text-center sm:max-w-md mx-auto">
+                        <div class="swiper-slide">
+                            <div class="text-center sm:max-w-md mx-auto space-y-3">
                                 <h3 class="font-inter font-semibold text-2xl text-white">Get direct Access to Our Exploit Intelligence</h3>
                                 <p class="font-poppins text-base text-slate-300">Unlock unlimited search across our enriched CVE catalog, including real-time context and risk data you won’t find anywhere else.</p>
                             </div>
                         </div>
 
-                        <div class="space-y-5 swiper-slide">
-                            <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
-                            <div class="text-center sm:max-w-md mx-auto">
+                        <div class="swiper-slide">
+                            <div class="text-center sm:max-w-md mx-auto space-y-3">
                                 <h3 class="font-inter font-semibold text-2xl text-white">Get direct Access to Our Exploit Intelligence</h3>
                                 <p class="font-poppins text-base text-slate-300">Unlock unlimited search across our enriched CVE catalog, including real-time context and risk data you won’t find anywhere else.</p>
                             </div>
                         </div>
 
-                        <div class="space-y-5 swiper-slide">
-                            <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
-                            <div class="text-center sm:max-w-md mx-auto">
+                        <div class="swiper-slide">
+                            <div class="text-center sm:max-w-md mx-auto space-y-3">
                                 <h3 class="font-inter font-semibold text-2xl text-white">Get direct Access to Our Exploit Intelligence</h3>
                                 <p class="font-poppins text-base text-slate-300">Unlock unlimited search across our enriched CVE catalog, including real-time context and risk data you won’t find anywhere else.</p>
                             </div>
@@ -111,7 +111,7 @@
                             </svg>
                         </button>
                         <div>
-                            <span class="forget-pw-pagination"></span>
+                            <span class="auth-pagination"></span>
                         </div>
                         <button class="next">
                             <svg class="fill-current size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">

@@ -26,19 +26,19 @@
           </span>
         </button>
         <a href='{{ "login" | relURL }}'
-          class="login-btn hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
+          class="js-login hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
           Login
         </a>
 
         <!-- Signup Button -->
         <a href='{{ "signup" | relURL }}'
-          class="signup-btn hidden lg:block rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all font-poppins bg-style">
+          class="js-signup hidden lg:block rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all font-poppins bg-style">
           Signup
         </a>
 
         <!-- Logout Button -->
         <button
-          class="logout-btn hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
+          class="js-logout hidden text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
           Logout
         </button>
         <button data-collapse-toggle="mobile-menu-2" type="button"
@@ -82,8 +82,8 @@
             </button>
 
             <div id="dropdown-menu-{{ $index }}"
-              class="relative origin-top lg:absolute lg:translate-y-3 lg:group-hover:translate-y-2 lg:opacity-0 lg:block lg:group-hover:opacity-100 lg:transition-all lg:duration-300 w-full lg:w-64 rounded-md shadow-lg bg-main border border-slate-800 ring-opacity-5 lg:left-1/2 lg:-translate-x-1/2 hidden">
-              <div class="w-7 overflow-hidden fixed left-1/2 -translate-x-1/2 -mt-4 hidden lg:inline">
+              class="relative origin-top lg:absolute mt-2 lg:group-hover:block lg:transition-transform w-full lg:w-64 rounded-md shadow-lg bg-main border border-slate-800 ring-opacity-5 lg:left-1/2 lg:-translate-x-1/2 hidden">
+              <div class="w-7 overflow-hidden fixed left-1/2 -translate-x-1/2 -mt-4 hidden lg:inline-block">
                 <div class=" h-4 w-4 bg-main rotate-45 transform origin-bottom-left"></div>
                </div>
               <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button-{{ $index }}">
@@ -147,19 +147,19 @@
             });
           </script>
 
-          <li class="w-full my-3 lg:hidden">
+          <li class="js-login w-full my-3 lg:hidden">
             <a href='{{ "login" | relURL }}'
-              class="login-btn lg:hidden text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Login</a>
+              class="text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Login</a>
           </li>
 
-          <li class="w-full lg:hidden">
+          <li class="js-signup w-full lg:hidden">
             <a href='{{ "signup" | relURL }}'
-              class="signup-btn lg:hidden rounded-3xl font-medium text-sm block text-center w-full py-3 hover:scale-105 transition-all font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px] hover:after:left-[7px]">Signup</a>
+              class="rounded-3xl font-medium text-sm block text-center w-full py-3 hover:scale-105 transition-all font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px] hover:after:left-[7px]">Signup</a>
           </li>
 
-          <li class="w-full my-3 lg:hidden">
+          <li class="js-logout w-full my-3 hidden">
             <button
-              class="logout-btn lg:hidden text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Logout</button>
+              class="text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Logout</button>
           </li>
         </ul>
       </div>
@@ -174,33 +174,33 @@
   const mobileMenu = document.getElementById("mobile-menu-2");
   const header = document.getElementById("header");
 
-  // Menu function
   menuToggle.addEventListener("click", function () {
-    // Toggle the 'show' class on the mobile menu
+    // Toggle the 'hidden' class on the mobile menu
     mobileMenu.classList.toggle("hidden");
-    // When the menu is open, we want to prevent the body from scrolling
-    document.body.classList.toggle("overflow-hidden");
-    document.body.classList.toggle("md:overflow-auto");
-
+  
     // Toggle the SVG icons
-    const openIcon = menuToggle.querySelector("svg:first-of-type"); // Open icon
-    const closeIcon = menuToggle.querySelector("svg:last-of-type"); // Close icon
+    const openIcon = menuToggle.querySelector("svg:first-of-type");
+    const closeIcon = menuToggle.querySelector("svg:last-of-type");
     openIcon.classList.toggle("hidden");
     closeIcon.classList.toggle("hidden");
-
-    // Check the display of the mobile menu and update header style
-    if (window.getComputedStyle(mobileMenu).display === "block") {
+  
+    // Check the display state of the menu and update styles + dataset
+    const isMenuOpen = window.getComputedStyle(mobileMenu).display === "block";
+  
+    // Set scroll state on body
+    document.body.dataset.scroll = isMenuOpen ? "false" : "true";
+  
+    // Adjust header style
+    if (isMenuOpen) {
       header.classList.add('backdrop-blur-lg');
     } else {
-      // Only remove the backdrop filter if the scroll position is not greater than 50
       if (window.scrollY <= 50) {
         header.classList.remove('backdrop-blur-lg');
       } else {
-        // Keep the blur if scrolled more than 50
         updateHeaderStyle();
       }
     }
-  });
+  });  
 
   // Function to update the header style based on scroll position
   function updateHeaderStyle() {

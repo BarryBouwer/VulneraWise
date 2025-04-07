@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeSearch = document.querySelector('.searchClose');
   const mainSearchElm = document.querySelector(".main-search");
   const popupSearchElm = document.querySelector(".popup-search");
-  const loginBtns = document.querySelectorAll('.login-btn');
-  const signupBtns = document.querySelectorAll('.signup-btn');
-  const logoutBtns = document.querySelectorAll('.logout-btn');
   const baseUrl = document.querySelector('meta[name="site-base-url"]')?.content;
   const remembered = JSON.parse(localStorage.getItem('rememberedUser'));
   let jsonData = [];
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  var loginSwiper = new Swiper(".login-swiper", {
+  var loginSwiper = new Swiper(".auth-swiper", {
     loop: true,
     autoplay: {
       delay: 5000,
@@ -75,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       prevEl: ".prev"
     },
     pagination: {
-      el: ".login-pagination"
+      el: ".auth-pagination"
     },
   });
 
@@ -153,10 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
       sidebarContainer.classList.toggle(
         "max-md:[transform:translate3d(0,0,0)]"
       );
-
-      // When the menu is open, we want to prevent the body from scrolling
-      document.body.classList.toggle("overflow-hidden");
-      document.body.classList.toggle("md:overflow-auto");
     }
 
     sidebarToggle.addEventListener("click", (e) => {
@@ -337,23 +330,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ✅ Update UI buttons
-  if (user) {
-    loginBtns.forEach(btn => btn.style.display = 'none');
-    signupBtns.forEach(btn => btn.style.display = 'none');
-    logoutBtns.forEach(btn => btn.style.display = 'inline-block');
-  } else {
-    loginBtns.forEach(btn => btn.style.display = 'inline-block');
-    signupBtns.forEach(btn => btn.style.display = 'inline-block');
-    logoutBtns.forEach(btn => btn.style.display = 'none');
-  }
-
-  // ✅ Logout logic (clear both storages)
-  logoutBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      sessionStorage.removeItem('user');
-      localStorage.removeItem('rememberedUser');
-      window.location.href = baseUrl;
-    });
-  });
+  // function toggleAuthButtons(showLoginSignup) {
+  //   const loginBtns = document.querySelectorAll('.js-login');
+  //   const signupBtns = document.querySelectorAll('.js-signup');
+  //   const logoutBtns = document.querySelectorAll('.js-logout');
+  
+  //   loginBtns.forEach(btn => {
+  //     if (showLoginSignup) {
+  //       btn.classList.remove('hidden');
+  //     } else {
+  //       btn.classList.add('hidden');
+  //     }
+  //   });
+  
+  //   signupBtns.forEach(btn => {
+  //     if (showLoginSignup) {
+  //       btn.classList.remove('hidden');
+  //     } else {
+  //       btn.classList.add('hidden');
+  //     }
+  //   });
+  
+  //   logoutBtns.forEach(btn => {
+  //     if (showLoginSignup) {
+  //       btn.classList.add('hidden');
+  //     } else {
+  //       btn.classList.remove('hidden');
+  //     }
+  //   });
+  // }
+  
+  // // ✅ Apply initial state
+  // toggleAuthButtons(!user);
+  
+  // // ✅ Logout
+  // document.querySelectorAll('.js-logout').forEach(btn => {
+  //   btn.addEventListener('click', () => {
+  //     sessionStorage.removeItem('user');
+  //     localStorage.removeItem('rememberedUser');
+  //     toggleAuthButtons(true);
+  //     window.location.href = baseUrl;
+  //   });
+  // });  
 });

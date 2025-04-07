@@ -30,9 +30,8 @@
 {{/* theme toggle function
 */}}
 <script>
-  const themeToggleElm = document.querySelector('.change-theme');
-  if (themeToggleElm) {
-    themeToggleElm.addEventListener('click', changeTheme);
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleElm = document.querySelector('.change-theme');
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     function applyTheme() {
       // Check if the theme preference should be saved (checkbox checked)
@@ -55,11 +54,8 @@
         }
       }
     }
-  
-    // Apply the theme on load
-    window.addEventListener('load', () => {
-      applyTheme();  // Apply theme when page loads
-    });
+    
+    applyTheme();  // Apply theme when page loads
   
     // Toggle theme based on current state
     function changeTheme() {
@@ -104,7 +100,10 @@
         applyTheme();  // Reapply the system preference or default theme
       }
     });
-  }
+    if (themeToggleElm) {
+      themeToggleElm.addEventListener('click', changeTheme);
+    }
+  });
 </script>
 
 {{ $current := .RelPermalink }}
