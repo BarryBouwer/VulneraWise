@@ -13,52 +13,45 @@
                 </a>
                 <div class="px-5 sm:max-w-lg mx-auto flex flex-col justify-center items-center gap-5">
                     <div class="space-y-3">
-                        <h1 class="text-2xl font-semibold font-poppins text-slate-900 dark:text-slate-100">Welcome back to VulneraWise</h1>
-                        <p class="text-slate-800 dark:text-slate-300 text-base font-poppins">Sign in to manage your account, access your decision trees, and explore real-time threat intelligence.</p>
+                        <h1 class="text-2xl font-semibold font-poppins text-slate-900 dark:text-slate-100">Enter New Password</h1>
+                        <p class="text-slate-800 dark:text-slate-300 text-base font-poppins">Please enter and confirm new strong password.</p>
                     </div>
-                    <form id="login-form" action="" class="space-y-3 w-full">
-                        <div>
-                            <label for="email" class="text-sm font-poppins text-slate-800 dark:text-slate-300 block mb-2">Email address</label>
-                            <input type="email" required name="email" id="email" placeholder="Enter your email address" class="rounded-lg bg-blue text-slate-300 font-poppins p-2 focus:outline-none w-full">
-                        </div>
+                    <form id="reset-password" action="" class="space-y-3 w-full">
                         <div>
                             <label for="password" class="text-sm font-poppins text-slate-800 dark:text-slate-300 block mb-2">Password</label>
                             <div class="rounded-lg bg-blue text-slate-300 font-poppins p-2 flex gap-2 items-center">
-                                <input type="password" required name="password" id="password" placeholder="Enter password" class="bg-transparent border-none focus:outline-none flex-grow login-password">
-                                <button type="button" class="show-pw">
-                                    <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="w-5 h-3.5 cursor-pointer">
+                                <input type="password" required name="password" id="password" placeholder="Enter password" class="bg-transparent border-none focus:outline-none w-11/12 reset-password">
+                                <button type="button" class="reset-hide-pw hidden w-1/12">
+                                    <div class="w-5 h-3.5">
+                                        <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                    </div>
                                 </button>
-                                <button type="button" class="hide-pw hidden">
-                                    <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="w-5 h-4 cursor-pointer">
+                                <button type="button" class="reset-show-pw w-1/12">
+                                    <div class="w-5 h-4">
+                                        <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                    </div>
                                 </button>
-
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', () => {
-                                        document.querySelector('.show-pw')
-                                            .addEventListener('click', () => {
-                                                document.querySelector('.login-password').type = 'text';
-                                                document.querySelector('.hide-pw').classList.remove('hidden');
-                                                document.querySelector('.show-pw').classList.add('hidden');
-                                        });
-                                        document.querySelector('.hide-pw')
-                                            .addEventListener('click', () => {
-                                                document.querySelector('.login-password').type = 'password';
-                                                document.querySelector('.hide-pw').classList.add('hidden');
-                                                document.querySelector('.show-pw').classList.remove('hidden');
-                                            });
-                                    });
-                                </script>
                             </div>
                         </div>
-                        <div class="flex justify-between flex-wrap gap-2">
-                            <div>
-                                <input type="checkbox" name="rememberMe" id="rememberMe">
-                                <label for="rememberMe" class="text-sm text-slate-800 dark:text-slate-300 font-poppins">Remember for 30 days</label>
+
+                        <div>
+                            <label for="confirmPassword" class="text-sm font-poppins text-slate-800 dark:text-slate-300 block mb-2">Confirm password</label>
+                            <div class="rounded-lg bg-blue text-slate-300 font-poppins p-2 flex gap-2 items-center">
+                                <input type="password" required name="confirmPassword" id="confirmPassword" placeholder="Confirm password" class="bg-transparent border-none focus:outline-none confirm-reset-password w-11/12">
+                                <button type="button" class="confirm-reset-hide-pw hidden w-1/12">
+                                    <div class="w-5 h-3.5">
+                                        <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                    </div>
+                                </button>
+                                <button type="button" class="confirm-reset-show-pw w-1/12">
+                                    <div class="w-5 h-4">
+                                        <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                    </div>
+                                </button>
                             </div>
-                            <a href='{{ "forget-password/" | relURL }}' type="button" class="text-style text-sm font-poppins">Forgot password</a>
                         </div>
                         <button class="w-full rounded-full py-2 bg-style font-poppins font-medium text-sm flex gap-2 items-center justify-center scale-105 transition-all">
-                            Sign in
+                            Change Password
                             <img src='{{ "images/dev/dark_next.png" | relURL }}' alt="" class="size-3">
                         </button>
                     </form>
@@ -114,7 +107,7 @@
                     style="background-image: radial-gradient(at top, transparent 30%, #091826, #091826), url('{{ $dark_doted }}');"
                     class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center bg-cover absolute hidden dark:block">
                 </div>
-                <div class="space-y-5 relative z-10 swiper login-swiper">
+                <div class="space-y-5 relative z-10 swiper forget-pw-swiper">
                     <div class="swiper-wrapper">
                         <div class="space-y-5 swiper-slide">
                             <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
@@ -147,7 +140,7 @@
                             </svg>
                         </button>
                         <div>
-                            <span class="login-pagination"></span>
+                            <span class="forget-pw-pagination"></span>
                         </div>
                         <button class="next">
                             <svg class="fill-current size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -158,8 +151,36 @@
                 </div>
             </div>
         </div>
-        <div id="login-message" class="w-11/12 max-w-sm rounded-lg left-1/2 -translate-x-1/2 z-50 p-1 bg-black dark:bg-white text-white dark:text-black font-poppins text-lg text-center flex justify-center items-center fixed bottom-5 translate-y-40 transition-transform"></div>
+        <div id="reset-message" class="w-11/12 max-w-sm rounded-lg left-1/2 -translate-x-1/2 z-50 p-1 bg-black dark:bg-white text-white dark:text-black font-poppins text-lg text-center flex justify-center items-center fixed bottom-5 translate-y-40 transition-transform"></div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.reset-show-pw')
+                .addEventListener('click', () => {
+                    document.querySelector('.reset-password').type = 'text';
+                    document.querySelector('.reset-hide-pw').classList.remove('hidden');
+                    document.querySelector('.reset-show-pw').classList.add('hidden');
+            });
+            document.querySelector('.reset-hide-pw')
+                .addEventListener('click', () => {
+                    document.querySelector('.reset-password').type = 'password';
+                    document.querySelector('.reset-hide-pw').classList.add('hidden');
+                    document.querySelector('.reset-show-pw').classList.remove('hidden');
+            });
+            document.querySelector('.confirm-reset-show-pw')
+                .addEventListener('click', () => {
+                    document.querySelector('.confirm-reset-password').type = 'text';
+                    document.querySelector('.confirm-reset-hide-pw').classList.remove('hidden');
+                    document.querySelector('.confirm-reset-show-pw').classList.add('hidden');
+            });
+            document.querySelector('.confirm-reset-hide-pw')
+                .addEventListener('click', () => {
+                    document.querySelector('.confirm-reset-password').type = 'password';
+                    document.querySelector('.confirm-reset-hide-pw').classList.add('hidden');
+                    document.querySelector('.confirm-reset-show-pw').classList.remove('hidden');
+            });
+        });
+    </script>
     {{ partial "js.html" . }}
   </body>
 </html>

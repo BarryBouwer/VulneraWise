@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeSearch = document.querySelector('.searchClose');
   const mainSearchElm = document.querySelector(".main-search");
   const popupSearchElm = document.querySelector(".popup-search");
+  const loginBtns = document.querySelectorAll('.login-btn');
+  const signupBtns = document.querySelectorAll('.signup-btn');
+  const logoutBtns = document.querySelectorAll('.logout-btn');
+  const baseUrl = document.querySelector('meta[name="site-base-url"]')?.content;
+  const remembered = JSON.parse(localStorage.getItem('rememberedUser'));
   let jsonData = [];
-  let scrollInterval, fuse;
+  let user, scrollInterval, fuse;
   
 
   // swiper config
@@ -224,16 +229,19 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = url;
     });
   });
-
-  openSearch.addEventListener('click', () => {
-    searchContainer.classList.remove('hidden');
-    document.getElementsByTagName('body')[0].dataset.scroll = "false";
-  });
-
-  closeSearch.addEventListener('click', () => {
-    searchContainer.classList.add('hidden');
-    document.getElementsByTagName('body')[0].dataset.scroll = "true";
-  });
+  
+  if (openSearch) {
+    openSearch.addEventListener('click', () => {
+      searchContainer.classList.remove('hidden');
+      document.getElementsByTagName('body')[0].dataset.scroll = "false";
+    });
+  };
+  if (closeSearch) {
+    closeSearch.addEventListener('click', () => {
+      searchContainer.classList.add('hidden');
+      document.getElementsByTagName('body')[0].dataset.scroll = "true";
+    });
+  };
 
   async function fetchData() {
     try {
@@ -310,8 +318,42 @@ document.addEventListener("DOMContentLoaded", function () {
   if (mainSearchElm) {
     mainSearchElm.addEventListener('input', showResult);
   };
-  popupSearchElm.addEventListener('input', showResult);
+  if (openSearch) {
+    popupSearchElm.addEventListener('input', showResult);
+  };
 
   // Fetch JSON when page loads
   fetchData();
+
+  if (remembered && remembered.expiry > Date.now()) {
+    user = remembered.user;
+    // Optionally sync into sessionStorage so rest of app works the same
+    sessionStorage.setItem('user', JSON.stringify(user));
+  } else {
+    localStorage.removeItem('rememberedUser'); // cleanup expired
+    const sessionUser = sessionStorage.getItem('user');
+    if (sessionUser) {
+      user = JSON.parse(sessionUser);
+    }
+  }
+
+  // ✅ Update UI buttons
+  if (user) {
+    loginBtns.forEach(btn => btn.style.display = 'none');
+    signupBtns.forEach(btn => btn.style.display = 'none');
+    logoutBtns.forEach(btn => btn.style.display = 'inline-block');
+  } else {
+    loginBtns.forEach(btn => btn.style.display = 'inline-block');
+    signupBtns.forEach(btn => btn.style.display = 'inline-block');
+    logoutBtns.forEach(btn => btn.style.display = 'none');
+  }
+
+  // ✅ Logout logic (clear both storages)
+  logoutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sessionStorage.removeItem('user');
+      localStorage.removeItem('rememberedUser');
+      window.location.href = baseUrl;
+    });
+  });
 });

@@ -8,8 +8,7 @@
           alt="{{ .Site.Title }} Logo" />
       </a>
       <div class="flex items-center lg:order-2">
-        <div class="p-2 lg:p-0 lg:mr-2 cursor-pointer"
-          onclick="changeTheme()">
+        <div class="p-2 lg:p-0 lg:mr-2 cursor-pointer change-theme">
           <div class="hidden dark:block text-slate-200">
             <img src='{{ "images/dev/white-sun-icon.png" | relURL }}' alt="" class="w-7">
           </div>
@@ -26,16 +25,22 @@
             Search
           </span>
         </button>
-        {{ with .Site.Params.header_login_btn }}
-        <a href="{{ .url | relURL }}"
-          class="hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">{{
-          .label }}</a>
-        {{ end }}
-        {{ with .Site.Params.signup_btn }}
-        <a href="{{ .url | relURL }}"
-          class="hidden lg:block rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all font-poppins bg-style">{{
-          .label }}</a>
-        {{ end }}
+        <a href='{{ "login" | relURL }}'
+          class="login-btn hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
+          Login
+        </a>
+
+        <!-- Signup Button -->
+        <a href='{{ "signup" | relURL }}'
+          class="signup-btn hidden lg:block rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all font-poppins bg-style">
+          Signup
+        </a>
+
+        <!-- Logout Button -->
+        <button
+          class="logout-btn hidden lg:block text-black dark:text-white hover:bg-style hover:text-black hover:after:p-0 rounded-3xl after:rounded-3xl font-medium text-sm px-5 py-3 hover:scale-105 transition-all mr-2 border-gradient-primary font-poppins">
+          Logout
+        </button>
         <button data-collapse-toggle="mobile-menu-2" type="button"
           class="inline-flex items-center p-2 ml-1 text-sm text-black dark:text-white rounded-lg lg:hidden focus:outline-none"
           aria-controls="mobile-menu-2" aria-expanded="false">
@@ -142,20 +147,20 @@
             });
           </script>
 
-          {{ with .Site.Params.header_login_btn }}
           <li class="w-full my-3 lg:hidden">
-            <a href="{{ .url | relURL }}"
-              class="lg:hidden text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">{{
-              .label }}</a>
+            <a href='{{ "login" | relURL }}'
+              class="login-btn lg:hidden text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Login</a>
           </li>
-          {{ end }}
-          {{ with .Site.Params.signup_btn }}
+
           <li class="w-full lg:hidden">
-            <a href="{{ .url | relURL }}"
-              class="lg:hidden rounded-3xl font-medium text-sm block text-center w-full py-3 hover:scale-105 transition-all font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px] hover:after:left-[7px]">{{
-              .label }}</a>
+            <a href='{{ "signup" | relURL }}'
+              class="signup-btn lg:hidden rounded-3xl font-medium text-sm block text-center w-full py-3 hover:scale-105 transition-all font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px] hover:after:left-[7px]">Signup</a>
           </li>
-          {{ end }}
+
+          <li class="w-full my-3 lg:hidden">
+            <button
+              class="logout-btn lg:hidden text-black dark:text-white hover:bg-gradient-primary rounded-3xl after:rounded-3xl font-medium text-sm w-full block text-center py-3 hover:scale-105 transition-all border-gradient-primary font-poppins">Logout</button>
+          </li>
         </ul>
       </div>
     </div>
