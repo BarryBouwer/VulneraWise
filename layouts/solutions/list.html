@@ -72,7 +72,7 @@
             {{ with .Params.hero_section.ev_intelligence }}
             <div
                 id='{{ .title | plainify | replaceRE " " "_" | lower }}'
-                class="pt-20 lg:pt-44 hidden dark:block bg-main px-5 sm:px-10 lg:px-16"
+                class="pt-20 lg:pt-44 hidden dark:block bg-main px-5 sm:px-10 lg:px-16 scroll-mt-36 lg:scroll-mt-10"
                 style="background: linear-gradient(to bottom, transparent, #05101a 100%)"
                 data-aos="zoom-in">
                 <h2
@@ -112,7 +112,7 @@
 
             <div
                 id='{{ .title | plainify | replaceRE " " "_" | lower }}'
-                class="pt-20 lg:pt-40 dark:hidden bg-main px-5 sm:px-10 lg:px-16"
+                class="pt-20 lg:pt-40 dark:hidden bg-main px-5 sm:px-10 lg:px-16 scroll-mt-36 lg:scroll-mt-10"
                 style="background: linear-gradient(to bottom, transparent, #f1f5f9 100%)"
                 data-aos="zoom-in">
                 <h2
@@ -249,7 +249,7 @@
 {{/* cv_priority section */}}
 {{ with .Params.cv_priority }}
 {{ if .enable }}
-<section id='{{ .title | plainify | replaceRE " " "_" | lower }}' class="bg-slate-100 dark:bg-main pt-10 lg:pt-40">
+<section id='{{ .title | plainify | replaceRE " " "_" | lower }}' class="bg-slate-100 dark:bg-main pt-10 lg:pt-40 scroll-mt-14 lg:scroll-mt-0">
     <div class="container mx-auto px-5 sm:px-10 lg:px-16">
         <div data-aos="zoom-in">
             <h2
