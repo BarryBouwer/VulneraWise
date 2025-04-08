@@ -35,6 +35,10 @@
   mask-composite: exclude;
 }
 
+.gradient-border-1::after {
+  padding: 1px !important;
+}
+
 .main-heading > span {
   background: linear-gradient(to right, #ffcf71, #2376dd);
   -webkit-background-clip: text;
