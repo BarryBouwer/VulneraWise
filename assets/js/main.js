@@ -1,7 +1,8 @@
 import * as jsonDir from 'data/vulnerabilities.json';
 document.addEventListener("DOMContentLoaded", function () {
   const sidebarContainer = document.querySelector(".sidebar-container");
-  const sidebarToggle = document.querySelector(".open-sidebar");
+  const sidebarOpener = document.querySelector(".sidebar-opener");
+  const siderbarCloser = document.querySelector(".sidebar-closer");
   const overlay = document.querySelector(".mobile-menu-overlay");
   const dialogue = document.getElementById("dialogue");
   const dialogueOpener = document.getElementById("openDialogue");
@@ -16,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const remembered = JSON.parse(localStorage.getItem('rememberedUser'));
   let jsonData = [];
   let user, scrollInterval, fuse;
-  
 
   // swiper config
   var swiper = new Swiper(".mySwiper", {
@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
   AOS.init();
 
   
+  // docs page functions
   if (sidebarContainer) {
-    // docs page functions
     scrollToActiveItem();
     enableCollapsibles();
 
@@ -152,7 +152,22 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
-    sidebarToggle.addEventListener("click", (e) => {
+    sidebarOpener.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleSidebar();
+
+      if (overlay.classList.contains("bg-transparent")) {
+        // Show the overlay
+        overlay.classList.add(...overlayClasses);
+        overlay.classList.remove("bg-transparent");
+      } else {
+        // Hide the overlay
+        overlay.classList.remove(...overlayClasses);
+        overlay.classList.add("bg-transparent");
+      }
+    });
+
+    siderbarCloser.addEventListener("click", (e) => {
       e.preventDefault();
       toggleSidebar();
 

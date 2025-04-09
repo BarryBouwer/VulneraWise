@@ -66,7 +66,3 @@
 .result-item {
   @apply hover:bg-slate-950 transition-colors;
 }
-
-.js-visible {
-  @apply block;
-}

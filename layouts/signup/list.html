@@ -132,11 +132,13 @@
                 {{ $gradient := "images/dev/gradient.png" | relURL }}
                 <img src="{{ $gradient }}" class="size-full inset-0 absolute">
                 <div
-                    style="background-image: radial-gradient(at top, transparent 30%, #091826, #091826), url('{{ $dark_doted }}');"
+                    style="background-image: url('{{ $dark_doted }}');"
                     class="w-3/4 h-full left-1/2 -translate-x-1/2 bg-no-repeat bg-top-center bg-cover absolute hidden dark:block">
                 </div>
-                <div class="space-y-5 relative z-10 swiper auth-swiper">
-                    <img src='{{ "images/pricing-cards.png" | relURL }}' alt="">
+                <div class="space-y-5 relative z-10 swiper auth-swiper my-5">
+                    <div class="sm:max-w-[560px] mx-auto">
+                        <img src='{{ "images/dashboard-2x.png" | relURL }}' alt="" class="size-full object-cover">
+                    </div>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="text-center sm:max-w-md mx-auto space-y-3">
