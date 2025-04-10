@@ -9,8 +9,8 @@
 </div>
 
 <script>
-    const apiUrl = "https://trend.vulnerawise.ai/top10.json";
-  
+    const apiUrl = {{ unmarshal (resources.Get "data/top10.json") }};
+
     document.getElementById("search-button").addEventListener("click", handleSearch);
 
     document.getElementById("search-input").addEventListener("keydown", function(event) {
@@ -19,16 +19,13 @@
         }
     });
 
-    async function fetchVulnerabilities() {
+    // ⚡ No need to fetch — use the local data
+    function loadVulnerabilities() {
         try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
+            const data = apiUrl;
             displayVulnerabilities(data.data);
         } catch (error) {
-            document.getElementById("vulnerabilities").innerHTML = `<p>Error fetching vulnerabilities: ${error.message}</p>`;
+            document.getElementById("vulnerabilities").innerHTML = `<p>Error loading vulnerabilities: ${error.message}</p>`;
         }
     }
 
@@ -49,7 +46,6 @@
     }
 
     async function fetchCveDetails(cveId) {
-        const year = cveId.split('-')[1];
         const apiUrl = `https://api.vulnerawise.ai/v1/vuln?cve=${cveId}`;
 
         const contentContainer = document.getElementById("content");
@@ -69,8 +65,7 @@
 
     function renderCveDetails(cve) {
         const contentContainer = document.getElementById("content");
-        
-        // Initialize HTML content
+
         let content = `
             <div class="cve-details mt-5 prose prose-slate dark:prose-invert capitalize">
                 <h2>${cve.id}</h2>
@@ -88,8 +83,7 @@
                 <p><strong>Automatable:</strong> ${cve.impact.automatable}</p>
                 <h2>Metrics</h2>
         `;
-        
-        // Loop through metrics and append them to the content
+
         if (cve.metrics && cve.metrics.length > 0) {
             cve.metrics.forEach(metric => {
                 content += `
@@ -105,12 +99,10 @@
         } else {
             content += "<p>No metrics available</p>";
         }
-    
-        content += `</div>`; // Close the main container div
-    
-        // Set the content to the container
+
+        content += `</div>`;
         contentContainer.innerHTML = content;
-    }    
+    }
 
     async function handleSearch() {
         const searchInput = document.getElementById("search-input");
@@ -131,7 +123,8 @@
     const clickedId = idWithHash.replace('#', '');
     if (clickedId) {
         fetchCveDetails(clickedId);
-    };
+    }
 
-    fetchVulnerabilities();
+    // Load local vulnerabilities on page load
+    loadVulnerabilities();
 </script>

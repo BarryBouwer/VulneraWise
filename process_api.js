@@ -3,9 +3,12 @@ const fs = require("fs");
 const path = require("path");
 
 const API_URL = "https://api.vulnerawise.ai/v1/vuln?description=kubernetes";
+const TOP10_API_URL = "https://trend.vulnerawise.ai/top10.json";
+
 const outputDir = path.join(__dirname, "content", "en", "cves");
 const jsonOutputDir = path.join(__dirname, "assets", "data");
 const jsonOutputPath = path.join(jsonOutputDir, "vulnerabilities.json");
+const top10OutputPath = path.join(jsonOutputDir, "top10.json");
 
 // 🗑️ Function to delete existing files in the directory
 const clearDirectory = (dir) => {
@@ -26,20 +29,27 @@ const saveJSONToFile = (filePath, data) => {
     fs.mkdirSync(jsonOutputDir, { recursive: true });
   }
 
-  // Step 1: Clear existing file content
   fs.writeFileSync(filePath, "", "utf-8");
-
-  // Step 2: Write new JSON data
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
 
-  console.log(`💾 JSON data cleared and saved to ${filePath}`);
+  console.log(`💾 JSON data saved to ${filePath}`);
 };
 
-// Fetch CVE data
+// 🔁 Fetch and save Top10 Trends
+const fetchAndSaveTop10 = async () => {
+  try {
+    const response = await axios.get(TOP10_API_URL);
+    saveJSONToFile(top10OutputPath, response.data);
+  } catch (error) {
+    console.error("❌ Error fetching Top 10 data:", error.message);
+  }
+};
+
+// Fetch CVE data and write Markdown + JSON
 axios
   .get(API_URL)
-  .then((response) => {
-    console.log("Raw API Response:", response.data); // Debugging Line
+  .then(async (response) => {
+    console.log("Raw API Response:", response.data); // Debugging
 
     const cveData = response.data.data;
 
@@ -58,7 +68,6 @@ axios
       return new Date(dateString).toISOString().split("T")[0];
     };
 
-    // Ensure output directory exists
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
@@ -71,7 +80,6 @@ axios
         return;
       }
 
-      // Prepare Markdown content
       const markdownContent = `---
 title: "${cve.id}"
 date: "${cve.metadata?.published_date || ""}"
@@ -126,7 +134,10 @@ ${
     });
 
     console.log("🎉 All CVE Markdown files have been generated successfully.");
+
+    // 🔁 Fetch and save Top 10 as well
+    await fetchAndSaveTop10();
   })
   .catch((error) => {
-    console.error("❌ Error fetching CVE data:", error);
+    console.error("❌ Error fetching CVE data:", error.message);
   });

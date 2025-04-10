@@ -97,8 +97,8 @@
             <div class="card-content inset-0 bg-blue">
               {{ $bg_pattern := "images/dev/search-bg-pattern.png" | relURL }}
               {{ $gradient := "images/dev/gradient.png" | relURL }}
-              <img src="{{ $gradient }}" alt="" class="absolute inset-0 size-full rounded-br-3xl">
-              <img src="{{ $bg_pattern }}" alt="" class="absolute inset-0 size-full">
+              <img src="{{ $gradient }}" alt="" class="absolute inset-0 size-full rounded-3xl">
+              <img src="{{ $bg_pattern }}" alt="" class="absolute inset-0 size-full rounded-3xl">
                 <div class="relative z-10 p-3 mt-2.5 max-w-lg mx-auto">
 
 
@@ -382,13 +382,7 @@
       <div class="bg-slate-100 dark:bg-main absolute right-0 top-0 bottom-0 px-5 blur-sm -mr-8 hidden lg:block z-10">
       </div>
       <div id="vulnerabilitiesCards" class="cards my-5 swiper-wrapper lg:gap-3">
-        {{ $data := dict }}
-        {{ $p := "https://api.vulnerawise.ai/top10.json" }}
-        {{ with resources.GetRemote $p }}
-        {{ $data = . | transform.Unmarshal }}
-        {{ else }}
-        {{ errorf "Unable to get resource %q" $p }}
-        {{ end }}
+        {{ $data := unmarshal (resources.Get "data/top10.json") }}
 
         {{ with $data.data }} <!-- Access the "data" array in your JSON -->
         {{ range $i, $p := . }}

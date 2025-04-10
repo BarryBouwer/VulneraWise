@@ -1,0 +1,1253 @@
+{
+  "metadata": {
+    "timestamp": "2025-04-10T10:00:06Z",
+    "pagination": {
+      "total_records": 10,
+      "total_pages": 1,
+      "current_page": 1,
+      "records_per_page": 10
+    }
+  },
+  "data": [
+    {
+      "cve": {
+        "id": "CVE-2025-29824",
+        "description": "Use after free in Windows Common Log File System Driver allows an authorized attacker to elevate privileges locally.",
+        "metadata": {
+          "published_date": "2025-04-08T18:16:08.340",
+          "last_modified_date": "2025-04-09T20:03:01.577",
+          "confidence_level": "high",
+          "severity": "high"
+        },
+        "impact": {
+          "cisa_kev": true,
+          "known_ransomware_campaign_use": true,
+          "weaponized": false,
+          "reported_exploited": true,
+          "exploit_maturity": "active",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 1
+        },
+        "epss": {
+          "score": 0.19164,
+          "percentile": 0.94874
+        },
+        "metrics": [
+          {
+            "source": "secure@microsoft.com",
+            "type": "Primary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "LOCAL",
+            "base_score": 7.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json#CVE-2025-29824",
+              "source_type": "exploited",
+              "source": "cisa",
+              "description": "Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.. knownRansomwareCampaignUse = Known",
+              "published": "2025-04-08"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-31161",
+        "description": "CrushFTP 10 before 10.8.4 and 11 before 11.3.1 allows authentication bypass and takeover of the crushadmin account (unless a DMZ proxy instance is used), as exploited in the wild in March and April 2025, aka \"Unauthenticated HTTP(S) port access.\" A race condition exists in the AWS4-HMAC (compatible with S3) authorization method of the HTTP component of the FTP server. The server first verifies the existence of the user by performing a call to login_user_pass() with no password requirement. This will authenticate the session through the HMAC verification process and up until the server checks for user verification once more. The vulnerability can be further stabilized, eliminating the need for successfully triggering a race condition, by sending a mangled AWS4-HMAC header. By providing only the username and a following slash (/), the server will successfully find a username, which triggers the successful anypass authentication process, but the server will fail to find the expected SignedHeaders entry, resulting in an index-out-of-bounds error that stops the code from reaching the session cleanup. Together, these issues make it trivial to authenticate as any known or guessable user (e.g., crushadmin), and can lead to a full compromise of the system by obtaining an administrative account.",
+        "metadata": {
+          "published_date": "2025-04-03T20:15:25.373",
+          "last_modified_date": "2025-04-08T15:30:22.440",
+          "confidence_level": "high",
+          "severity": "critical"
+        },
+        "impact": {
+          "cisa_kev": true,
+          "known_ransomware_campaign_use": true,
+          "weaponized": false,
+          "reported_exploited": true,
+          "exploit_maturity": "active",
+          "automatable": true
+        },
+        "counts": {
+          "public_exploit_count": 7
+        },
+        "epss": {
+          "score": 0.38423,
+          "percentile": 0.96953
+        },
+        "metrics": [
+          {
+            "source": "cve@mitre.org",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          },
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://attackerkb.com/topics/k0EgiL9Psz/cve-2025-2825/rapid7-analysis",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-04-03T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://projectdiscovery.io/blog/crushftp-authentication-bypass",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-04-03T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://www.huntress.com/blog/crushftp-cve-2025-31161-auth-bypass-and-post-exploitation",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-04-03T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json#CVE-2025-31161",
+              "source_type": "exploited",
+              "source": "cisa",
+              "description": "CrushFTP contains an authentication bypass vulnerability in the HTTP authorization header that allows a remote unauthenticated attacker to authenticate to any known or guessable user account (e.g., crushadmin), potentially leading to a full compromise.. knownRansomwareCampaignUse = Known",
+              "published": "2025-04-07"
+            },
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190386",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "CrushFTP 10 / 11 Authentication Bypass",
+              "published": "2025-04-09T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/Immersive-Labs-Sec/CVE-2025-31161",
+              "description": "Proof of Concept for CVE-2025-31161 / CVE-2025-2825",
+              "published": "2025-04-08T15:46:42Z",
+              "created": "2025-04-08T15:37:28Z",
+              "last_modified": "2025-04-09T11:24:43Z",
+              "name": "Immersive-Labs-Sec/CVE-2025-31161",
+              "stars": 1,
+              "forks": 1
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/llussiess/CVE-2025-31161",
+              "published": "2025-04-09T16:28:17Z",
+              "created": "2025-04-09T14:38:42Z",
+              "last_modified": "2025-04-09T18:44:10Z",
+              "name": "llussiess/CVE-2025-31161",
+              "stars": 1,
+              "forks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-1974",
+        "description": "A security issue was discovered in Kubernetes where under certain conditions, an unauthenticated attacker with access to the pod network can achieve arbitrary code execution in the context of the ingress-nginx controller. This can lead to disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+        "metadata": {
+          "published_date": "2025-03-25T00:15:14.753",
+          "last_modified_date": "2025-03-27T16:45:46.410",
+          "confidence_level": "high",
+          "severity": "critical"
+        },
+        "impact": {
+          "cisa_kev": false,
+          "known_ransomware_campaign_use": false,
+          "weaponized": true,
+          "reported_exploited": false,
+          "exploit_maturity": "poc",
+          "automatable": true
+        },
+        "counts": {
+          "public_exploit_count": 18
+        },
+        "epss": {
+          "score": 0.83735,
+          "percentile": 0.99242
+        },
+        "metrics": [
+          {
+            "source": "jordan@liggitt.net",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://github.com/projectdiscovery/nuclei-templates/blob/main/cloud/kubernetes/cves/2025/CVE-2025-1974.yaml",
+              "source_type": "weapon",
+              "source": "nuclei",
+              "description": "Ingress-Nginx Controller - Unauthenticated Remote Code Execution",
+              "published": "2025-03-25T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190070",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "IngressNightmare Proof of Concepts",
+              "published": "2025-03-27T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/yoshino-s/CVE-2025-1974",
+              "published": "2025-03-25T13:31:26Z",
+              "created": "2025-03-25T13:23:01Z",
+              "last_modified": "2025-04-06T11:28:54Z",
+              "name": "yoshino-s/CVE-2025-1974",
+              "stars": 44,
+              "forks": 10
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/yanmarques/CVE-2025-1974",
+              "published": "2025-03-25T18:49:23Z",
+              "created": "2025-03-25T18:49:23Z",
+              "last_modified": "2025-03-25T18:49:26Z",
+              "name": "yanmarques/CVE-2025-1974",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/justmorpheus/IngressNightmare-CVE-2025-1974",
+              "description": "Exploit for CVE-2025-1974",
+              "published": "2025-03-26T08:30:23Z",
+              "created": "2025-03-26T08:30:08Z",
+              "last_modified": "2025-03-26T08:30:27Z",
+              "name": "justmorpheus/IngressNightmare-CVE-2025-1974",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/dttuss/IngressNightmare-RCE-POC",
+              "description": "PoC for CVE-2025-1974: Critical RCE in Ingress-NGINX (<v1.12.1) via unsafe config injection. Exploitable from the pod network without credentials, enabling code execution and potential cluster takeover. Fixed in v1.12.1 and v1.11.5. For research/education only.",
+              "published": "2025-03-26T11:50:49Z",
+              "created": "2025-03-26T09:48:13Z",
+              "last_modified": "2025-03-28T19:46:57Z",
+              "name": "dttuss/IngressNightmare-RCE-POC",
+              "stars": 1,
+              "forks": 1
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/m-q-t/ingressnightmare-detection-poc",
+              "description": "Proof-of-Concept Tool to detect IngressNightmare (CVE-2025-1974) via (non-intrusive) active means.",
+              "published": "2025-03-26T15:45:44Z",
+              "created": "2025-03-26T15:44:43Z",
+              "last_modified": "2025-03-26T15:55:41Z",
+              "name": "m-q-t/ingressnightmare-detection-poc",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Esonhugh/nginxnightmare",
+              "description": "IngressNightmare-POC CVE-2025-1974 https://www.wiz.io/blog/ingress-nginx-kubernetes-vulnerabilities#how-did-we-discover-ingressnightmare-24 ",
+              "published": "2025-03-26T17:41:07Z",
+              "created": "2025-03-26T06:43:36Z",
+              "last_modified": "2025-03-26T17:42:59Z",
+              "name": "Esonhugh/nginxnightmare",
+              "stars": 7,
+              "forks": 2
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/hakaioffsec/IngressNightmare-PoC",
+              "description": "This is a PoC code to exploit the IngressNightmare vulnerabilities (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, and CVE-2025-1974).",
+              "published": "2025-03-26T19:49:28Z",
+              "created": "2025-03-26T18:52:20Z",
+              "last_modified": "2025-04-09T02:53:50Z",
+              "name": "hakaioffsec/IngressNightmare-PoC",
+              "stars": 187,
+              "forks": 41
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/hi-unc1e/CVE-2025-1974-poc",
+              "description": "PoC of CVE-2025-1974, modified from the world-first PoC~",
+              "published": "2025-03-27T02:10:29Z",
+              "created": "2025-03-26T16:54:37Z",
+              "last_modified": "2025-04-01T02:06:58Z",
+              "name": "hi-unc1e/CVE-2025-1974-poc",
+              "stars": 3,
+              "forks": 2
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/0xBingo/CVE-2025-1974",
+              "description": "A minimal test tool to help detect annotation injection vulnerabilities in Kubernetes NGINX Ingress controllers. This script sends a crafted AdmissionReview request to simulate a potential exploit path from CVE-2025-1974 and checks for signs of misinterpreted annotations in controller logs.",
+              "published": "2025-03-27T03:31:46Z",
+              "created": "2025-03-27T03:28:01Z",
+              "last_modified": "2025-03-27T03:31:50Z",
+              "name": "0xBingo/CVE-2025-1974",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/tuladhar/ingress-nightmare",
+              "description": "IngressNightmare (CVE-2025-1974)",
+              "published": "2025-03-27T18:55:09Z",
+              "created": "2025-03-27T18:48:20Z",
+              "last_modified": "2025-03-27T18:55:12Z",
+              "name": "tuladhar/ingress-nightmare",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/rjhaikal/POC-IngressNightmare-CVE-2025-1974",
+              "description": "POC IngressNightmare (CVE-2025-1974), modified from https://github.com/yoshino-s/CVE-2025-1974",
+              "published": "2025-03-28T16:58:18Z",
+              "created": "2025-03-28T16:57:02Z",
+              "last_modified": "2025-03-28T16:58:39Z",
+              "name": "rjhaikal/POC-IngressNightmare-CVE-2025-1974",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/lufeirider/IngressNightmare-PoC",
+              "description": "IngressNightmare-PoC： (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, CVE-2025-1974)  PoC ，One-click script 。 一键脚本 ",
+              "published": "2025-03-31T05:15:58Z",
+              "created": "2025-03-30T08:32:56Z",
+              "last_modified": "2025-04-03T01:00:07Z",
+              "name": "lufeirider/IngressNightmare-PoC",
+              "stars": 8,
+              "forks": 5
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/zulloper/CVE-2025-1974",
+              "description": "CVE-2025-1974 PoC 코드",
+              "published": "2025-03-31T08:32:17Z",
+              "created": "2025-03-31T08:31:03Z",
+              "last_modified": "2025-03-31T08:32:21Z",
+              "name": "zulloper/CVE-2025-1974",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/zwxxb/CVE-2025-1974",
+              "description": "Poc for Ingress RCE ",
+              "published": "2025-04-01T11:10:26Z",
+              "created": "2025-03-26T14:49:29Z",
+              "last_modified": "2025-04-01T11:10:30Z",
+              "name": "zwxxb/CVE-2025-1974",
+              "stars": 2,
+              "forks": 3
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/sandumjacob/IngressNightmare-POCs",
+              "description": "Worlds First Public POC for CVE-2025-1974 lol",
+              "published": "2025-04-02T19:39:22Z",
+              "created": "2025-03-24T21:51:04Z",
+              "last_modified": "2025-04-09T06:50:11Z",
+              "name": "sandumjacob/IngressNightmare-POCs",
+              "stars": 85,
+              "forks": 27
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "description": "IngressNightmare POC. world first remote exploitation and with multi-advanced exploitation methods. allow on disk exploitation. CVE-2025-24514 - auth-url injection, CVE-2025-1097 - auth-tls-match-cn injection, CVE-2025-1098 – mirror UID injection -- all available",
+              "published": "2025-04-09T13:04:22Z",
+              "created": "2025-03-26T06:43:36Z",
+              "last_modified": "2025-04-09T13:04:25Z",
+              "name": "Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "stars": 62,
+              "forks": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-30406",
+        "description": "Gladinet CentreStack through 16.1.10296.56315 (fixed in 16.4.10315.56368) has a deserialization vulnerability due to the CentreStack portal's hardcoded machineKey use, as exploited in the wild in March 2025. This enables threat actors (who know the machineKey) to serialize a payload for server-side deserialization to achieve remote code execution. NOTE: a CentreStack admin can manually delete the machineKey defined in portal\\web.config.",
+        "metadata": {
+          "published_date": "2025-04-03T20:15:24.987",
+          "last_modified_date": "2025-04-09T01:00:02.927",
+          "confidence_level": "high",
+          "severity": "critical"
+        },
+        "impact": {
+          "cisa_kev": true,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": true,
+          "exploit_maturity": "active",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 1
+        },
+        "epss": {
+          "score": 0.16507,
+          "percentile": 0.94349
+        },
+        "metrics": [
+          {
+            "source": "cve@mitre.org",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json#CVE-2025-30406",
+              "source_type": "exploited",
+              "source": "cisa",
+              "description": "Gladinet CentreStack contains a use of hard-coded cryptographic key vulnerability in the way that the application manages keys used for ViewState integrity verification. Successful exploitation allows an attacker to forge ViewState payloads for server-side deserialization, allowing for remote code execution.. knownRansomwareCampaignUse = Unknown",
+              "published": "2025-04-08"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-1098",
+        "description": "A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `mirror-target` and `mirror-host` Ingress annotations can be used to inject arbitrary configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+        "metadata": {
+          "published_date": "2025-03-25T00:15:14.613",
+          "last_modified_date": "2025-03-27T16:45:46.410",
+          "confidence_level": "high",
+          "severity": "high"
+        },
+        "impact": {
+          "cisa_kev": false,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": false,
+          "exploit_maturity": "poc",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 4
+        },
+        "epss": {
+          "score": 0.00224,
+          "percentile": 0.42252
+        },
+        "metrics": [
+          {
+            "source": "jordan@liggitt.net",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 8.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190070",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "IngressNightmare Proof of Concepts",
+              "published": "2025-03-27T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/hakaioffsec/IngressNightmare-PoC",
+              "description": "This is a PoC code to exploit the IngressNightmare vulnerabilities (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, and CVE-2025-1974).",
+              "published": "2025-03-26T19:49:28Z",
+              "created": "2025-03-26T18:52:20Z",
+              "last_modified": "2025-04-09T02:53:50Z",
+              "name": "hakaioffsec/IngressNightmare-PoC",
+              "stars": 187,
+              "forks": 41
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/lufeirider/IngressNightmare-PoC",
+              "description": "IngressNightmare-PoC： (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, CVE-2025-1974)  PoC ，One-click script 。 一键脚本 ",
+              "published": "2025-03-31T05:15:58Z",
+              "created": "2025-03-30T08:32:56Z",
+              "last_modified": "2025-04-03T01:00:07Z",
+              "name": "lufeirider/IngressNightmare-PoC",
+              "stars": 8,
+              "forks": 5
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "description": "IngressNightmare POC. world first remote exploitation and with multi-advanced exploitation methods. allow on disk exploitation. CVE-2025-24514 - auth-url injection, CVE-2025-1097 - auth-tls-match-cn injection, CVE-2025-1098 – mirror UID injection -- all available",
+              "published": "2025-04-09T13:04:22Z",
+              "created": "2025-03-26T06:43:36Z",
+              "last_modified": "2025-04-09T13:04:25Z",
+              "name": "Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "stars": 62,
+              "forks": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-24514",
+        "description": "A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `auth-url` Ingress annotation can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+        "metadata": {
+          "published_date": "2025-03-25T00:15:15.047",
+          "last_modified_date": "2025-03-27T16:45:46.410",
+          "confidence_level": "high",
+          "severity": "high"
+        },
+        "impact": {
+          "cisa_kev": false,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": false,
+          "exploit_maturity": "poc",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 4
+        },
+        "epss": {
+          "score": 0.00224,
+          "percentile": 0.42252
+        },
+        "metrics": [
+          {
+            "source": "jordan@liggitt.net",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 8.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190070",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "IngressNightmare Proof of Concepts",
+              "published": "2025-03-27T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/hakaioffsec/IngressNightmare-PoC",
+              "description": "This is a PoC code to exploit the IngressNightmare vulnerabilities (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, and CVE-2025-1974).",
+              "published": "2025-03-26T19:49:28Z",
+              "created": "2025-03-26T18:52:20Z",
+              "last_modified": "2025-04-09T02:53:50Z",
+              "name": "hakaioffsec/IngressNightmare-PoC",
+              "stars": 187,
+              "forks": 41
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/lufeirider/IngressNightmare-PoC",
+              "description": "IngressNightmare-PoC： (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, CVE-2025-1974)  PoC ，One-click script 。 一键脚本 ",
+              "published": "2025-03-31T05:15:58Z",
+              "created": "2025-03-30T08:32:56Z",
+              "last_modified": "2025-04-03T01:00:07Z",
+              "name": "lufeirider/IngressNightmare-PoC",
+              "stars": 8,
+              "forks": 5
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "description": "IngressNightmare POC. world first remote exploitation and with multi-advanced exploitation methods. allow on disk exploitation. CVE-2025-24514 - auth-url injection, CVE-2025-1097 - auth-tls-match-cn injection, CVE-2025-1098 – mirror UID injection -- all available",
+              "published": "2025-04-09T13:04:22Z",
+              "created": "2025-03-26T06:43:36Z",
+              "last_modified": "2025-04-09T13:04:25Z",
+              "name": "Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "stars": 62,
+              "forks": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-1097",
+        "description": "A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `auth-tls-match-cn` Ingress annotation can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+        "metadata": {
+          "published_date": "2025-03-25T00:15:13.590",
+          "last_modified_date": "2025-03-27T16:45:46.410",
+          "confidence_level": "high",
+          "severity": "high"
+        },
+        "impact": {
+          "cisa_kev": false,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": false,
+          "exploit_maturity": "poc",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 4
+        },
+        "epss": {
+          "score": 0.00164,
+          "percentile": 0.34211
+        },
+        "metrics": [
+          {
+            "source": "jordan@liggitt.net",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 8.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190070",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "IngressNightmare Proof of Concepts",
+              "published": "2025-03-27T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/hakaioffsec/IngressNightmare-PoC",
+              "description": "This is a PoC code to exploit the IngressNightmare vulnerabilities (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, and CVE-2025-1974).",
+              "published": "2025-03-26T19:49:28Z",
+              "created": "2025-03-26T18:52:20Z",
+              "last_modified": "2025-04-09T02:53:50Z",
+              "name": "hakaioffsec/IngressNightmare-PoC",
+              "stars": 187,
+              "forks": 41
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/lufeirider/IngressNightmare-PoC",
+              "description": "IngressNightmare-PoC： (CVE-2025-1097, CVE-2025-1098, CVE-2025-24514, CVE-2025-1974)  PoC ，One-click script 。 一键脚本 ",
+              "published": "2025-03-31T05:15:58Z",
+              "created": "2025-03-30T08:32:56Z",
+              "last_modified": "2025-04-03T01:00:07Z",
+              "name": "lufeirider/IngressNightmare-PoC",
+              "stars": 8,
+              "forks": 5
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "description": "IngressNightmare POC. world first remote exploitation and with multi-advanced exploitation methods. allow on disk exploitation. CVE-2025-24514 - auth-url injection, CVE-2025-1097 - auth-tls-match-cn injection, CVE-2025-1098 – mirror UID injection -- all available",
+              "published": "2025-04-09T13:04:22Z",
+              "created": "2025-03-26T06:43:36Z",
+              "last_modified": "2025-04-09T13:04:25Z",
+              "name": "Esonhugh/ingressNightmare-CVE-2025-1974-exps",
+              "stars": 62,
+              "forks": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-22457",
+        "description": "A stack-based buffer overflow in Ivanti Connect Secure before version 22.7R2.6, Ivanti Policy Secure before version 22.7R1.4, and Ivanti ZTA Gateways before version 22.8R2.2 allows a remote unauthenticated attacker to achieve remote code execution.",
+        "metadata": {
+          "published_date": "2025-04-03T16:15:35.370",
+          "last_modified_date": "2025-04-08T13:39:05.933",
+          "confidence_level": "high",
+          "severity": "critical"
+        },
+        "impact": {
+          "cisa_kev": true,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": true,
+          "exploit_maturity": "active",
+          "automatable": true
+        },
+        "counts": {
+          "public_exploit_count": 3
+        },
+        "epss": {
+          "score": 0.24069,
+          "percentile": 0.95611
+        },
+        "metrics": [
+          {
+            "source": "3c1d8aa1-5a33-4ea4-8992-aadd6440af75",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9
+          },
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json#CVE-2025-22457",
+              "source_type": "exploited",
+              "source": "cisa",
+              "description": "Ivanti Connect Secure, Policy Secure and ZTA Gateways contains a stack-based buffer overflow vulnerability that allows a remote unauthenticated attacker to achieve remote code execution.. knownRansomwareCampaignUse = Unknown",
+              "published": "2025-04-04"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/N4SL1/CVE-2025-22457-PoC",
+              "description": "CVE-2025-22457 Python and Metasploit PoC for Ivanti unauthenticated RCE",
+              "published": "2025-04-08T12:02:39Z",
+              "created": "2025-04-08T12:01:13Z",
+              "last_modified": "2025-04-08T12:02:42Z",
+              "name": "N4SL1/CVE-2025-22457-PoC",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Vinylrider/ivantiunlocker",
+              "description": "Prevent CVE-2025-22457 and other security problems with Juniper/Ivanti Secure Connect SSL VPN",
+              "published": "2025-04-08T16:43:29Z",
+              "created": "2025-04-08T09:31:01Z",
+              "last_modified": "2025-04-08T16:43:33Z",
+              "name": "Vinylrider/ivantiunlocker",
+              "stars": 0,
+              "forks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-3397",
+        "description": "A vulnerability classified as problematic has been found in YzmCMS 7.1. Affected is an unknown function of the file message.tpl. The manipulation of the argument gourl leads to cross site scripting. It is possible to launch the attack remotely. The exploit has been disclosed to the public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+        "metadata": {
+          "published_date": "2025-04-08T02:15:21.597",
+          "last_modified_date": "2025-04-09T14:37:11.503",
+          "confidence_level": "medium",
+          "severity": "medium"
+        },
+        "impact": {
+          "cisa_kev": false,
+          "known_ransomware_campaign_use": false,
+          "weaponized": false,
+          "reported_exploited": false,
+          "exploit_maturity": "poc",
+          "automatable": false
+        },
+        "counts": {
+          "public_exploit_count": 2
+        },
+        "epss": {
+          "score": 0.00033,
+          "percentile": 0.06091
+        },
+        "metrics": [
+          {
+            "source": "cna@vuldb.com",
+            "type": "Secondary",
+            "cvss_version": "4.0",
+            "vector_string": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
+            "attack_vector": "NETWORK",
+            "base_score": 5.30000019073486
+          },
+          {
+            "source": "cna@vuldb.com",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+            "attack_vector": "NETWORK",
+            "base_score": 4.30000019073486
+          },
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+            "attack_vector": "NETWORK",
+            "base_score": 6.09999990463257
+          },
+          {
+            "source": "cna@vuldb.com",
+            "type": "Secondary",
+            "cvss_version": "2.0",
+            "vector_string": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+            "attack_vector": "NETWORK",
+            "base_score": 5
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://www.yuque.com/baimatangseng-iyusa/qwwm81/sqn7nf0irphq7f1k?singleDoc",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-04-08T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://www.yuque.com/baimatangseng-iyusa/qwwm81/sqn7nf0irphq7f1k?singleDoc#",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-04-08T05:00:00.000Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cve": {
+        "id": "CVE-2025-24813",
+        "description": "Path Equivalence: 'file.Name' (Internal Dot) leading to Remote Code Execution and/or Information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet in Apache Tomcat.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.2, from 10.1.0-M1 through 10.1.34, from 9.0.0.M1 through 9.0.98.\n\nIf all of the following were true, a malicious user was able to view       security sensitive files and/or inject content into those files:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- a target URL for security sensitive uploads that was a sub-directory of a target URL for public uploads\n- attacker knowledge of the names of security sensitive files being uploaded\n- the security sensitive files also being uploaded via partial PUT\n\nIf all of the following were true, a malicious user was able to       perform remote code execution:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- application was using Tomcat's file based session persistence with the default storage location\n- application included a library that may be leveraged in a deserialization attack\n\nUsers are recommended to upgrade to version 11.0.3, 10.1.35 or 9.0.99, which fixes the issue.",
+        "metadata": {
+          "published_date": "2025-03-10T17:15:35.067",
+          "last_modified_date": "2025-04-03T20:59:51.680",
+          "confidence_level": "high",
+          "severity": "critical"
+        },
+        "impact": {
+          "cisa_kev": true,
+          "known_ransomware_campaign_use": false,
+          "weaponized": true,
+          "reported_exploited": true,
+          "exploit_maturity": "active",
+          "automatable": true
+        },
+        "counts": {
+          "public_exploit_count": 33
+        },
+        "epss": {
+          "score": 0.93547,
+          "percentile": 0.99827
+        },
+        "metrics": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          },
+          {
+            "source": "134c704f-9b21-4f2e-91b3-4a467353bcc0",
+            "type": "Secondary",
+            "cvss_version": "3.1",
+            "vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "attack_vector": "NETWORK",
+            "base_score": 9.80000019073486
+          }
+        ],
+        "timeline": {
+          "references": [
+            {
+              "type": "reference",
+              "url": "https://github.com/absholi7ly/POC-CVE-2025-24813/blob/main/README.md",
+              "source_type": "poc",
+              "source": "nvd",
+              "published": "2025-03-10T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json#CVE-2025-24813",
+              "source_type": "exploited",
+              "source": "cisa",
+              "description": "Apache Tomcat contains a path equivalence vulnerability that allows a remote attacker to execute code, disclose information, or inject malicious content via a partial PUT request.. knownRansomwareCampaignUse = Unknown",
+              "published": "2025-04-01"
+            },
+            {
+              "type": "reference",
+              "url": "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2025/CVE-2025-24813.yaml",
+              "source_type": "weapon",
+              "source": "nuclei",
+              "description": "Apache Tomcat Path Equivalence - Remote Code Execution",
+              "published": "2025-03-12T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://github.com/rapid7/metasploit-framework/blob/master//modules/exploits/multi/http/tomcat_partial_put_deserialization.rb",
+              "source_type": "weapon",
+              "source": "metasploit",
+              "description": "Tomcat Partial PUT Java Deserialization",
+              "published": "2025-03-10T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190252",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "Tomcat Partial PUT Java Deserialization",
+              "published": "2025-04-03T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://packetstorm.news/download/190287",
+              "source_type": "poc",
+              "source": "packetstorm",
+              "description": "Apache Tomcat Remote Code Execution",
+              "published": "2025-04-07T05:00:00.000Z"
+            },
+            {
+              "type": "reference",
+              "url": "https://gitlab.com/exploit-database/exploitdb/-/blob/main/exploits/multiple/webapps/52134.txt",
+              "source_type": "poc",
+              "source": "exploitdb",
+              "description": "Apache Tomcat 11.0.3 - Remote Code Execution",
+              "published": "2025-04-07T05:00:00.000Z"
+            }
+          ],
+          "repositories": [
+            {
+              "type": "repository",
+              "url": "https://github.com/gregk4sec/CVE-2025-24813",
+              "description": "Security Researcher",
+              "published": "2025-03-14T07:47:24Z",
+              "created": "2025-03-14T05:39:33Z",
+              "last_modified": "2025-03-27T23:20:50Z",
+              "name": "gregk4sec/CVE-2025-24813",
+              "stars": 1,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/absholi7ly/POC-CVE-2025-24813",
+              "description": "his repository contains an automated Proof of Concept (PoC) script for exploiting **CVE-2025-24813**, a Remote Code Execution (RCE) vulnerability in Apache Tomcat. The vulnerability allows an attacker to upload a malicious serialized payload to the server, leading to arbitrary code execution via deserialization when specific conditions are met.",
+              "published": "2025-03-14T07:57:27Z",
+              "created": "2025-03-14T07:36:58Z",
+              "last_modified": "2025-04-08T08:11:53Z",
+              "name": "absholi7ly/POC-CVE-2025-24813",
+              "stars": 100,
+              "forks": 28
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/FY036/cve-2025-24813_poc",
+              "description": "cve-2025-24813验证脚本",
+              "published": "2025-03-14T08:04:00Z",
+              "created": "2025-03-14T07:41:40Z",
+              "last_modified": "2025-04-08T08:12:00Z",
+              "name": "FY036/cve-2025-24813_poc",
+              "stars": 11,
+              "forks": 1
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/N0c1or/CVE-2025-24813_POC",
+              "description": "CVE-2025-24813_POC",
+              "published": "2025-03-15T22:08:29Z",
+              "created": "2025-03-14T03:11:40Z",
+              "last_modified": "2025-03-27T23:21:23Z",
+              "name": "N0c1or/CVE-2025-24813_POC",
+              "stars": 3,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/charis3306/CVE-2025-24813",
+              "description": "CVE-2025-24813利用工具",
+              "published": "2025-03-16T12:11:18Z",
+              "created": "2025-03-16T11:59:59Z",
+              "last_modified": "2025-04-08T13:11:01Z",
+              "name": "charis3306/CVE-2025-24813",
+              "stars": 9,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/issamjr/CVE-2025-24813-Scanner",
+              "description": "CVE-2025-24813 - Apache Tomcat Vulnerability Scanner",
+              "published": "2025-03-17T04:06:38Z",
+              "created": "2025-03-17T03:58:34Z",
+              "last_modified": "2025-03-22T11:49:30Z",
+              "name": "issamjr/CVE-2025-24813-Scanner",
+              "stars": 1,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/imbas007/CVE-2025-24813-apache-tomcat",
+              "description": "Nuclei Template CVE-2025–24813",
+              "published": "2025-03-17T23:47:48Z",
+              "created": "2025-03-17T22:39:38Z",
+              "last_modified": "2025-03-19T15:59:14Z",
+              "name": "imbas007/CVE-2025-24813-apache-tomcat",
+              "stars": 2,
+              "forks": 1
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/msadeghkarimi/CVE-2025-24813-Exploit",
+              "description": "Apache Tomcat Remote Code Execution (RCE) Exploit - CVE-2025-24813",
+              "published": "2025-03-18T08:47:58Z",
+              "created": "2025-03-18T08:42:12Z",
+              "last_modified": "2025-04-02T06:12:34Z",
+              "name": "msadeghkarimi/CVE-2025-24813-Exploit",
+              "stars": 5,
+              "forks": 1
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/michael-david-fry/Apache-Tomcat-Vulnerability-POC-CVE-2025-24813",
+              "description": "Apache Tomcat Vulnerability POC (CVE-2025-24813)",
+              "published": "2025-03-19T14:47:42Z",
+              "created": "2025-03-19T14:32:01Z",
+              "last_modified": "2025-03-19T14:47:46Z",
+              "name": "michael-david-fry/Apache-Tomcat-Vulnerability-POC-CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/n0n-zer0/Spring-Boot-Tomcat-CVE-2025-24813",
+              "description": "POC for CVE-2025-24813 using Spring-Boot",
+              "published": "2025-03-20T23:48:01Z",
+              "created": "2025-03-20T22:52:00Z",
+              "last_modified": "2025-03-20T23:48:05Z",
+              "name": "n0n-zer0/Spring-Boot-Tomcat-CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/tonyarris/CVE-2025-24813-PoC",
+              "description": "A PoC for CVE-2025-24813",
+              "published": "2025-03-22T15:26:24Z",
+              "created": "2025-03-22T15:16:41Z",
+              "last_modified": "2025-03-23T17:08:30Z",
+              "name": "tonyarris/CVE-2025-24813-PoC",
+              "stars": 1,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Alaatk/CVE-2025-24813-POC",
+              "description": "CVE-2025-24813 Apache Tomcat RCE Proof of Concept (PoC)",
+              "published": "2025-03-22T23:08:43Z",
+              "created": "2025-03-21T18:05:27Z",
+              "last_modified": "2025-03-22T23:08:46Z",
+              "name": "Alaatk/CVE-2025-24813-POC",
+              "stars": 1,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/beyond-devsecops/CVE-2025-24813",
+              "description": "Session Exploit",
+              "published": "2025-03-24T17:47:29Z",
+              "created": "2025-03-24T17:47:10Z",
+              "last_modified": "2025-03-27T23:22:56Z",
+              "name": "beyond-devsecops/CVE-2025-24813",
+              "stars": 2,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/u238/Tomcat-CVE_2025_24813",
+              "description": "A playground to test the RCE exploit for tomcat CVE-2025-24813",
+              "published": "2025-03-24T19:35:21Z",
+              "created": "2025-03-24T18:47:40Z",
+              "last_modified": "2025-03-31T21:43:24Z",
+              "name": "u238/Tomcat-CVE_2025_24813",
+              "stars": 3,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/AlperenY-cs/CVE-2025-24813",
+              "description": " Create lab for CVE-2025-24813",
+              "published": "2025-03-28T11:49:59Z",
+              "created": "2025-03-28T09:44:28Z",
+              "last_modified": "2025-03-28T13:14:15Z",
+              "name": "AlperenY-cs/CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/B1gN0Se/Tomcat-CVE-2025-24813",
+              "published": "2025-03-31T20:16:55Z",
+              "created": "2025-03-31T19:01:28Z",
+              "last_modified": "2025-03-31T20:16:59Z",
+              "name": "B1gN0Se/Tomcat-CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/iSee857/CVE-2025-24813-PoC",
+              "description": "Apache Tomcat 远程代码执行漏洞批量检测脚本(CVE-2025-24813)",
+              "published": "2025-04-02T01:23:16Z",
+              "created": "2025-03-13T10:00:03Z",
+              "last_modified": "2025-04-08T02:31:01Z",
+              "name": "iSee857/CVE-2025-24813-PoC",
+              "stars": 78,
+              "forks": 25
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/ps-interactive/lab-cve-2025-24813",
+              "description": "Resources for teh Apache Tomcat CVE lab",
+              "published": "2025-04-02T20:26:00Z",
+              "created": "2025-03-19T19:55:02Z",
+              "last_modified": "2025-04-02T20:26:03Z",
+              "name": "ps-interactive/lab-cve-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/AsaL1n/CVE-2025-24813",
+              "description": "simple exp for CVE-2025-24813",
+              "published": "2025-04-05T09:08:50Z",
+              "created": "2025-04-05T09:07:13Z",
+              "last_modified": "2025-04-05T16:12:32Z",
+              "name": "AsaL1n/CVE-2025-24813",
+              "stars": 2,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/MuhammadWaseem29/CVE-2025-24813",
+              "published": "2025-04-05T19:06:12Z",
+              "created": "2025-04-05T18:57:08Z",
+              "last_modified": "2025-04-08T12:40:21Z",
+              "name": "MuhammadWaseem29/CVE-2025-24813",
+              "stars": 28,
+              "forks": 6
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/manjula-aw/CVE-2025-24813",
+              "description": "This repository contains a shell script based POC on Apache Tomcat CVE-2025-24813.  It allow you to easily test the vulnerability on any version of Apache Tomcat",
+              "published": "2025-04-06T15:01:52Z",
+              "created": "2025-03-30T09:39:45Z",
+              "last_modified": "2025-04-06T15:01:55Z",
+              "name": "manjula-aw/CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/La3B0z/CVE-2025-24813-POC",
+              "description": " CVE-2025-24813-POC JSP Web Shell Uploader",
+              "published": "2025-04-06T20:39:35Z",
+              "created": "2025-04-06T19:36:48Z",
+              "last_modified": "2025-04-06T20:39:38Z",
+              "name": "La3B0z/CVE-2025-24813-POC",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/Heimd411/CVE-2025-24813-noPoC",
+              "published": "2025-04-07T16:45:25Z",
+              "created": "2025-04-07T16:17:06Z",
+              "last_modified": "2025-04-07T16:45:45Z",
+              "name": "Heimd411/CVE-2025-24813-noPoC",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/horsehacks/CVE-2025-24813-checker",
+              "description": "Hello researchers, I have a checker for the recent vulnerability  CVE-2025-24813-checker.",
+              "published": "2025-04-07T22:45:27Z",
+              "created": "2025-04-07T22:43:56Z",
+              "last_modified": "2025-04-07T22:45:30Z",
+              "name": "horsehacks/CVE-2025-24813-checker",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/GadaLuBau1337/CVE-2025-24813",
+              "published": "2025-04-08T15:00:46Z",
+              "created": "2025-04-08T14:52:37Z",
+              "last_modified": "2025-04-08T15:00:51Z",
+              "name": "GadaLuBau1337/CVE-2025-24813",
+              "stars": 0,
+              "forks": 0
+            },
+            {
+              "type": "repository",
+              "url": "https://github.com/f8l124/CVE-2025-24813-POC",
+              "description": "A simple, easy-to-use POC for CVE-2025-42813 (Apache Tomcat versions below 9.0.99).",
+              "published": "2025-04-09T15:21:51Z",
+              "created": "2025-04-09T15:20:32Z",
+              "last_modified": "2025-04-09T15:21:55Z",
+              "name": "f8l124/CVE-2025-24813-POC",
+              "stars": 0,
+              "forks": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
