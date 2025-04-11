@@ -92,7 +92,7 @@
       <div class="card relative rounded-3xl mt-3 min-h-[25rem] w-[90vw] md:w-[40rem]">
         <div class="card-content bg-blue inset-0">
           {{ $gradient := "images/dev/gradient.png" | relURL }}
-          <img src="{{ $gradient }}" alt="" class="absolute inset-0 size-full rounded-br-3xl">
+          <img src="{{ $gradient }}" alt="" class="absolute left-0 right-0 bottom-0 size-full rounded-br-3xl">
           <div id="search" class="tabcontent relative z-10">
             <div
               class="border-gradient-primary bg-main gradient-border-1 after:rounded-md cursor-text p-2 flex gap-2 items-center w-full text-white">
@@ -108,7 +108,7 @@
                 class="overflow-hidden border-0 bg-transparent grow text-inherit focus:outline-none popup-search"
                 placeholder="Search CVE, keyword, or software...">
               <div class="result-container px-3 space-y-2 absolute rounded-3xl top-12 -translate-x-1/2 left-1/2 min-w-[100%] bg-blue hidden">
-                <img src="{{ $gradient }}" alt="" class="absolute inset-0 size-full rounded-3xl -pt-5">
+                <img src="{{ $gradient }}" alt="" class="absolute left-0 right-0 bottom-0 size-full rounded-3xl -pt-5">
                 <div class="flex gap-2 items-center relative z-10">
                   <div class="size-3">
                     <img src='{{ "images/dev/suggest-icon.png" | relURL }}' alt="" class="size-full">
