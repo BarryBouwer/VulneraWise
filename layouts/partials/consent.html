@@ -29,7 +29,7 @@
   class="fixed hidden px-3 py-4 rounded-lg bg-red-600 z-50 font-poppins font-semibold text-lg text-white text-center bottom-5 left-1/2 -translate-x-1/2">
   An error occurred. Please try again.</div>
 <div data-dialog-backdrop="dialog-lg" data-dialog-backdrop-close="false"
-  class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+  class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen overflow-y-scroll place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
   <div data-dialog="dialog-lg" class="relative m-4 px-5 py-3 w-11/12 sm:w-3/5 rounded-lg bg-slate-100 dark:bg-main shadow-sm">
     <div class="flex shrink-0 justify-between items-center pb-4 text-black dark:text-white">
       <h3 class="font-poppins text-xl font-semibold">We use cookies</h3>
@@ -88,6 +88,7 @@
     <div class="flex gap-3 shrink-0 flex-wrap items-center pt-4 justify-between">
       <button
         class="acceptCookies px-5 py-1 bg-style rounded-full hover:scale-105 transition-transform text-black font-poppins"
+        id="accept-all"
         data-dialog-close="true">
         Accept All
       </button>
@@ -108,21 +109,25 @@
   const cookieSettings = document.querySelector('[data-dialog-target="dialog-lg"]');
   const acceptButtons = document.querySelectorAll('.acceptCookies');
   const acceptSelected = document.querySelector('#accept-selected');
+  const acceptAll = document.querySelector('#accept-all');
   const cookies = document.getElementById('cookies');
   const preference = document.getElementById('preferences');
-  
-  // Function to save data to localStorage
+
+  // Save the current theme preference to localStorage
   function saveData() {
-    const data = { theme: 'dark', language: 'en' }; // Example data
-    localStorage.setItem('userPreferences', JSON.stringify(data));
+    if (localStorage.getItem('saveThemePreference') === 'true') {
+      const theme = localStorage.getItem('theme') || 'system';
+      const data = { theme };
+      localStorage.setItem('userPreferences', JSON.stringify(data));
+    }
   }
-  
-  // Function to remove data from localStorage
+
+  // Remove user preferences from localStorage
   function removeData() {
     localStorage.removeItem('userPreferences');
   }
-  
-  // Check and restore the checkbox state from localStorage
+
+  // Restore checkbox state on load
   window.addEventListener('load', () => {
     if (localStorage.getItem('userPreferences')) {
       preference.checked = true;
@@ -130,40 +135,43 @@
       preference.checked = false;
     }
   });
-  
-  // Listen for checkbox changes and update localStorage
+
+  // When the checkbox changes, update preferences
   preference.addEventListener('change', () => {
     if (preference.checked) {
+      // Save the setting so the theme is remembered
+      localStorage.setItem('saveThemePreference', 'true');
       saveData();
     } else {
+      localStorage.removeItem('saveThemePreference');
       removeData();
     }
   });
-  
-  // Function to check if consent cookie exists
+
+  // Check if cookies were accepted already
   function checkCookieConsent() {
     return document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
   }
-  
-  // Show the cookie box if consent isn't given
+
+  // Show the cookie box
   function showElement() {
     cookieBox.classList.remove('opacity-0', '-right-96');
     cookieBox.classList.add('right-5', 'opacity-100');
   }
-  
+
   // Hide the cookie box
   function hideElement() {
     cookieBox.classList.add('opacity-0', '-right-96');
     cookieBox.classList.remove('right-5', 'opacity-100');
   }
-  
-  // Accept all cookies and set the consent cookie
+
+  // Set the cookie for consent
   function acceptAllCookies() {
-    document.cookie = 'cookies_accepted=true; path=/; max-age=' + 60 * 60 * 24 * 365;
+    document.cookie = 'cookies_accepted=true; path=/; max-age=' + 60 * 60 * 24 * 365; // 1 year
     hideElement();
   }
-  
-  // Show the cookie box on load if consent isn't already given
+
+  // On load, show cookie box if needed
   if (cookieBox) {
     if (!checkCookieConsent()) {
       window.onload = () => setTimeout(showElement, 5000);
@@ -171,19 +179,29 @@
       hideElement();
     }
   }
-  
-  // Attach event listeners to buttons
+
+  // "Accept All" from floating buttons
   acceptButtons.forEach((button) => {
     button.addEventListener('click', acceptAllCookies);
   });
-  
-  // Save selected preferences and hide the cookie box
+
+  // "Accept Selected" – save preferences if checkbox is checked
   acceptSelected.addEventListener('click', () => {
     if (preference.checked) {
+      localStorage.setItem('saveThemePreference', 'true');
       saveData();
     } else {
+      localStorage.removeItem('saveThemePreference');
       removeData();
     }
+    acceptAllCookies();
+  });
+
+  // "Accept All" button in cookie settings modal
+  acceptAll.addEventListener('click', () => {
+    preference.checked = true;
+    localStorage.setItem('saveThemePreference', 'true');
+    saveData();
     acceptAllCookies();
   });
 </script>
