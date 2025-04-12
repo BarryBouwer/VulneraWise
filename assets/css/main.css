@@ -71,6 +71,6 @@
   @apply overflow-x-scroll;
 }
 
-.prose > table {
-  @apply overflow-scroll;
+.fixed-table {
+  @apply w-full table-fixed;
 }

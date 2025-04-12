@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const popupSearchElm = document.querySelector(".popup-search");
   const baseUrl = document.querySelector('meta[name="site-base-url"]')?.content;
   const remembered = JSON.parse(localStorage.getItem('rememberedUser'));
+  const prose = document.querySelector('.prose');
   let jsonData = [];
   let user, scrollInterval, fuse;
 
@@ -343,7 +344,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sessionUser) {
       user = JSON.parse(sessionUser);
     }
-  }
+  };
+
+  if (prose) {
+    document.querySelectorAll(".prose table:not(.lntable)").forEach((table) => {
+      table.classList.add("fixed-table");
+    });
+  };
 
   // function toggleAuthButtons(showLoginSignup) {
   //   const loginBtns = document.querySelectorAll('.js-login');
