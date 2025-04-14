@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Password format validation (uppercase, lowercase, number, special character)
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#])[A-Za-z\d@$!%*?&.#]{8,}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#-])[A-Za-z\d@$!%*?&.#-]{8,}$/;
 
         // Check if passwords match
         if (data.password !== data.confirmPassword) {
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     
       // Strong password validation
-      const strongPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#])[A-Za-z\d@$!%*?&.#]{8,}$/;
+      const strongPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#-])[A-Za-z\d@$!%*?&.#-]{8,}$/;
       if (!strongPasswordPattern.test(password)) {
         messageBox.tempShow("Password must contain at least 8 characters, one uppercase letter, one number, and one special character.");
         return;
