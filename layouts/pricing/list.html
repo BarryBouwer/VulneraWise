@@ -43,66 +43,94 @@
                 </div>
                 <div class="mt-20">
                     {{ with .monthly_billing }}
-                    <div id="monthlyBilling" class="tab flex flex-wrap justify-center gap-y-10">
-                        {{ range . }}
-                        <div class="min-h-full w-full sm:w-1/2 lg:w-1/4 flex flex-col justify-between relative">
-                            <div class="absolute z-20 w-full h-full inset-0 backdrop-blur-[1px] {{ if .coming_soon }}flex{{ else }}hidden{{ end }} justify-center items-center">
-                                <p class="font-poppins font-semibold text-3xl text-black dark:text-white text-center">Coming Soon!</p>
+                    <div id="monthlyBilling" class="tab grid grid-cols-1 lg:grid-cols-4 gap-y-10">
+                        <div class="hidden lg:block">
+                            <header aria-label="Pricing Header">
+                                <div class="pb-3 lg:pb-0 border-b border-[#334155] font-poppins font-semibold text-[20px] text-black dark:text-white lg:min-h-16 flex items-center gap-2"></div>
+                                <div class="lg:h-[306px] flex flex-col justify-between lg:px-3 lg:pt-7 space-y-5"><h3 class="font-poppins font-bold text-5xl main-heading flex items-end gap-1"></h3></div>
+                            </header>
+                            <div>
+                                <table class="my-5 w-full">
+                                    <thead class="w-full">
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 pb-0 w-full font-poppins font-semibold text-[17px] text-style">Feature</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="w-full">
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 bg-slate-200 dark:bg-blue rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Search</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">File uploads</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 bg-slate-200 dark:bg-blue rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Prioritization Metrics</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">API Access</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 bg-slate-200 dark:bg-blue rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Prioritization Flow Editor</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Usage statistics</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 bg-slate-200 dark:bg-blue rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Integration Support</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Security & SSO</td>
+                                        </tr>
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 bg-slate-200 dark:bg-blue rounded-s-lg w-full font-poppins font-medium text-sm text-black dark:text-white">Support</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="sm:mx-4">
-                                <div class="flex items-center gap-x-3 border-b border-slate-300 dark:border-slate-800 pb-3">
-                                    <h4 class="font-poppins font-semibold text-[20px] text-black dark:text-white">{{ .plan_name }}</h4>
+                            <div></div>
+                        </div>
+                        {{ $len := len . }}
+                        {{ range $i, $p := . }}
+                        {{ $last := eq (add $i 1) $len }}
+                        <div>
+                            <header aria-label="Pricing Header">
+                                <div class="pb-3 lg:pb-0 border-b border-[#334155] font-poppins font-semibold text-[20px] text-black dark:text-white lg:min-h-16 flex items-center gap-2">
+                                    <span>{{ .plan_name }}</span>
                                     {{ if .popular }}
                                     <div>
                                         <p class="border-gradient-primary text-black font-semibold dark:font-normal dark-main-text px-3 py-[2px] after:rounded-full text-sm font-poppins">Popular</p>
                                     </div>
                                     {{ end }}
                                 </div>
-                                <div class="mt-5">
-                                    <div class="flex gap-x-2 items-end">
-                                        <h3 class="font-poppins font-semibold text-[20px] text-black dark:text-white {{ if .popular }}dark-main-text{{ else }}dark:text-white{{ end }}">{{ .price }}</h3>
+                                <div class="lg:h-[306px] flex flex-col justify-between lg:px-3 pt-7 gap-y-7 lg:gap-y-0">
+                                    <div class="space-y-7">
+                                        <h3 class="font-poppins font-bold text-5xl main-heading flex items-end gap-1">
+                                            <span>${{ .price }}</span>
+                                            <p class="font-medium text-base text-[#64748B]">per month</p>
+                                        </h3>
+                                        <p class="font-poppins text-sm text-[#64748B]">{{ .description }}</p>
                                     </div>
+                                    <button class="rounded-full py-2 w-full bg-style font-poppins font-semibold hover:scale-105 transition-transform text-black">Get Started</button>
                                 </div>
-                                <div class="mt-5 space-y-5">
-                                    {{ if .access }}
-                                    <div>
-                                        {{ $access := "images/dev/credit_card.png" | relURL }}
-                                        <div class="flex gap-x-2 items-center">
-                                            <img src="{{ $access }}" alt="{{ site.Title }}">
-                                            <p class="text-black dark:text-white font-poppins font-medium">Access</p>
-                                        </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .access | safeHTML }}</p>
-                                    </div>
-                                    {{ end }}
-                                    {{ if .includes }}
-                                    <div>
-                                        {{ $file := "images/dev/file.png" | relURL }}
-                                        <div class="flex gap-x-2 items-center">
-                                            <img src="{{ $file }}" alt="{{ site.Title }}">
-                                            <p class="text-black dark:text-white font-poppins font-medium">Includes</p>
-                                        </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .includes | safeHTML }}</p>
-                                    </div>
-                                    {{ end }}
-                                    {{ if .perfect_for }}
-                                    <div>
-                                        {{ $clipboard := "images/dev/clipboard.png" | relURL }}
-                                        <div class="flex gap-x-2 items-center">
-                                            <img src="{{ $clipboard }}" alt="{{ site.Title }}">
-                                            <p class="text-black dark:text-white font-poppins font-medium">Perfect For</p>
-                                        </div>
-                                        <p class="text-slate-600 dark:text-slate-400 font-poppins text-sm mt-3">{{ .perfect_for | safeHTML }}</p>
-                                    </div>
-                                    {{ end }}
-                                </div>
+                            </header>
+                            <div>
+                                <table class="mt-5 w-full">
+                                    <thead class="w-full">
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 pb-0 w-full font-poppins font-semibold text-[17px] text-style"></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="w-full">
+                                        {{ range $i, $p := .features }}
+                                        {{ $even := modBool $i 2 }}
+                                        <tr class="w-full lg:h-28 xl:h-20">
+                                            <td class="p-5 {{ if $even }}bg-slate-200 dark:bg-blue{{ end }} rounded-lg lg:rounded-none {{ if $last }}lg:rounded-e-lg{{ end }} w-full font-poppins font-medium text-sm text-slate-900 dark:text-[#CBD5E1]">{{ . }}</td>
+                                        </tr>
+                                        {{ end }}
+                                    </tbody>
+                                </table>
                             </div>
-                            {{ with .button }}
-                            <div class="sm:mx-4">
-                                <div class="w-full border-gradient-primary after:rounded-full text-center py-3 mt-10 hover:scale-105 transition-transform">
-                                    <a href='{{ .url | relURL }}' class="text-black dark:text-white relative z-10 block">{{ .label }}</a>
-                                </div>
-                            </div>
-                            {{ end }}
+                            <div></div>
                         </div>
                         {{ end }}
                     </div>
