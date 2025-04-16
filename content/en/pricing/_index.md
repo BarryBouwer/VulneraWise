@@ -7,7 +7,7 @@ hero_section:
     title: <span>Pricing</span>
     subtitle: Choose the Plan that Fits Your Needs
     details: >-
-      Managing vulnerabilities today is more challenging than ever before. Traditional methods often overwhelm security teams with noise, preventing decisive action. VulneraWise changes that by combining real-time exploit intelligence with tailored vulnerability prioritization. This cuts through the noise, empowering security teams to focus on what matters most, the actively exploited vulnerabilities that pose the greatest risk to your environment.</br><br>    At VulneraWise, we empower organizations of all sizes with the insights they need to take control of their security posture. Our tools improve efficiency while providing the clarity you need to confidently secure your digital assets. Whether you’re new to vulnerability management or need a fully customizable, enterprise-level solution that integrates into your current security stack, our flexible plans are ready to work for you.
+      At VulneraWise, we empower organizations of all sizes with the insights they need to take control of their security posture. Our tools improve efficiency while providing the clarity you need to confidently secure your digital assets. Whether you’re new to vulnerability management or need a fully customizable, enterprise-level solution that integrates into your current security stack, our flexible plans are ready to work for you.
 
 ########### Tabs Section ###########
 tabs:
