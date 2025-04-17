@@ -22,7 +22,7 @@ hero_section:
         url: about-us/#form
 
   mission:
-    title: Next-gen exploit intelligence<span class='text-style'>.</span>
+    title: Next-gen exploit intelligence<span class='text-style'>.
     details: Focus on what matters most: vulnerabilities that are actively exploited, in systems that are actually at risk. Our transparent decision model turns raw CVE data into clear, prioritized guidance—ready to plug into your existing tools. Start for free. Scale when you’re ready.
 
 ########### News Section ###########
