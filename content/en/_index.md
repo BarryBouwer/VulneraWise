@@ -5,25 +5,25 @@ title: Home
 hero_section:
   enable: true
   slides:
-    - title: <span>Cut through the noise</span> with vulnerability prioritization for free
-      details: Manage threats with real-time, actionable insights tailored to your current security posture’s most pressing vulnerabilities.
+    - title: <span>Cut through the noise</span> with vulnerability prioritization
+      details: VulneraWise helps you prioritize what actually matters, fast.
       button:
         label: Schedule Demo
         url: about-us/#form
-    - title: Clear threat intelligence with <span>relevant actionable insights</span>
-      details: Smart vulnerability management based on transparent analysis enables teams to act upon insights quickly.
+    - title: Translate raw vulnerability data into <span>actionable insights</span>.
+      details: Understand affected components, safe versions, and exploit maturity at a glance.
       button:
         label: Schedule Demo
         url: about-us/#form
     - title: Integrated <span>seamlessly</span> into your workflow — <span>without lock-in</span> 
-      details: Forget dashboard overload. VulneraWise integrates seamlessly with tools you already use—Slack, PowerBI, Grafana, and more—delivering valuable insights directly into your workflow. No lock-in, just value in your current security stack.
+      details: No extra dashboards to manage. No platform lock-in. Just clean, prioritized intelligence delivered where and how your team already works.
       button:
         label: Schedule Demo
         url: about-us/#form
 
   mission:
     title: Next-gen exploit intelligence<span class='text-style'>.</span>
-    details: VulneraWise offers a free vulnerability management solution that’s both flexible and precise, customizable yet simple. It empowers you with actionable intelligence to secure your systems within your existing tools.
+    details: Focus on what matters most: vulnerabilities that are actively exploited, in systems that are actually at risk. Our transparent decision model turns raw CVE data into clear, prioritized guidance—ready to plug into your existing tools. Start for free. Scale when you’re ready.
 
 ########### News Section ###########
 news_section:
