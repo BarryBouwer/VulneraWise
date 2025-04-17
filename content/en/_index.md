@@ -5,7 +5,7 @@ title: Home
 hero_section:
   enable: true
   slides:
-    - title: <span>Cut through the noise</span> with vulnerability prioritization
+    - title: <span>Cut through the noise</span> with clear vulnerability prioritization
       details: VulneraWise helps you prioritize what actually matters, fast.
       button:
         label: Schedule Demo
