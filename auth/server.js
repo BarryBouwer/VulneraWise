@@ -1,42 +1,24 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs-extra');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
-const path = require('path');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+const { PrismaClient } = require('@prisma/client');
 
 const app = express();
-const PORT = 3001;
-const USERS_FILE = path.resolve(__dirname, 'users.json');
+const prisma = new PrismaClient();
+const PORT = process.env.PORT || 3001;
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret';
 
-app.use(cors());
+// Enable CORS – change origin to your frontend in production
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*'
+}));
+
 app.use(bodyParser.json());
-
-// Load users
-const loadUsers = async () => {
-  try {
-    await fs.ensureFile(USERS_FILE);
-    const content = await fs.readFile(USERS_FILE, 'utf-8');
-    return content ? JSON.parse(content) : [];
-  } catch (err) {
-    console.error('[ERROR] Failed to load users:', err);
-    return [];
-  }
-};
-
-// Save users
-const saveUsers = async (users) => {
-  try {
-    await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
-    console.log('[DEBUG] Users saved successfully');
-  } catch (err) {
-    console.error('[ERROR] Failed to save users:', err);
-  }
-};
 
 // Email transporter
 const transporter = nodemailer.createTransport({
@@ -56,28 +38,28 @@ const sendVerificationEmail = async (email, token, baseUrl) => {
     subject: 'Verify your email',
     html: `<p>Click the link below to verify your email:</p><a href="${verifyLink}">Verify Email</a>`
   };
-
   await transporter.sendMail(mailOptions);
 };
 
-// ✅ Verify Email + Auto-login
+// ✅ Verify Email
 app.get('/verify-email', async (req, res) => {
   const { token, email, baseUrl } = req.query;
 
-  const users = await loadUsers();
-  const user = users.find(u => u.email === email && u.verificationToken === token);
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || user.verificationToken !== token) {
+    return res.status(400).send('Invalid verification link.');
+  }
 
-  // Mark the user as verified
-  user.isVerified = true;
-  user.verificationToken = null; // Clean up token
+  await prisma.user.update({
+    where: { email },
+    data: {
+      isVerified: true,
+      verificationToken: null
+    }
+  });
 
-  // Save updated user data
-  await saveUsers(users);
-
-  // Redirect with token for auto-login on frontend
   res.redirect(`${baseUrl}/login`);
 });
-
 
 // ✅ Signup
 app.post('/signup', async (req, res) => {
@@ -98,31 +80,26 @@ app.post('/signup', async (req, res) => {
     return res.status(400).json({ error: 'Passwords do not match' });
   }
 
-  const users = await loadUsers();
-
-  if (users.find(u => u.email === email)) {
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+  if (existingUser) {
     return res.status(400).json({ error: 'User already exists' });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const verificationToken = crypto.randomBytes(32).toString('hex');
 
-  // Store the user with "isVerified: false" for now
-  const newUser = {
-    id: Date.now(),
-    firstName,
-    lastName,
-    email,
-    company: company || '',
-    password: hashedPassword,
-    isVerified: false, // New users are unverified
-    verificationToken
-  };
-  // Save the new user temporarily (we'll update them later after verification)
-  users.push(newUser);
-  await saveUsers(users);
+  await prisma.user.create({
+    data: {
+      firstName,
+      lastName,
+      email,
+      company,
+      password: hashedPassword,
+      isVerified: false,
+      verificationToken
+    }
+  });
 
-  // Send verification email
   await sendVerificationEmail(email, verificationToken, baseUrl);
 
   res.json({ success: true, message: 'Signup successful. Please check your email to verify your account.' });
@@ -131,15 +108,10 @@ app.post('/signup', async (req, res) => {
 // 🔐 Login
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  const users = await loadUsers();
 
-  const user = users.find(u => u.email === email);
-  if (!user) {
-    return res.status(401).json({ error: 'Invalid credentials' });
-  }
-
-  if (!user.isVerified) {
-    return res.status(401).json({ error: 'Please verify your email before logging in.' });
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || !user.isVerified) {
+    return res.status(401).json({ error: 'Invalid credentials or email not verified.' });
   }
 
   const match = await bcrypt.compare(password, user.password);
@@ -163,31 +135,22 @@ app.post('/login', async (req, res) => {
 app.post('/forgot-password', async (req, res) => {
   const { email, baseUrl } = req.body;
 
-  // Load users from the file
-  const users = await loadUsers();
-  const user = users.find(u => u.email === email);
-
+  const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
     return res.status(400).json({ error: 'No user found with that email address' });
   }
 
-  // Generate a password reset token (with an expiration)
-  const resetToken = jwt.sign({ userId: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-
-  // Construct the reset URL using the provided base URL from the frontend (Updated baseURL)
+  const resetToken = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
   const resetUrl = `${baseUrl}/reset-password?token=${resetToken}&email=${user.email}`;
 
-  // Compose the email content
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: user.email,
-    subject: 'Password Reset',
-    html: `<p>Click the link below to reset your password:</p><a href="${resetUrl}">Reset Password</a>`
-  };
-
   try {
-    // Send the reset password email
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: 'Password Reset',
+      html: `<p>Click the link below to reset your password:</p><a href="${resetUrl}">Reset Password</a>`
+    });
+
     res.status(200).json({ message: 'Password reset link sent!' });
   } catch (err) {
     res.status(500).json({ error: 'Error sending email' });
@@ -199,34 +162,27 @@ app.post('/reset-password', async (req, res) => {
   const { token, email, password } = req.body;
 
   try {
-    // Verify JWT token
-    const decoded = jwt.verify(token, 'your_jwt_secret');
-    const userId = decoded.userId; // Get the user ID from the decoded token
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.userId;
 
-    // Load users from file
-    const users = await loadUsers();
-    const user = users.find(u => u.email === email && u.id === userId);
-
-    if (!user) {
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user || user.id !== userId) {
       return res.status(400).json({ error: 'Invalid or expired reset token.' });
     }
 
-    // Hash new password
     const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
 
-    // Save updated user data
-    await saveUsers(users);
+    await prisma.user.update({
+      where: { email },
+      data: { password: hashedPassword }
+    });
 
-    // Send confirmation email
-    const mailOptions = {
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: user.email,
       subject: 'Password Reset Confirmation',
       html: `<p>Your password has been successfully reset.</p>`
-    };
-    
-    await transporter.sendMail(mailOptions);
+    });
 
     res.json({ message: 'Password successfully reset. You can now log in with your new password.' });
   } catch (err) {
@@ -235,9 +191,13 @@ app.post('/reset-password', async (req, res) => {
   }
 });
 
+// Global error handler (optional)
+app.use((err, req, res, next) => {
+  console.error('Unexpected error:', err);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
+
 // 🚀 Start server
-app.listen(PORT, async () => {
-  const users = await loadUsers();
-  console.log('[DEBUG] Server started, loaded users:', users);
-  console.log(`Auth server running at http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`✅ Auth server running at http://localhost:${PORT}`);
 });
