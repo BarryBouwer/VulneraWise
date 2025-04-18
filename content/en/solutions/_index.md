@@ -38,23 +38,23 @@ cv_priority:
     enable: true
     title: "<span>Critical Vulnerability Prioritization</span>"
     subtitle: "Remediate What Matters Most"
-    details: "Not all vulnerabilities are equal. With VulneraWise, you can identify which vulnerabilities require immediate attention by assessing the severity and likelihood of exploitation based on your infrastructure. By focusing remediation efforts on high-risk vulnerabilities, we help you improve your organization’s security posture with fewer resources. Our solution integrates seamlessly into an organization's existing SecOps tooling and processes, allowing you to leverage our real-time exploit intelligence and critical vulnerability prioritization in your current workflow. "
+    details: "Not every vulnerability deserves your team’s attention—VulneraWise helps you focus on the ones that do. Our customizable decision-tree model prioritizes vulnerabilities based on exploit maturity, system exposure, and business impact—tailored to your specific environment and risk profile. Transparent logic that lets you trace every prioritization back to data points. It all integrates seamlessly into your existing SecOps tooling, so you can act faster, with fewer resources, and without changing the way you work."
     button:
         label: "Schedule Demo"
         url: "about-us/#form"
     boxes:
         - icon: "images/turn.png"
-          title: "Context-Driven Prioritization"
-          details: "Make smarter decisions with severity analysis of real-world exploits in your context."
+          title: "Tailored, Context-Aware Prioritization"
+          details: "Aligns severity and real-world exploit signals with your infrastructure and risk profile, so decisions reflect your actual exposure."
         - icon: "images/stopwatch.png"
-          title: "Faster Remediation"
-          details: "Respond faster by focusing efforts on critical vulnerabilities for your organization."
+          title: "Accelerated, Focused Remediation"
+          details: "Quickly identify and resolve the vulnerabilities that matter most, without wasting time on low-impact issues."
         - icon: "images/id.png"
-          title: "Optimized Resource Allocation"
-          details: "Prioritize your team’s efforts on impactful exploits, not low-risk issues."
+          title: "Smarter Use of Security Resources"
+          details: "Free up time and reduce effort by directing your team toward high-risk, high-priority threats."
         - icon: "images/select.png"
-          title: "Integrates Into Your Workflow"
-          details: "Power your existing tools with VulneraWise insights without changing your processes."
+          title: "No Workflow Disruption"
+          details: "VulneraWise integrates directly into your existing tools and dashboards—no new platform to manage, no processes to reinvent."
 ---
 
 {{< highlight javascript >}}
