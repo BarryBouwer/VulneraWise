@@ -5,7 +5,7 @@ title: "Solutions"
 hero_section:
     enable: true
     title: "Our Solutions"
-    details: "At VulneraWise, we believe that smart vulnerability management is the key to a secure future."
+    details: "VulneraWise delivers real-world exploitation intelligence and tailored prioritization—so you can manage vulnerabilities with focus, speed, and confidence."
     button:
         label: "Schedule Demo"
         url: "about-us/#form"
@@ -13,7 +13,8 @@ hero_section:
     ev_intelligence:
         title: "<span>Exploit & Vulnerability Intelligence</span>"
         subtitle: "Stay Ahead of Cyber Threats with Real-Time Intelligence"
-        details: "In today's threat landscape, timing is everything. VulneraWise delivers real-time updates on vulnerabilities actively targeted by malicious actors. Our AI-powered scanning solution gathers data from all leading sources and hundreds of others. Then, we generate relevant insights using our proprietary prioritization engine. This approach paired with industry-leading data allows your security teams to identify and mitigate threats faster."
+        details: "In a threat landscape where timing defines exposure, VulneraWise gives you the edge with real-time insights into vulnerabilities actively exploited in the wild. Our AI-powered scanning solution aggregates intelligence from major feeds and hundreds of additional sources—going beyond the obvious.
+Our prioritization engine turns raw data into relevant, actionable insight—so your team can move faster, respond smarter, and stay ahead of real threats."
         button:
             label: "Schedule Demo"
             url: "about-us/#form"
@@ -22,14 +23,14 @@ hero_section:
 ########### EV Intelligence Boxes ###########
 ev_intelligence_boxes:
     - icon: "images/updates.png"
-      title: "Real-Time Updates"
-      details: "Get instant insights into actively exploited and relevant vulnerabilities."
+      title: "Real-Time Exploitation Signals"
+      details: "Stay ahead of active threats with real-time insights into vulnerabilities being exploited in the wild."
     - icon: "images/decision.png"
-      title: "Data-Driven Decisions"
-      details: "Identify the most pressing exploits with our prioritization engine."
+      title: "Built on Proven Data, Expanded Beyond"
+      details: "We combine trusted sources with hundreds of additional intelligence feeds to give you a broader, deeper view of exploit activity."
     - icon: "images/risk.png"
-      title: "Neutralize Risks"
-      details: "Prioritize the vulnerabilities most likely to be targeted by attackers."
+      title: "Focused, Risk-Based Response"
+      details: "Identify the threats most likely to impact your systems—so you can act fast, reduce risk, and cut through the noise."
 
 
 ########### CV Priority ###########
