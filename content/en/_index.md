@@ -83,10 +83,10 @@ services_section:
   enable: true
   cards:
     - title: Exploit & <span>Vulnerability</span> Intelligence
-      details: Identify, respond, and act on real-time exploit intelligence. VulneraWise continuously monitors and updates you on relevant vulnerabilities actively targeted by malicious actors. These critical insights empower you to secure weakpoints before potential breaches occur and for uncompromising security resilience.
+      details: VulneraWise delivers real-time insights into vulnerabilities that are actively exploited in the wild—so your team can act before they’re a problem. By surfacing what’s relevant to your environment, we help you cut through the noise, stay ahead of threats that matter and achieve uncompromising security resilience.
       image: images/intellegence.png
     - title: Critical <span>Vulnerability</span> Prioritization
-      details: Focus remediation where it matters most. By aligning advanced exploit and vulnerability data to your business context, VulneraWise prioritizes vulnerabilities based on their risk level for you. This prioritization is fully transparent allowing you to understand your current risk profile and manage tasks efficiently. 
+      details: VulneraWise prioritizes vulnerabilities based on real-world exploitation, system exposure, and business impact—so your team can focus on what truly matters. Our transparent, customizable decision-tree model lets you tailor the logic to your environment, ensuring the output reflects your actual risk — not someone else’s. 
       image: images/critical.png
 
 ########### News Section ###########
@@ -114,25 +114,38 @@ faq_section:
   enable: true
   faqs:
     - question: What makes VulneraWise different from other vulnerability management tools?
-      answer: VulneraWise is a free service developed by security specialists for security specialists. It combines both mainstream and lesser-known vulnerability intelligence sources to keep you ahead of new threats. Our transparent, noise-free prioritization model lets you cut straight to the risks that matter, with full control over decision points and visibility into data sources. Plus, we integrate effortlessly into your existing tools—no extra dashboards or lock-ins—delivering high-impact intelligence directly into your workflow. 
+      answer: VulneraWise focuses on what many others overlook: clarity, context, and control.<br>
+We combine real-world exploitation intelligence with a transparent, customizable decision model—so you can prioritize what matters most, not just what’s loudest. Our data goes beyond the usual feeds, pulling from mainstream and lesser-known sources to give you a broader, real-time view of active threats.<br>
+No black-box scoring. No platform lock-in. Just actionable insight that integrates seamlessly into your existing tools and workflows.
     - question: How does VulneraWise cut through the noise to prioritize vulnerabilities?
-      answer: Our customizable decision trees and extensive data points mean you can tailor vulnerability alerts to what truly matters, for your organization’s security posture. We also provide full transparency in our prioritization allowing you to confirm its alignment with your risk assessments.
+      answer: We don’t just flag CVEs—we help you understand which ones matter, and why. VulneraWise uses a transparent, customizable decision-tree model that considers exploit maturity, system exposure, and business impact. You get full control over how vulnerabilities are prioritized, with complete visibility into the logic behind every recommendation.<br>
+No guesswork. No noise. Just clear, defensible priorities aligned to your environment.
     - question: Can I integrate VulneraWise with my existing tools?
-      answer: Absolutely! VulneraWise is designed to work within your existing workflow. From Slack and Teams to PowerBI, Grafana, and more, our solution delivers prioritized data directly into your preferred tools without adding extra dashboards or vendor/platform lock-in.
+      answer: Absolutely. VulneraWise is designed to work with the systems you already rely on—not replace them. Whether you’re using Slack, Teams, PowerBI, Grafana, or custom dashboards, our outputs plug directly into your workflows via API, CLI, and export formats.<br>
+No extra dashboards to manage. No platform lock-in. Just clean, prioritized intelligence delivered where your team already works.
     - question: How frequently is the vulnerability catalog updated?
-      answer: Our catalog is updated in real-time using our AI-powered scanning solution to ensure you’re always protected against the latest, relevant threats. We pull from hundreds of sources, including advisories, forums, and unique feeds for a comprehensive dataset of system vulnerabilities and potential attack points.
+      answer: Continuously. VulneraWise pulls from hundreds of sources—including advisories, exploit databases, forums, and lesser-known intel feeds—to deliver real-time updates as new vulnerabilities and exploits emerge.<br>
+You always have the latest, most relevant information at your fingertips—no lag, no outdated data.
     - question: Is VulneraWise suitable for small teams or individuals?
-      answer: Yes! Our free plan offers access to our entire catalog and use of the prioritization engine, however with a limited number of api calls. This makes it perfect for individuals and small teams looking to explore comprehensive vulnerability insights without upfront costs.
+      answer: Absolutely. Whether you’re part of a lean security team or working solo, VulneraWise gives you the same real-time vulnerability intelligence and prioritization engine used by larger organizations.<br>
+The free plan includes advanced search, file uploads, and prioritization insights—so you can start making smarter security decisions from day one, without needing a complex setup.
     - question: What’s included in VulneraWise’s Professional Plan?
-      answer: The Professional Plan provides expanded API access and advanced decision tree features for tailored prioritization, making it ideal for teams seeking deeper integration and more control over vulnerability management. And yes, this plan is free to use now as well! That makes now the perfect time to try our Professional Plan and see how it can improve your organization’s security posture.
+      answer: The Professional Plan gives you expanded access to our API, increased file uploads, and advanced decision-tree features for fully tailored prioritization. It’s ideal for teams looking to automate workflows and integrate real-time vulnerability intelligence into their existing tooling.<br>
+And yes—during our launch phase, it’s completely free to use with a limited number of API calls.
     - question: How customizable are VulneraWise’s decision trees?
-      answer: Our decision trees are highly customizable with filters and prioritization criteria for tailoring alerts, to your organization's risk profile, industry and compliance standards, or unique needs.
+      answer: Highly. You can tailor prioritization logic to match your organization’s risk profile, infrastructure, and compliance needs.From exploit maturity to system exposure and business impact, you control the inputs—and see exactly how each decision is made.<br>
+It’s transparent, flexible, and built to fit your environment.
     - question: Does VulneraWise support specific compliance requirements?
-      answer: Yes, VulneraWise is aligned with major compliance frameworks like PCI DSS 4.0, HIPAA, FedRAMP, NESA. Our solution is adaptable to help you meet industry-specific standards by prioritizing vulnerabilities that directly impact compliance. 
+      answer: Yes. VulneraWise is designed to help you meet key security and compliance standards by prioritizing vulnerabilities that pose real risk to your critical systems. Our approach aligns with major frameworks like PCI DSS 4.0, HIPAA, NESA, and NIS2, and our customizable decision-tree model allows you to tailor prioritization logic to match your compliance obligations—whether it’s safeguarding patient data, financial systems, or national infrastructure.<br>
+It’s a faster, smarter way to stay secure and audit-ready.
     - question: What if I need full control over data and integration?
-      answer: You can get full control with our Enterprise Plan which allows you to host Vulnerawise within your own IT environment. The Enterprise Plan provides you with unlimited API calls and fully customizable decision trees for ultimate control and flexibility.
+      answer: No problem. Our Enterprise Plan lets you run VulneraWise fully within your own environment—on-prem or in a private cloud. You get access to our CLI, fully customizable decision trees, and complete flexibility to integrate with your workflows, tools, and pipelines.<br>
+It’s built for teams that need advanced control without compromise.
     - question: Why should I choose VulneraWise over traditional vulnerability platforms?
-      answer: Unlike platforms that push you into rigid workflows and a number of additional dashboards, VulneraWise integrates directly into your existing environment, adding value without platform lock-in. Due to our client specific algorithms that you can customize according to your needs, we focus on precise, noise-free intelligence. Both of these factors allow us to meet your unique security needs while integrating seamlessly into your day to day operations. Contact us if you want to try the Enterprise plan for free, so you can host a customized instance of VulneraWise on your IT infrastructure.
+      answer: Traditional platforms add dashboards and processes. We remove friction.<br>
+VulneraWise integrates directly into your existing tools and workflows—no lock-in, no complex setup. With customizable algorithms and a transparent prioritization model, you get precise, noise-free intelligence tailored to your environment.<br>
+It’s vulnerability management that works the way your team already does—only smarter.
+
 
 
 ---
