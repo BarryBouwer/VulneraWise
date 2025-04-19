@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Vulnerawise Intelligence for Tomorrow’s Threats
 
 ########### Hero Section ###########
 hero_section:

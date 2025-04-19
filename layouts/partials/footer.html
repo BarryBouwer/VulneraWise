@@ -42,9 +42,9 @@
               placeholder="Your Email"
               class="bg-transparent font-poppins text-[#697586] pl-3 focus:outline-none w-[88%]"
             />
-            <a href="" class="p-2 bg-style rounded-full w-[12%]">
-              <img src='{{ "images/dev/send.png" | relURL }}' alt="" />
-            </a>
+            <button class="p-2 bg-style rounded-full" aria-label="Send">
+              <img src='{{ "images/dev/send-icon.svg" | relURL }}' alt="" />
+            </button>
           </div>
           {{ end }}
           {{ end }}
@@ -109,7 +109,7 @@
           href="{{ . | safeURL }}"
           class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
-          <img src='{{ "images/dev/github_icon.png" | relURL }}' alt=""/>
+          <img src='{{ "images/dev/github-icon.svg" | relURL }}' alt=""/>
         </a>
         {{ end }}
         {{ with .Site.Params.twitter }}
@@ -117,7 +117,7 @@
           href="{{ . | safeURL }}"
           class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
-          <img src='{{ "images/dev/twitter_icon.png" | relURL }}' alt="" />
+          <img src='{{ "images/dev/twitter-icon.svg" | relURL }}' alt="" />
         </a>
         {{ end }}
         {{ with .Site.Params.linkedin }}
@@ -125,18 +125,19 @@
           href="{{ . | safeURL }}"
           class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
-          <img src='{{ "images/dev/linkedin_icon.png" | relURL }}' alt="" />
+          <img src='{{ "images/dev/linkedin-icon.svg" | relURL }}' alt="" />
         </a>
         {{ end }}
         {{ with .Site.Params.footer_cta_button }}
         <div
-          class="hover:scale-105 transition-transform flex justify-center items-center"
-        >
-          <a
-            href="{{ .url | relURL }}"
-            class="rounded-3xl font-medium text-sm px-5 py-2 font-poppins bg-style after-right-arrow after:relative after:top-[3px] after:left-[5px]"
-            >{{ .label }}</a
-          >
+          class="rounded-3xl font-medium text-sm px-5 py-2 bg-style">
+          <a href="{{ .url | relURL }}"
+            class="text-black font-medium text-sm font-poppins">
+            <span class="flex justify-center items-center gap-2">
+              {{ .label }}
+              <img src='{{ "images/dev/right-arrow-dark.svg" | relURL  }}' alt="">
+            </span>
+          </a>
         </div>
         {{ end }}
       </div>

@@ -46,9 +46,9 @@
                     class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
                     <span class="flex justify-center items-center gap-2">
                       {{ .label }}
-                      <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                      <img src='{{ "images/dev/right-arrow-dark.svg" | relURL  }}' alt=""
                         class="dark:hidden group-hover:block">
-                      <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                      <img src='{{ "images/dev/right-arrow.svg" | relURL  }}' alt=""
                         class="hidden dark:block group-hover:hidden">
                     </span>
                   </a>
@@ -109,39 +109,14 @@
                       <div class="flex w-full justify-between">
                         <button onclick="openTabMain(event, 'searchMain')"
                           class="border-b border-slate-700 pb-3 text-white flex items-center gap-2 justify-center w-full active-tab tablinksmain">
-                          <div>
-                            <svg class="size-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                              <path
-                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-                            </svg>
-                          </div>
                           Search
                         </button>
                         <button onclick="openTabMain(event, 'fileUploadMain')"
                           class="border-b border-slate-700 pb-3 text-white flex items-center gap-2 justify-center w-full tablinksmain">
-                          <div>
-                            <svg class="size-5 fill-current text-inherit" viewBox="0 0 25 24" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path class="fill-current"
-                                d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z"
-                                fill="#323544" />
-                              <path class="fill-current"
-                                d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z"
-                                fill="#323544" />
-                            </svg>
-                          </div>
                           File Upload
                         </button>
                         <button onclick="openTabMain(event, 'automateMain')"
                           class="border-b border-slate-700 pb-3 text-white flex items-center gap-2 justify-center w-full tablinksmain">
-                          <div>
-                            <svg class="size-5 fill-current text-inherit" viewBox="0 0 24 24" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path class="fill-current" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M11.373 10.471C9.43517 9.48416 8.72594 8.17465 9.19451 6.57159C9.60731 5.15903 10.9986 4.23447 12.4156 4.45187C13.1224 4.56017 13.744 4.85411 14.2284 5.41491C14.9616 6.2643 15.1272 7.25575 14.9034 8.35988L15.5728 8.54434C15.9165 8.63908 16.2474 8.73027 16.5768 8.82096C17.2896 6.83512 16.4534 4.51486 14.6278 3.32368C12.7268 2.0836 10.2638 2.34521 8.6493 3.96084C7.80641 4.80449 7.34519 5.83385 7.23791 7.02497C7.08622 8.71005 7.77185 10.0698 8.92375 11.2331L7.09224 14.3523C7.03239 14.3568 6.98082 14.36 6.93469 14.3628C6.85025 14.368 6.78409 14.372 6.71885 14.3815C5.5148 14.5548 4.66735 15.6421 4.86996 16.7512C5.09859 18.0043 6.22135 18.7734 7.37374 18.4668C8.59566 18.1417 9.24583 16.9441 8.78496 15.7134C8.61802 15.2679 8.72145 14.9824 8.93041 14.6319C9.51907 13.6443 10.0991 12.6512 10.6899 11.6397C10.9156 11.2531 11.1431 10.8637 11.373 10.471ZM15.52 11.9636C14.9302 10.9074 14.3351 9.84144 13.749 8.79131C13.7783 8.7167 13.8068 8.6465 13.8343 8.57906C13.8923 8.43623 13.9455 8.30563 13.9897 8.17226C14.2238 7.46806 14.0824 6.82541 13.6375 6.25442C13.0932 5.55555 12.1434 5.30173 11.334 5.61623C10.517 5.93356 9.99424 6.74816 10.0298 7.64931C10.0659 8.56049 10.6679 9.37379 11.6005 9.538C12.1589 9.6362 12.4324 9.90553 12.6802 10.3696C13.2069 11.3567 13.7527 12.3332 14.299 13.3105L14.2992 13.3109C14.515 13.6969 14.7308 14.0831 14.9457 14.4701C16.7748 13.2319 18.288 13.2713 19.4178 14.5612C20.3967 15.6789 20.4173 17.3813 19.466 18.523C18.3504 19.8613 16.8477 19.9145 15.1295 18.7844C14.6535 19.1888 14.208 19.5674 13.7647 19.9443C15.5042 21.7078 17.9872 21.9423 19.9506 20.5695C21.8634 19.2322 22.5292 16.665 21.5552 14.4973C20.7489 12.7029 18.5012 11.0269 15.52 11.9636ZM11.561 17.3759H15.1498C15.1999 17.4437 15.2466 17.5107 15.2923 17.5761C15.3876 17.7126 15.478 17.8421 15.5837 17.9571C16.3438 18.7826 17.6272 18.8235 18.4397 18.0574C19.2817 17.2635 19.3198 15.9298 18.5241 15.1009C17.7455 14.2898 16.4148 14.2123 15.6919 15.0711C15.2528 15.593 14.8028 15.6544 14.2199 15.6451C13.1545 15.6284 12.0886 15.6316 11.0229 15.6348C10.5954 15.6361 10.168 15.6373 9.74062 15.6373C9.83752 17.7701 9.04371 19.0991 7.46923 19.4146C5.92747 19.7236 4.50754 18.9246 4.00768 17.467C3.43984 15.8106 4.14208 14.4859 6.17102 13.4346C6.01835 12.8728 5.86401 12.3043 5.71137 11.7412C3.49998 12.2306 1.8409 14.4097 2.01215 16.8612C2.16348 19.0252 3.88223 20.947 5.98423 21.2913C7.12588 21.4785 8.19853 21.2841 9.19378 20.7107C10.474 19.973 11.217 18.8129 11.561 17.3759Z"
-                                fill="#323544" />
-                            </svg>
-                          </div>
                           Automate
                         </button>
                       </div>
@@ -149,16 +124,14 @@
                       <div id="searchMain" class="tabcontentmain">
                         <div class="flex justify-center items-center flex-col gap-y-3.5 text-center">
                           <div class="mb-3 flex justify-center items-center w-[52.5px] h-[70px]">
-                            <img src='{{ "images/dev/search-icon.png" | relURL }}' alt="" class="w-full object-contain">
+                            <img src='{{ "images/dev/search-tab.svg" | relURL }}' alt="" class="w-full object-contain">
                           </div>
                           <div
                             class="my-3 bg-main border-gradient-primary gradient-border-1 after:rounded-md rounded-md cursor-text p-2 flex gap-2 items-center w-full text-white relative">
                             <div class="text-inherit">
                               <label for="floatingSearchMain">
-                                <svg class="size-3 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                  <path
-                                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-                                </svg>
+                                {{ $search := "images/dev/search-icon.svg" | relURL }}
+                                <img src="{{ $search }}" alt="" class="size-full">
                               </label>
                             </div>
                             <input type="text" id="floatingSearchMain"
@@ -185,7 +158,7 @@
                       <div id="fileUploadMain" class="tabcontentmain hidden">
                         <div class="flex justify-center items-center flex-col text-center gap-y-2">
                           <div class="mb-3 flex justify-center items-center w-[87.5px] h-[70px]">
-                            <img src='{{ "images/dev/upload-icon.png" | relURL }}' alt="" class="size-full object-contain">
+                            <img src='{{ "images/dev/file-upload-tab.svg" | relURL }}' alt="" class="size-full object-contain">
                           </div>
                           <strong class="text-white text-xl">Got a list of CVEs or affected
                             software?</strong>
@@ -197,15 +170,8 @@
                           <button
                             class="my-3 rounded-3xl font-medium text-slate-950 px-5 py-3 hover:scale-105 transition-all font-poppins bg-style flex justify-center items-center gap-2">
                             <div class="text-inherit">
-                              <svg class="size-5 text-inherit" viewBox="0 0 25 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path class="fill-current"
-                                  d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z"
-                                  fill="#323544" />
-                                <path class="fill-current"
-                                  d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z"
-                                  fill="#323544" />
-                              </svg>
+                              {{ $upload_icon := "images/dev/upload-btn-icon.svg" | relURL }}
+                              <img src="{{ $upload_icon }}" alt="" class="size-full">
                             </div>
                             <p class="text-inherit font-poppins text-sm">Upload File</p>
                           </button>
@@ -219,7 +185,7 @@
                       <div id="automateMain" class="tabcontentmain hidden">
                         <div class="flex justify-center items-center flex-col gap-y-2 text-center">
                           <div class="mb-3 flex justify-center items-center w-[61.25px] h-[70px]">
-                            <img src='{{ "images/dev/automate-icon.png" | relURL }}' alt="" class="size-full object-contain">
+                            <img src='{{ "images/dev/automate-tab.svg" | relURL }}' alt="" class="size-full object-contain">
                           </div>
                           <strong class="text-white text-xl">Need to integrate prioritization into your
                             workflows?</strong>
@@ -233,7 +199,8 @@
                             class="my-2 rounded-3xl font-medium text-slate-950 px-5 py-3 hover:scale-105 transition-all font-poppins bg-style flex justify-center items-center gap-2">
                             <p class="text-inherit font-poppins text-sm">View API & CLI Docs</p>
                             <div class="size-3">
-                              <img src='{{ "images/dev/dark_right_arrow.png" | relURL }}' alt="" class="size-full">
+                              {{ $right_arrow := "images/dev/right-arrow-dark.svg" | relURL }}
+                              <img src="{{ $right_arrow }}" alt="" class="size-full">
                             </div>
                           </a>
                         </div>
@@ -319,16 +286,16 @@
         <div class="hidden md:flex gap-3 relative z-20">
           <div
             class="group p-4 border-gradient-primary rounded-full after:rounded-full hover:bg-style hover:after:p-0 cursor-pointer transition-colors swiper-button-prev">
-            <img src='{{ "images/dev/prev.png"  | relURL }}' alt="{{ site.Title }}"
+            <img src='{{ "images/dev/prev-icon-dark.svg"  | relURL }}' alt="{{ site.Title }}"
               class="hidden dark:block group-hover:dark:hidden" />
-            <img src='{{ "images/dev/dark_prev.png"  | relURL }}' alt="{{ site.Title }}"
+            <img src='{{ "images/dev/prev-icon.svg"  | relURL }}' alt="{{ site.Title }}"
               class="dark:hidden group-hover:dark:block" />
           </div>
           <div
             class="group p-4 border-gradient-primary rounded-full after:rounded-full hover:bg-style hover:after:p-0 cursor-pointer transition-colors swiper-button-next">
-            <img src='{{ "images/dev/next.png"  | relURL }}' alt="{{ site.Title }}"
+            <img src='{{ "images/dev/next-icon-dark.svg"  | relURL }}' alt="{{ site.Title }}"
               class="hidden dark:block group-hover:dark:hidden" />
-            <img src='{{ "images/dev/dark_next.png"  | relURL }}' alt="{{ site.Title }}"
+            <img src='{{ "images/dev/next-icon.svg"  | relURL }}' alt="{{ site.Title }}"
               class="dark:hidden group-hover:dark:block" />
           </div>
         </div>

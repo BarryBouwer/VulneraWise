@@ -70,8 +70,8 @@
           {{ if .HasChildren }}
           <div class="group relative inline-block text-left w-full px-4 lg:p-0">
             <button
-            {{ $light_arrow := "images/dev/light_arrow_down.png" | relURL }}
-            {{ $dark_arrow := "images/dev/dark_arrow_down.png" | relURL }}
+            {{ $light_arrow := "images/dev/dropdown-arrow.svg" | relURL }}
+            {{ $dark_arrow := "images/dev/dropdown-arrow-dark.svg" | relURL }}
               class="py-2 text-main font-normal dark:text-slate-100 hover:text-slate-950 dark:hover:text-white rounded lg:bg-transparent lg:text-primary-700 lg:p-0 font-poppins w-full flex gap-1 justify-between lg:justify-normal items-center text-start transition-transform duration-500 tracking-wider"
               aria-haspopup="true" aria-expanded="false">
               <a href="{{ .URL | absURL }}">

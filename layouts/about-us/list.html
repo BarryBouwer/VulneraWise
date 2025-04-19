@@ -82,20 +82,22 @@
                 }
             </style>
             <div class="mt-20" data-aos="zoom-in">
-                <h3 class="font-poppins font-medium text-3xl text-black dark:text-white mb-10">Our Values</h3>
-                <div id="valueCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 place-content-between">
+                <h3 class="font-poppins font-medium text-[32px] text-black dark:text-white leading-[130%] mb-7">Our Values</h3>
+                <div id="valueCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-between">
                     {{ range .boxes }}
                     <div
-                        class="rounded-3xl relative overflow-hidden animated card min-h-[414px]">
+                        class="rounded-3xl relative overflow-hidden animated card min-h-[385px]">
                         <div class="card-content bg-blue">
                             <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                                 class="w-full h-full absolute top-0 left-0 z-0"></div>
-                            <div class="space-y-7 z-30 relative pt-10">
-                                <img src='{{ .icon | relURL }}' alt="" class="h-28">
-                                <div class="space-y-2 px-5">
-                                    <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | safeHTML }}
+                            <div class="flex flex-col gap-y-[34px] z-30 relative px-[40.59px] py-1">
+                                <div class="size-[128px]">
+                                    <img src='{{ .icon | relURL }}' alt="" class="size-full object-contain">
+                                </div>
+                                <div class="flex flex-col gap-y-3">
+                                    <h3 class="text-white font-poppins font-semibold text-[26px] leading-[160%]">{{ .title | safeHTML }}
                                     </h3>
-                                    <p class="text-slate-300 font-poppins text-lg">{{ .details | safeHTML }}</p>
+                                    <p class="text-slate-300 font-poppins text-lg leading-[160%]">{{ .details | safeHTML }}</p>
                                 </div>
                             </div>
                         </div>

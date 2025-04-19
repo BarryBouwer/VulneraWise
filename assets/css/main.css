@@ -74,3 +74,30 @@
 .fixed-table {
   @apply w-full table-fixed;
 }
+
+.custom-checkbox {
+  @apply relative cursor-pointer pl-7 inline-block select-none;
+}
+
+.custom-checkbox input {
+  @apply absolute opacity-0 cursor-pointer;
+}
+
+.custom-checkbox span {
+  @apply absolute top-0 left-0 size-5 bg-transparent border border-black rounded-md mt-2;
+}
+
+.custom-checkbox span:where(.dark, .dark *) {
+  @apply border-white;
+}
+
+.custom-checkbox input:checked ~ span {
+  @apply bg-style;
+}
+
+.custom-checkbox span::after {
+  @apply content-[""] absolute hidden left-[6px] top-0.5 w-1.5 h-2.5 border-black border-r border-b rotate-45;
+}
+.custom-checkbox input:checked ~ span::after {
+  @apply block;
+}
