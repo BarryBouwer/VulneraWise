@@ -10,11 +10,11 @@
     class="absolute right-0 top-0 opacity-90 z-0 dark:hidden"
   />
   <div
-    class="container mx-auto px-5 sm:px-10 lg:px-24 divide-slate-300 dark:divide-slate-700 divide-y"
+    class="container mx-auto px-5 sm:px-10 lg:px-8 divide-slate-300 dark:divide-slate-700 divide-y"
   >
-    <div class="flex flex-col md:flex-row gap-y-5 gap-x-28 py-5">
-      <div class="md:w-[25%] z-20">
-        <div class="space-y-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-[50px] pt-16 pb-7 relative z-20">
+      <div>
+        <div class="flex flex-col gap-y-5">
           <a href="">
             <img
               src='{{ .Site.Params.dark_logo | relURL }}'
@@ -31,7 +31,7 @@
           </a>
           {{ with .Site.Params.newsletter }}
           {{ if .enable }}
-          <p class="font-poppins text-[16px] text-slate-950 dark:text-slate-400">
+          <p class="font-poppins text-[16px] leading-[26px] text-slate-950 dark:text-slate-400">
             VulneraWise: Intelligence for tomorrow’s threats
           </p>
           <div
@@ -50,8 +50,8 @@
           {{ end }}
         </div>
       </div>
-      <div class="md:w-[60%] flex flex-wrap gap-5 justify-between z-20">
-        <ul class="space-y-2">
+      <div>
+        <ul class="flex flex-col gap-y-[17px]">
           {{ range site.Menus.footer }}
           <li>
             <a
@@ -62,42 +62,42 @@
           </li>
           {{ end }}
         </ul>
-        <div class="space-y-3">
-          {{ with site.Menus.solutions }}
-          <ul class="space-y-2">
-            <span class="text-black dark:text-style font-poppins text-lg font-semibold dark:font-medium"
-              >Solutions</span
+      </div>
+      <div class="flex flex-col gap-y-5">
+        {{ with site.Menus.solutions }}
+        <ul class="flex flex-col gap-y-5">
+          <span class="text-black dark:text-style font-poppins text-lg font-semibold dark:font-medium"
+            >Solutions</span
+          >
+          {{ range site.Menus.solutions }}
+          <li>
+            <a
+              href="{{ .URL | absURL }}"
+              class="font-poppins text-slate-900 hover:text-black dark:text-slate-400 dark:hover:text-slate-500 transition-colors"
+              >{{ .Name }}</a
             >
-            {{ range site.Menus.solutions }}
-            <li>
-              <a
-                href="{{ .URL | absURL }}"
-                class="font-poppins text-slate-900 hover:text-black dark:text-slate-400 dark:hover:text-slate-500 transition-colors"
-                >{{ .Name }}</a
-              >
-            </li>
-            {{ end }}
-          </ul>
-          {{ end }} {{ with site.Menus.resources }}
-          <ul class="space-y-2">
-            <span class="text-black dark:text-style font-poppins text-lg font-semibold dark:font-medium "
-              >Resources</span
-            >
-            {{ range site.Menus.resources }}
-            <li>
-              <a
-                href="{{ .URL | absURL }}"
-                class="font-poppins text-slate-900 hover:text-black dark:text-slate-400 dark:hover:text-slate-500 transition-colors"
-                >{{ .Name }}</a
-              >
-            </li>
-            {{ end }}
-          </ul>
+          </li>
           {{ end }}
-        </div>
+        </ul>
+        {{ end }} {{ with site.Menus.resources }}
+        <ul class="flex flex-col gap-y-5">
+          <span class="text-black dark:text-style font-poppins text-lg font-semibold dark:font-medium "
+            >Resources</span
+          >
+          {{ range site.Menus.resources }}
+          <li>
+            <a
+              href="{{ .URL | absURL }}"
+              class="font-poppins text-slate-900 hover:text-black dark:text-slate-400 dark:hover:text-slate-500 transition-colors"
+              >{{ .Name }}</a
+            >
+          </li>
+          {{ end }}
+        </ul>
+        {{ end }}
       </div>
     </div>
-    <div class="py-5 flex flex-wrap justify-between items-center gap-3">
+    <div class="pb-8 pt-7 flex flex-wrap justify-between items-center gap-3">
       {{ with .Site.Params.copyright }}
       <p class="text-[16px] font-poppins text-slate-950 dark:text-slate-400">
         {{ . }}
