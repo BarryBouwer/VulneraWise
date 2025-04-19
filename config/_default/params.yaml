@@ -20,6 +20,11 @@ linkedin: "/" ##### Footer LinkedIn icon link
 ##### scripts
 ga_script: G-7JS41X41RX
 
+##### footer
+footer_cta_button: 
+  label: Schedule Demo
+  url: about-us/#form
+
 ##### Site details for search engines
 title: VulneraWise
 description: Text about my site

@@ -99,7 +99,7 @@
     </div>
     <div class="pb-8 pt-7 flex flex-wrap justify-between items-center gap-3">
       {{ with .Site.Params.copyright }}
-      <p class="text-[16px] font-poppins text-slate-950 dark:text-slate-400">
+      <p class="text-[16px] font-poppins text-slate-950 dark:text-slate-400 leading-6">
         {{ . }}
       </p>
       {{ end }}
@@ -107,15 +107,15 @@
         {{ with .Site.Params.github }}
         <a
           href="{{ . | safeURL }}"
-          class="px-[10px] py-1 bg-slate-700 rounded-full hover:scale-125 transition-transform flex justify-center items-center"
+          class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
-          <img src='{{ "images/dev/github_icon.png" | relURL }}' alt="" />
+          <img src='{{ "images/dev/github_icon.png" | relURL }}' alt=""/>
         </a>
         {{ end }}
         {{ with .Site.Params.twitter }}
         <a
           href="{{ . | safeURL }}"
-          class="px-[10px] py-1 bg-slate-700 rounded-full hover:scale-125 transition-transform flex justify-center items-center"
+          class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
           <img src='{{ "images/dev/twitter_icon.png" | relURL }}' alt="" />
         </a>
@@ -123,12 +123,12 @@
         {{ with .Site.Params.linkedin }}
         <a
           href="{{ . | safeURL }}"
-          class="px-[10px] py-1 bg-slate-700 rounded-full hover:scale-125 transition-transform flex justify-center items-center"
+          class="size-10 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
         >
           <img src='{{ "images/dev/linkedin_icon.png" | relURL }}' alt="" />
         </a>
         {{ end }}
-        {{ with .Site.Params.cta_btn }}
+        {{ with .Site.Params.footer_cta_button }}
         <div
           class="hover:scale-105 transition-transform flex justify-center items-center"
         >
