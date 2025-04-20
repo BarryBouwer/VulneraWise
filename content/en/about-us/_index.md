@@ -11,13 +11,13 @@ hero_section:
 our_values:
     enable: true
     boxes:
-        - icon: "images/led.png"
+        - icon: "images/bulb-gear.svg"
           title: "Transparency"
           details: "Our commitment to transparency ensures that every decision point is visible and every prioritization is justified."
-        - icon: "images/shield.png"
+        - icon: "images/shield.svg"
           title: "Simplicity"
           details: "We are dedicated to making cybersecurity solutions both easy to use and fully adaptable."
-        - icon: "images/deal.png"
+        - icon: "images/deal.svg"
           title: "Resilience"
           details: "At VulneraWise, we strive to stay ahead of emerging threats by continuously innovating our solutions."
 
