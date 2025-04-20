@@ -123,14 +123,14 @@
                   const showDropdown = () => {
                   dropdown{{ $id }}.classList.remove("lg:opacity-0", "lg:translate-y-3", "lg:pointer-events-none");
                   dropdown{{ $id }}.classList.add("lg:opacity-100", "lg:pointer-events-auto");
-                  button{{ $id }}.querySelector('.icon').classList.add("rotate-180");
+                  button{{ $id }}.querySelector('.icon').classList.add("translate-y-1");
                   };
 
                   const hideDropdown = () => {
                   if (!isHoveringButton && !isHoveringDropdown) {
                       dropdown{{ $id }}.classList.remove("lg:opacity-100", "lg:pointer-events-auto");
                       dropdown{{ $id }}.classList.add("lg:opacity-0", "lg:translate-y-3", "lg:pointer-events-none");
-                      button{{ $id }}.querySelector('.icon').classList.remove("rotate-180");
+                      button{{ $id }}.querySelector('.icon').classList.remove("translate-y-1");
                   }
                   };
 
