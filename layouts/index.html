@@ -587,26 +587,28 @@
     <h3 class="font-poppins font-semibold text-3xl lg:text-[46px] text-black dark:text-slate-200 main-heading">
       Frequently Asked Questions
     </h3>
-    <ul class="basis-1/2 space-y-8 mt-[30px]">
+    <ul class="basis-1/2 mt-[30px] grid grid-cols-1 lg:grid-cols-2 gap-8">
       {{ range $index, $faq := .faqs }}
-      <li class="p-5 bg-gray-200 dark:bg-blue rounded-lg" data-faq-id="faq-{{ $index }}">
-        <button
-          class="faq-toggle relative flex gap-2 items-start w-full text-base font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400 aria-expanded:text-black dark:aria-expanded:text-white"
-          aria-expanded="false" onclick="toggleFAQ(this, 'faq-{{ $index }}')">
-          <span class="flex-1">{{ $faq.question | safeHTML }}</span>
-          <svg class="faq-icon flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300"
-            viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-            <rect y="7" width="16" height="2" rx="1"
-              class="transform origin-center transition duration-200 ease-out"></rect>
-            <rect y="7" width="16" height="2" rx="1"
-              class="transform origin-center rotate-90 transition duration-200 ease-out"></rect>
-          </svg>
-        </button>
-        <div class="faq-content transition-all duration-300 ease-in-out max-h-0 overflow-hidden"
-          style="transition: max-height 0.3s ease-in-out 0s;">
-          <div class="pt-5 leading-relaxed">
-            <div class="space-y-2 leading-relaxed font-poppins text-slate-700 dark:text-slate-400">
-              {{ $faq.answer | safeHTML }}
+      <li>
+        <div class="p-5 bg-gray-200 dark:bg-blue rounded-lg" data-faq-id="faq-{{ $index }}">
+          <button
+            class="faq-toggle relative flex gap-2 items-start w-full text-base font-poppins text-left md:text-lg text-slate-700 dark:text-slate-400 aria-expanded:text-black dark:aria-expanded:text-white"
+            aria-expanded="false" onclick="toggleFAQ(this, 'faq-{{ $index }}')">
+            <span class="flex-1">{{ $faq.question | safeHTML }}</span>
+            <svg class="faq-icon flex-shrink-0 mt-2 size-4 ml-auto fill-current transition-transform duration-300"
+              viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <rect y="7" width="16" height="2" rx="1"
+                class="transform origin-center transition duration-200 ease-out"></rect>
+              <rect y="7" width="16" height="2" rx="1"
+                class="transform origin-center rotate-90 transition duration-200 ease-out"></rect>
+            </svg>
+          </button>
+          <div class="faq-content transition-all duration-300 ease-in-out max-h-0 overflow-hidden"
+            style="transition: max-height 0.3s ease-in-out 0s;">
+            <div class="pt-5 leading-relaxed">
+              <div class="space-y-2 leading-relaxed font-poppins text-slate-700 dark:text-slate-400">
+                {{ $faq.answer | safeHTML }}
+              </div>
             </div>
           </div>
         </div>
