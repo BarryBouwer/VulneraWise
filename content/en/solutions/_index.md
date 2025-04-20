@@ -13,8 +13,7 @@ hero_section:
     ev_intelligence:
         title: "<span>Exploit & Vulnerability Intelligence</span>"
         subtitle: "Stay Ahead of Cyber Threats with Real-Time Intelligence"
-        details: "In a threat landscape where timing defines exposure, VulneraWise gives you the edge with real-time insights into vulnerabilities actively exploited in the wild. Our AI-powered scanning solution aggregates intelligence from major feeds and hundreds of additional sources—going beyond the obvious.
-Our prioritization engine turns raw data into relevant, actionable insight—so your team can move faster, respond smarter, and stay ahead of real threats."
+        details: "In a threat landscape where timing defines exposure, VulneraWise gives you the edge with real-time insights into vulnerabilities actively exploited in the wild. Our AI-powered scanning solution aggregates intelligence from major feeds and hundreds of additional sources—going beyond the obvious. Our prioritization engine turns raw data into relevant, actionable insight—so your team can move faster, respond smarter, and stay ahead of real threats."
         button:
             label: "Schedule Demo"
             url: "about-us/#form"
@@ -22,13 +21,13 @@ Our prioritization engine turns raw data into relevant, actionable insight—so 
 
 ########### EV Intelligence Boxes ###########
 ev_intelligence_boxes:
-    - icon: "images/updates.png"
+    - icon: "images/clock.svg"
       title: "Real-Time Exploitation Signals"
       details: "Stay ahead of active threats with real-time insights into vulnerabilities being exploited in the wild."
-    - icon: "images/decision.png"
+    - icon: "images/measure.svg"
       title: "Built on Proven Data, Expanded Beyond"
       details: "We combine trusted sources with hundreds of additional intelligence feeds to give you a broader, deeper view of exploit activity."
-    - icon: "images/risk.png"
+    - icon: "images/catious.svg"
       title: "Focused, Risk-Based Response"
       details: "Identify the threats most likely to impact your systems—so you can act fast, reduce risk, and cut through the noise."
 
@@ -43,16 +42,16 @@ cv_priority:
         label: "Schedule Demo"
         url: "about-us/#form"
     boxes:
-        - icon: "images/turn.png"
+        - icon: "images/right-zig-zag-arrow.svg"
           title: "Tailored, Context-Aware Prioritization"
           details: "Aligns severity and real-world exploit signals with your infrastructure and risk profile, so decisions reflect your actual exposure."
-        - icon: "images/stopwatch.png"
+        - icon: "images/stopwatch.svg"
           title: "Accelerated, Focused Remediation"
           details: "Quickly identify and resolve the vulnerabilities that matter most, without wasting time on low-impact issues."
-        - icon: "images/id.png"
+        - icon: "images/identity.svg"
           title: "Smarter Use of Security Resources"
           details: "Free up time and reduce effort by directing your team toward high-risk, high-priority threats."
-        - icon: "images/select.png"
+        - icon: "images/select.svg"
           title: "No Workflow Disruption"
           details: "VulneraWise integrates directly into your existing tools and dashboards—no new platform to manage, no processes to reinvent."
 ---

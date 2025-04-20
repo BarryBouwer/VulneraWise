@@ -23,12 +23,12 @@
                                 <input type="password" required name="password" id="password" placeholder="Enter password" class="bg-transparent border-none focus:outline-none w-11/12 reset-password">
                                 <button type="button" class="reset-hide-pw hidden w-1/12">
                                     <div class="w-5 h-3.5">
-                                        <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                        <img src='{{ "images/dev/exposed-pw.svg" | relURL }}' alt="" class="size-full cursor-pointer">
                                     </div>
                                 </button>
                                 <button type="button" class="reset-show-pw w-1/12">
                                     <div class="w-5 h-4">
-                                        <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                        <img src='{{ "images/dev/hidden-pw.svg" | relURL }}' alt="" class="size-full cursor-pointer">
                                     </div>
                                 </button>
                             </div>
@@ -40,19 +40,19 @@
                                 <input type="password" required name="confirmPassword" id="confirmPassword" placeholder="Confirm password" class="bg-transparent border-none focus:outline-none confirm-reset-password w-11/12">
                                 <button type="button" class="confirm-reset-hide-pw hidden w-1/12">
                                     <div class="w-5 h-3.5">
-                                        <img src='{{ "images/dev/show-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                        <img src='{{ "images/dev/exposed-pw.svg" | relURL }}' alt="" class="size-full cursor-pointer">
                                     </div>
                                 </button>
                                 <button type="button" class="confirm-reset-show-pw w-1/12">
                                     <div class="w-5 h-4">
-                                        <img src='{{ "images/dev/hide-pw.png" | relURL }}' alt="" class="size-full cursor-pointer">
+                                        <img src='{{ "images/dev/hidden-pw.svg" | relURL }}' alt="" class="size-full cursor-pointer">
                                     </div>
                                 </button>
                             </div>
                         </div>
                         <button class="w-full rounded-full py-2 bg-style font-poppins font-medium text-sm flex gap-2 items-center justify-center scale-105 transition-all">
                             Change Password
-                            <img src='{{ "images/dev/dark_next.png" | relURL }}' alt="" class="size-3">
+                            <img src='{{ "images/dev/right-arrow-dark.svg" | relURL }}' alt="" class="size-3">
                         </button>
                     </form>
                 </div>
@@ -68,7 +68,7 @@
                         href="{{ . | safeURL }}"
                         class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
                         >
-                        <img src='{{ "images/dev/github_icon.png" | relURL }}' alt="" />
+                        <img src='{{ "images/dev/github-icon.svg" | relURL }}' alt="" />
                         </a>
                         {{ end }}
                         {{ with .Site.Params.twitter }}
@@ -76,7 +76,7 @@
                         href="{{ . | safeURL }}"
                         class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
                         >
-                        <img src='{{ "images/dev/twitter_icon.png" | relURL }}' alt="" />
+                        <img src='{{ "images/dev/twitter-icon.svg" | relURL }}' alt="" />
                         </a>
                         {{ end }}
                         {{ with .Site.Params.linkedin }}
@@ -84,7 +84,7 @@
                         href="{{ . | safeURL }}"
                         class="p-2 bg-slate-700 rounded-full hover:scale-105 transition-transform flex justify-center items-center"
                         >
-                        <img src='{{ "images/dev/linkedin_icon.png" | relURL }}' alt="" />
+                        <img src='{{ "images/dev/linkedin-icon.svg" | relURL }}' alt="" />
                         </a>
                         {{ end }}
                         {{ with .Site.Params.cta_btn }}

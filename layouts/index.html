@@ -140,7 +140,7 @@
                             <div class="result-container p-3 space-y-2 absolute rounded-lg top-10 left-0 min-w-full bg-blue border-slate-700 border hidden">
                               <div class="flex gap-2 items-center">
                                 <div class="size-3">
-                                  <img src='{{ "images/dev/suggest-icon.png" | relURL }}' alt="" class="size-full">
+                                  <img src='{{ "images/dev/suggest.svg" | relURL }}' alt="" class="size-full">
                                 </div>
                                 <span class="text-style font-poppins font-semibold">Search suggestion:</span>
                               </div>
@@ -584,10 +584,10 @@
 {{ if .enable }}
 <section class="bg-slate-100 dark:bg-main relative z-30">
   <div class="container mx-auto px-5 sm:px-10 lg:px-16 lg:pt-20">
-    <h3 class="font-poppins font-semibold text-3xl lg:text-5xl text-black dark:text-slate-200 mb-4">
+    <h3 class="font-poppins font-semibold text-3xl lg:text-[46px] text-black dark:text-slate-200 main-heading">
       Frequently Asked Questions
     </h3>
-    <ul class="basis-1/2 grid md:grid-cols-2 gap-y-2 gap-x-14">
+    <ul class="basis-1/2 space-y-8 mt-[30px]">
       {{ range $index, $faq := .faqs }}
       <li class="p-5 bg-gray-200 dark:bg-blue rounded-lg" data-faq-id="faq-{{ $index }}">
         <button

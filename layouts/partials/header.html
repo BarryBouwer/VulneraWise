@@ -68,23 +68,24 @@
           {{ $active := eq $menu $page }}
 
           {{ if .HasChildren }}
-          <div class="group relative inline-block text-left w-full px-4 lg:p-0">
+          <div class="relative inline-block text-left w-full px-4 lg:p-0">
             <button
             {{ $light_arrow := "images/dev/dropdown-arrow.svg" | relURL }}
             {{ $dark_arrow := "images/dev/dropdown-arrow-dark.svg" | relURL }}
+              id="dropdown-button-{{ $index }}"
               class="py-2 text-main font-normal dark:text-slate-100 hover:text-slate-950 dark:hover:text-white rounded lg:bg-transparent lg:text-primary-700 lg:p-0 font-poppins w-full flex gap-1 justify-between lg:justify-normal items-center text-start transition-transform duration-500 tracking-wider"
               aria-haspopup="true" aria-expanded="false">
               <a href="{{ .URL | absURL }}">
                 {{ .Name }}
               </a>
-              <div id="dropdown-button-{{ $index }}">
+              <div class="transition-all icon">
                 <img src="{{ $light_arrow }}" alt="" class="dark:hidden lg:min-w-[12px]">
                 <img src="{{ $dark_arrow }}" alt="" class="hidden dark:block lg:min-w-[12px]">  
               </div>
             </button>
 
-            <div id="dropdown-menu-{{ $index }}"
-              class="relative origin-top lg:absolute mt-2 lg:group-hover:block lg:transition-transform w-full lg:w-64 rounded-md shadow-lg bg-main border border-slate-800 ring-opacity-5 lg:left-1/2 lg:-translate-x-1/2 hidden">
+            <div id="dropdown-{{ $index }}"
+              class="relative origin-top lg:absolute mt-2 lg:group-hover:block lg:transition-transform w-full lg:w-64 rounded-md shadow-lg bg-main border border-slate-800 ring-opacity-5 lg:left-1/2 lg:-translate-x-1/2 hidden lg:block lg:translate-y-3 lg:opacity-0 lg:pointer-events-none">
               <div class="w-7 overflow-hidden fixed left-1/2 -translate-x-1/2 -mt-4 hidden lg:inline-block">
                 <div class=" h-4 w-4 bg-main rotate-45 transform origin-bottom-left"></div>
                </div>
@@ -100,6 +101,62 @@
               </div>
             </div>
           </div>
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            {{ $id := replaceRE "[- ]" "_" .Name  }}
+            {{ $id := $id | urlize | safeJS }}
+            const mql{{ $id }} = window.matchMedia("(max-width: 1023px)");
+            const button{{ $id }} = document.getElementById("dropdown-button-{{ $index }}");
+            const dropdown{{ $id }} = document.getElementById("dropdown-{{ $index }}");
+
+              if (mql{{ $id }}.matches) {
+                button{{ $id }}.addEventListener('click', function () {
+                  dropdown{{ $id }}.classList.toggle('hidden');
+                  this.querySelector('.icon').classList.toggle('rotate-180');
+                });
+              };
+
+              if (!mql{{ $id }}.matches) {
+                  let isHoveringButton = false;
+                  let isHoveringDropdown = false;
+
+                  const showDropdown = () => {
+                  dropdown{{ $id }}.classList.remove("lg:opacity-0", "lg:translate-y-3", "lg:pointer-events-none");
+                  dropdown{{ $id }}.classList.add("lg:opacity-100", "lg:pointer-events-auto");
+                  button{{ $id }}.querySelector('.icon').classList.add("rotate-180");
+                  };
+
+                  const hideDropdown = () => {
+                  if (!isHoveringButton && !isHoveringDropdown) {
+                      dropdown{{ $id }}.classList.remove("lg:opacity-100", "lg:pointer-events-auto");
+                      dropdown{{ $id }}.classList.add("lg:opacity-0", "lg:translate-y-3", "lg:pointer-events-none");
+                      button{{ $id }}.querySelector('.icon').classList.remove("rotate-180");
+                  }
+                  };
+
+                  // Button hover
+                  button{{ $id }}.addEventListener("mouseenter", () => {
+                  isHoveringButton = true;
+                  showDropdown();
+                  });
+
+                  button{{ $id }}.addEventListener("mouseleave", () => {
+                  isHoveringButton = false;
+                  setTimeout(hideDropdown, 100); // allow time to reach dropdown
+                  });
+
+                  // Dropdown hover
+                  dropdown{{ $id }}.addEventListener("mouseenter", () => {
+                  isHoveringDropdown = true;
+                  });
+
+                  dropdown{{ $id }}.addEventListener("mouseleave", () => {
+                  isHoveringDropdown = false;
+                  setTimeout(hideDropdown, 100);
+                  });
+              };
+            });
+          </script>
           {{ else }}
           <li class="w-full lg:text-center">
             <a href="{{ .URL | absURL }}"
@@ -108,46 +165,6 @@
           </li>
           {{ end }}
           {{ end }}
-
-          <script>
-            // Object to track dropdown states
-            const dropdownStates = {};
-
-            // Add event listeners for each dropdown
-            document.querySelectorAll('[id^="dropdown-button-"]').forEach((dropdownButton) => {
-              const index = dropdownButton.id.split('-').pop();
-              const dropdownMenu = document.getElementById(`dropdown-menu-${index}`);
-
-              // Initialize dropdown state for this index
-              dropdownStates[index] = false;
-
-              // Function to toggle dropdown visibility
-              function toggleDropdown() {
-                dropdownStates[index] = !dropdownStates[index];
-                if (dropdownStates[index]) {
-                  dropdownMenu.classList.remove("hidden");
-                } else {
-                  dropdownMenu.classList.add("hidden");
-                }
-              }
-
-              dropdownButton.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevent event from bubbling up to the window
-                toggleDropdown();
-              });
-
-              // Close the dropdown if clicking outside
-              window.addEventListener("click", (event) => {
-                if (
-                  !dropdownButton.contains(event.target) &&
-                  !dropdownMenu.contains(event.target)
-                ) {
-                  dropdownMenu.classList.add("hidden");
-                  dropdownStates[index] = false;
-                }
-              });
-            });
-          </script>
 
           <li class="js-login w-full my-3 lg:hidden">
             <a href='{{ "login" | relURL }}'

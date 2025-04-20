@@ -86,7 +86,7 @@
                 <div id="valueCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-between">
                     {{ range .boxes }}
                     <div
-                        class="rounded-3xl relative overflow-hidden animated card min-h-[385px]">
+                        class="rounded-3xl relative overflow-hidden animated card h-[400px]">
                         <div class="card-content bg-blue">
                             <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                                 class="w-full h-full absolute top-0 left-0 z-0"></div>
@@ -139,19 +139,19 @@
                 <div class="space-y-4">
                     {{ with .location }}
                     <div class="flex items-center gap-3">
-                        <img src='{{ "images/dev/location.png" | relURL }}' alt="">
+                        <img src='{{ "images/dev/location.svg" | relURL }}' alt="">
                         <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ . }}</p>
                     </div>
                     {{ end }}
                     {{ with .email }}
                     <div class="flex items-center gap-3">
-                        <img src='{{ "images/dev/mail.png" | relURL }}' alt="">
+                        <img src='{{ "images/dev/mail.svg" | relURL }}' alt="">
                         <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ . }}</p>
                     </div>
                     {{ end }}
                     {{ with .phone }}
                     <div class="flex items-center gap-3">
-                        <img src='{{ "images/dev/phone.png" | relURL }}' alt="">
+                        <img src='{{ "images/dev/phone.svg" | relURL }}' alt="">
                         <p class="font-poppins text-lg text-slate-700 dark:text-slate-300">{{ . }}</p>
                     </div>
                     {{ end }}

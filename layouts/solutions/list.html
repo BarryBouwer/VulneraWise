@@ -28,14 +28,16 @@
                     <div
                         class="hidden lg:block rotate-45 size-60 bg-white dark:bg-main opacity-50 absolute top-40 left-36 -z-10">
                     </div>
-                    <div class="space-y-5 z-50" data-aos="zoom-in">
-                        <h1
-                            class="font-poppins font-bold text-4xl lg:text-5xl text-slate-950 dark:text-white main-heading break-words">
-                            {{ .title | safeHTML }}
-                        </h1>
-                        <p class="text-slate-700 dark:text-slate-300 font-poppins text-xl">
-                            {{ .details | safeHTML }}
-                        </p>
+                    <div class="z-50" data-aos="zoom-in">
+                        <div class="mb-6">
+                            <h1
+                                class="font-poppins font-bold text-3xl lg:text-[46px] text-slate-950 dark:text-white main-heading break-words tracking-[-1px] leading-[130%]">
+                                {{ .title | safeHTML }}
+                            </h1>
+                            <p class="text-slate-700 dark:text-slate-300 font-poppins text-[21px] leading-[150%] mt-4">
+                                {{ .details | safeHTML }}
+                            </p>
+                        </div>
                         {{ with .button }}
                         <div
                             class="rounded-3xl hover:bg-style hover:after:p-0 group after:rounded-3xl transition-all border-gradient-primary py-3 hover:scale-105 sm:max-w-44 text-center">
@@ -43,9 +45,9 @@
                                 class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
                                 <span class="flex justify-center items-center gap-2">
                                     {{ .label }}
-                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow-dark.svg" | relURL  }}' alt=""
                                         class="dark:hidden group-hover:block">
-                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow.svg" | relURL  }}' alt=""
                                         class="hidden dark:block group-hover:hidden">
                                 </span>
                             </a>
@@ -76,10 +78,10 @@
                 style="background: linear-gradient(to bottom, transparent, #05101a 100%)"
                 data-aos="zoom-in">
                 <h2
-                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center">
                     {{
                     .title | safeHTML }}</h2>
-                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0">
+                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0 my-16">
                     <div class="lg:w-1/3">
                         <h3 class="font-poppins font-medium text-2xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
                             {{ .subtitle | safeHTML }}
@@ -91,9 +93,9 @@
                                 class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
                                 <span class="flex justify-center items-center gap-2">
                                     {{ .label }}
-                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow-dark.svg" | relURL  }}' alt=""
                                         class="dark:hidden group-hover:block">
-                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow.svg" | relURL  }}' alt=""
                                         class="hidden dark:block group-hover:hidden">
                                 </span>
                             </a>
@@ -116,10 +118,10 @@
                 style="background: linear-gradient(to bottom, transparent, #f1f5f9 100%)"
                 data-aos="zoom-in">
                 <h2
-                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                    class="font-poppins font-bold text-4xl lg:text-[51px] leading-[57.6px] text-black dark:text-white main-heading lg:text-center">
                     {{
                     .title | safeHTML }}</h2>
-                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0">
+                <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0 my-16">
                     <div class="lg:w-1/3">
                         <h3 class="font-poppins font-medium text-2xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
                             {{ .subtitle | safeHTML }}
@@ -209,19 +211,19 @@
       z-index: 2;
     }
   </style>
-<section class="pt-20 bg-slate-100 dark:bg-main">
+<section class="bg-slate-100 dark:bg-main">
     <div class="container mx-auto px-5 sm:px-10 lg:px-16">
         <div id="evCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 place-content-between" data-aos="zoom-in">
             {{ range . }}
-            <div class="rounded-3xl relative overflow-hidden animated card h-[414px]">
+            <div class="rounded-3xl relative overflow-hidden animated card h-[550px] md:h-[500px]">
                 <div class="card-content bg-blue">
                     <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                         class="w-full h-full absolute top-0 left-0 z-0"></div>
-                    <div class="space-y-7 z-30 relative px-5 pt-10">
+                    <div class="z-30 relative px-[40.59px] my-5">
                         <img src='{{ .icon | relURL }}' alt="">
-                        <div class="space-y-2">
-                            <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | safeHTML }}</h3>
-                            <p class="text-slate-300 font-poppins text-lg">{{ .details | safeHTML }}</p>
+                        <div class="mt-[34px]">
+                            <h3 class="text-white font-poppins font-semibold text-[26px] leading-[160%]">{{ .title | safeHTML }}</h3>
+                            <p class="text-slate-300 font-poppins text-lg mt-3 leading-[160%]">{{ .details | safeHTML }}</p>
                         </div>
                     </div>
                 </div>
@@ -253,10 +255,10 @@
     <div class="container mx-auto px-5 sm:px-10 lg:px-16">
         <div data-aos="zoom-in">
             <h2
-                class="font-poppins font-bold text-4xl lg:text-5xl text-black dark:text-white main-heading lg:text-center mb-5 lg:mb-10">
+                class="font-poppins font-bold text-4xl lg:text-5xl text-black dark:text-white main-heading lg:text-center">
                 {{
                 .title | safeHTML }}</h2>
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0 my-16">
                 <div class="lg:w-1/3">
                     <h3 class="font-poppins font-bold text-3xl lg:text-[32px] leading-[130%] text-black dark:text-white mb-7">
                         {{ .subtitle | safeHTML }}
@@ -268,9 +270,9 @@
                                 class="text-black dark:text-white group-hover:text-black font-medium text-sm font-poppins relative z-10">
                                 <span class="flex justify-center items-center gap-2">
                                     {{ .label }}
-                                    <img src='{{ "images/dev/dark_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow-dark.svg" | relURL  }}' alt=""
                                         class="dark:hidden group-hover:block">
-                                    <img src='{{ "images/dev/light_right_arrow.png" | relURL  }}' alt=""
+                                    <img src='{{ "images/dev/right-arrow.svg" | relURL  }}' alt=""
                                         class="hidden dark:block group-hover:hidden">
                                 </span>
                             </a>
@@ -340,17 +342,19 @@
               z-index: 2;
             }
         </style>
-        <div id="cvCards" class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 lg:mt-20" data-aos="zoom-in">
+        <div id="cvCards" class="grid grid-cols-1 md:grid-cols-2 gap-11" data-aos="zoom-in">
             {{ range . }}
-            <div class="rounded-3xl relative overflow-hidden animated card h-[414px] lg:h-[355px]">
+            <div class="rounded-3xl relative overflow-hidden animated card h-[550px] lg:h-[400px]">
                 <div class="card-content bg-blue">
                     <div style="background-image: url('{{ "images/dev/dark_box_lines.png" | relURL }}');"
                         class="w-full h-full absolute top-0 left-0 z-0"></div>
-                    <div class="space-y-7 z-30 relative px-5 pt-7">
-                        <img src='{{ .icon | relURL }}' alt="">
-                        <div class="space-y-2">
-                            <h3 class="text-white font-poppins font-semibold text-[26px]">{{ .title | safeHTML }}</h3>
-                            <p class="text-slate-300 font-poppins text-lg">{{ .details | safeHTML }}</p>
+                    <div class="space-y-7 z-30 relative px-[50.49px] py-5">
+                        <div class="size-[128px]">
+                            <img src='{{ .icon | relURL }}' alt="" class="size-full object-contain">
+                        </div>
+                        <div class="mt-[34px]">
+                            <h3 class="text-white font-poppins font-semibold text-[26px] leading-[160%] mb-3">{{ .title | safeHTML }}</h3>
+                            <p class="text-slate-300 font-poppins text-lg leading-[160%]">{{ .details | safeHTML }}</p>
                         </div>
                     </div>
                 </div>
