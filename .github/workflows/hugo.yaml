@@ -72,7 +72,7 @@ jobs:
           server: 185.37.70.81
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./public
+          local-dir: ./public/
           server-dir: /public/
 
   # Deployment job
