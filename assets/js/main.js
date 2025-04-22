@@ -77,13 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  // tilt.js init
-  VanillaTilt.init(document.querySelectorAll(".animated"), {
-    max: 5,
-    speed: 50,
-    reset: true,
-  });
-
   // aos.js init
   AOS.init();
 

@@ -1,9 +1,8 @@
-{{ $swiper := resources.Get "plugins/swiper/swiper.min.js" }} {{ $tilt :=
-resources.Get "plugins/tilt/tilt.min.js"}}
+{{ $swiper := resources.Get "plugins/swiper/swiper.min.js" }}
 {{ $auth := resources.Get "js/auth.js" }} {{ $main := resources.Get
 "js/main.js" }}
 {{ $dialog := resources.Get "plugins/dialog/dialog.js" }}
-{{ $js := slice $swiper $tilt $auth $main $dialog | resources.Concat
+{{ $js := slice $swiper $auth $main $dialog | resources.Concat
 "js/bundle.js" }}
 {{ $jsonDir := resources.Get "data/vulnerabilities.json" | relURL }}
 {{ if hugo.IsDevelopment }} {{ with $js | js.Build }}
