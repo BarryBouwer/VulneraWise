@@ -31,78 +31,84 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const themeToggleElm = document.querySelector('.change-theme');
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    const preferencesCheckbox = document.getElementById('preferences');
+  
+    // Apply theme based on consent and storage
     function applyTheme() {
-      // Check if the theme preference should be saved (checkbox checked)
-      if (localStorage.getItem('saveThemePreference') === 'true') {
-        // Apply the saved theme (dark or light) from localStorage
-        if (localStorage.theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+      const consentGiven = localStorage.getItem('preferencesAccepted') === 'true';
+      let theme = null;
+  
+      if (consentGiven) {
+        theme = localStorage.getItem('theme');
       } else {
-        // No theme preference saved, use system preference
-        if (
-          !("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-        ) {
-          document.documentElement.classList.add("dark");
+        theme = sessionStorage.getItem('theme');
+      }
+  
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        // No saved theme: use system preference
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
         } else {
-          document.documentElement.classList.remove("dark");
+          document.documentElement.classList.remove('dark');
         }
       }
     }
-    
-    applyTheme();  // Apply theme when page loads
   
-    // Toggle theme based on current state
+    applyTheme(); // Apply on load
+  
+    // Toggle theme manually
     function changeTheme() {
-      if (localStorage.theme === "dark") {
-        setLightMode();
+      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    }
+  
+    // Set and save theme to appropriate storage
+    function setTheme(theme) {
+      const consentGiven = localStorage.getItem('preferencesAccepted') === 'true';
+  
+      if (consentGiven) {
+        localStorage.setItem('theme', theme);
       } else {
-        setDarkMode();
+        sessionStorage.setItem('theme', theme);
+      }
+  
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
       }
     }
   
-    // Set light mode
-    function setLightMode() {
-      localStorage.theme = "light";  // Save light theme to localStorage
-      document.documentElement.classList.remove("dark");
-    }
+    // Respond to OS preference change
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
   
-    // Set dark mode
-    function setDarkMode() {
-      localStorage.theme = "dark";  // Save dark theme to localStorage
-      document.documentElement.classList.add("dark");
-    }
-  
-    // Whenever the user explicitly chooses to respect the OS preference
-    function setSystemMode() {
-      localStorage.removeItem("theme");  // Remove the theme from localStorage
-      applyTheme();  // Apply the system's default theme
-    }
-  
-    // Add an event listener for changes in the user's OS preference
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', applyTheme);
-  
-    // Listen for changes to the checkbox (check/uncheck)
-    // If the checkbox is checked, we store the theme preference in localStorage
-    document.getElementById('preferences').addEventListener('change', () => {
-      if (document.getElementById('preferences').checked) {
-        // Save the preference to localStorage
-        localStorage.setItem('saveThemePreference', 'true');
-        applyTheme();  // Reapply the theme when the checkbox is checked
+    // Handle preferences checkbox change
+    preferencesCheckbox.addEventListener('change', () => {
+      if (preferencesCheckbox.checked) {
+        localStorage.setItem('preferencesAccepted', 'true');
+        const sessionTheme = sessionStorage.getItem('theme');
+        if (sessionTheme) {
+          localStorage.setItem('theme', sessionTheme);
+          sessionStorage.removeItem('theme');
+        }
       } else {
-        // Remove the preference from localStorage
-        localStorage.removeItem('saveThemePreference');
-        applyTheme();  // Reapply the system preference or default theme
+        localStorage.removeItem('preferencesAccepted');
+        localStorage.removeItem('theme');
       }
+  
+      applyTheme();
     });
+  
+    // Theme toggle button
     if (themeToggleElm) {
       themeToggleElm.addEventListener('click', changeTheme);
     }
-  });
+  });  
 </script>
 
 {{ $current := .RelPermalink }}
