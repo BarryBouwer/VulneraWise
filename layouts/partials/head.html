@@ -15,10 +15,8 @@
 <script src="{{ $fuse.RelPermalink }}"></script>
 
 {{/*  favicon  */}}
-{{ $favicon := resources.Get "favicon.png" }}
-{{ with $favicon }}
-<link rel="shortcut icon" href="{{ .RelPermalink }}" type="image/x-icon">
-{{ end }}
+{{ $favicon := "images/favicon.png" | relURL }}
+<link rel="shortcut icon" href="{{ $favicon }}" type="image/x-icon">
 
 {{/*  external services  */}}
 {{ template "_internal/google_analytics.html" . }} <!--google analytics--> 
